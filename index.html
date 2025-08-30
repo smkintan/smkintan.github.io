@@ -203,6 +203,46 @@ footer {
     .section-title { font-size: 22px; }
     .gallery { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
 }
+
+.bottom-grid-nav {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    background: #8B0000;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
+}
+
+.bottom-grid-nav a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    transition: background 0.3s;
+}
+
+.bottom-grid-nav a:last-child {
+    border-right: none;
+}
+
+.bottom-grid-nav a:hover {
+    background: #a40000;
+}
+
+.bottom-grid-nav i {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
 </style>
 </head>
 <body>
@@ -336,12 +376,13 @@ footer {
 </div>
 
 <nav>
-    <a href="#tentang">Tentang</a>
-    <a href="#program">Kompetensi</a>
-    <a href="#fasilitas">Fasilitas</a>
-    <a href="#prestasi">Prestasi</a>
-    <a href="#karir">Karir</a>
-    <a href="#kontak">Kontak</a>
+<nav class="bottom-grid-nav">
+    <a href="#tentang"><i class="fas fa-info-circle"></i><span>Tentang</span></a>
+    <a href="#program"><i class="fas fa-cogs"></i><span>Kompetensi</span></a>
+    <a href="#fasilitas"><i class="fas fa-tools"></i><span>Fasilitas</span></a>
+    <a href="#prestasi"><i class="fas fa-trophy"></i><span>Prestasi</span></a>
+    <a href="#karir"><i class="fas fa-briefcase"></i><span>Karir</span></a>
+    <a href="#kontak"><i class="fas fa-phone"></i><span>Kontak</span></a>
 </nav>
 
 <footer>
