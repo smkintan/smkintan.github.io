@@ -30,8 +30,10 @@ nav {
     justify-content: center;
     flex-wrap: wrap;
     padding: 12px 0;
-    position: sticky;
-    top: 0;
+	    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
     z-index: 1000;
 }
 nav a {
@@ -210,14 +212,7 @@ footer {
     <p>Jurusan Mekatronika - Teknologi Masa Depan</p>
 </header>
 
-<nav>
-    <a href="#tentang">Tentang</a>
-    <a href="#program">Kompetensi</a>
-    <a href="#fasilitas">Fasilitas</a>
-    <a href="#prestasi">Prestasi</a>
-    <a href="#karir">Karir</a>
-    <a href="#kontak">Kontak</a>
-</nav>
+
 
 <div class="container">
     <section id="tentang">
@@ -339,6 +334,15 @@ footer {
     <button onclick="sendMessage()">Kirim ke Telegram</button>
     <div class="status" id="status"></div>
 </div>
+
+<nav>
+    <a href="#tentang">Tentang</a>
+    <a href="#program">Kompetensi</a>
+    <a href="#fasilitas">Fasilitas</a>
+    <a href="#prestasi">Prestasi</a>
+    <a href="#karir">Karir</a>
+    <a href="#kontak">Kontak</a>
+</nav>
 
 <footer>
     <p>&copy; 2025 SMK Negeri 1 Indralaya Selatan - Jurusan Mekatronika</p>
