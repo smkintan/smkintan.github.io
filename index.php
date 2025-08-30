@@ -7,8 +7,8 @@ if (($_GET['action'] ?? '') === 'send' && $_SERVER['REQUEST_METHOD'] === 'POST')
     header('Content-Type: application/json; charset=utf-8');
 
     // --- Ambil token & chat ID dari environment (disarankan) ---
-    $BOT_TOKEN = getenv('TELEGRAM_BOT_TOKEN') ?: 'REPLACE_WITH_YOUR_BOT_TOKEN';
-    $CHAT_ID   = getenv('TELEGRAM_CHAT_ID')   ?: 'REPLACE_WITH_YOUR_CHAT_ID';
+    $BOT_TOKEN = getenv('TELEGRAM_BOT_TOKEN') ?: '8246941800:AAGJo-ZEYhTV4LjEOMYPfimLo-AO-KEKVOs';
+    $CHAT_ID   = getenv('TELEGRAM_CHAT_ID')   ?: '6909703659';
 
     if ($BOT_TOKEN === 'REPLACE_WITH_YOUR_BOT_TOKEN' || $CHAT_ID === 'REPLACE_WITH_YOUR_CHAT_ID') {
         http_response_code(500);
