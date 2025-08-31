@@ -383,8 +383,17 @@
 				<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/PPDB.jpg" 
          alt="Siswa Praktikum" 
          class="responsive-img">
+		 
+		 <div style="text-align:center; margin-top:10px;">
+        <button onclick="shareImage()" style="padding:10px 20px; background:#28a745; color:white; border:none; border-radius:8px; cursor:pointer;">
+            <i class="fas fa-share"></i> Share Gambar
+        </button>
+    </div>
 			</section>
-			<br><br>
+			
+			
+			
+			<BR><BR>
 			<section id="kontak">
 				<h2 class="section-title"></h2>
 				<p>
@@ -482,7 +491,16 @@
 			}
 		}
 		</script>
-
+<script>
+function shareImage() {
+    const imgUrl = document.getElementById('spmbImage').src;
+    // Share via WhatsApp
+    const text = encodeURIComponent("Lihat info SPMB SMK Mekatronika: " + imgUrl);
+    const whatsappUrl = `https://wa.me/?text=${text}`;
+    window.open(whatsappUrl, '_blank');
+}
+</script>
 
 		</body>
 		</html>
+	
