@@ -244,12 +244,15 @@
 		}
 
 		</style>
+		    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		</head>
 		<body>
 
 		<header>
 			<h1><i class="fas fa-robot"></i> SMK Negeri 1 Indralaya Selatan</h1>
 			<p>Jurusan Mekatronika - Teknologi Masa Depan</p>
+			<p>Jumlah Pengunjung : 4582 orang</p>
 		</header>
 
 
@@ -353,6 +356,15 @@
 					<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_1062.JPG" alt="Siswa Praktikum">
 					<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_1365.JPG" alt="Siswa Praktikum">
 					<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_1732.JPG" alt="Siswa Praktikum">
+					<iframe width="" height=""
+						src="https://www.youtube.com/embed/18btDdUpM90?autoplay=1"
+						title="YouTube video player"
+						frameborder="0"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+						referrerpolicy="strict-origin-when-cross-origin"
+						allowfullscreen>
+					</iframe>
+
 				</div>
 			</section>
 
@@ -363,17 +375,20 @@
 			
 			<section id="kontak">
 				<h2 class="section-title"></h2>
-				<p></p>
+				<p>
+				
+				
+				</p>
 			</section>
 
 		</div>
 
 		<!-- Chat Box -->
 		<div class="chat-box-container" id="chatBox">
-			<h3>Chat Anonim</h3>
+			<h3>Chat Absensi</h3>
 			<input type="text" id="phone" placeholder="Masukkan Nomor WA">
-			<textarea id="message" placeholder="Masukkan Pesan Anda"></textarea>
-			<button onclick="sendMessage()">Kirim ke Telegram</button>
+			<textarea id="message" placeholder="Masukkan Nama Anda"></textarea>
+			<button onclick="sendMessage()">Kirim</button>
 			<div class="status" id="status"></div>
 		</div>
 
@@ -384,14 +399,15 @@
 			<a href="#fasilitas"><i class="fas fa-tools"></i><span>Fasilitas</span></a>
 			<a href="#prestasi"><i class="fas fa-trophy"></i><span>Prestasi</span></a>
 			<a href="#karir"><i class="fas fa-briefcase"></i><span>Karir</span></a>
-			<a onclick="toggleChat()"><i class="fas fa-phone"></i><span>Chat</span></a>
+			<a onclick="toggleChat()"><i class="fas fa-phone"></i><span>Absensi</span></a>
 		</nav>
 
-		<footer>
-			<p>&copy; 2025 SMK Negeri 1 Indralaya Selatan - Jurusan Mekatronika</p>
+<footer>
+  <p>&copy; 2025 SMK Negeri 1 Indralaya Selatan - Jurusan Mekatronika</p>
+  <p id="visitor-count">Jumlah Pengunjung: <span id="count">0</span></p>
+</footer>
 
-		</footer>
-		
+
 
 		<script>
 		function toggleChat() {
@@ -443,6 +459,7 @@
 			}
 		}
 		</script>
+
 
 		</body>
 		</html>
