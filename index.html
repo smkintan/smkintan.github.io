@@ -242,7 +242,13 @@
 			font-size: 18px;
 			margin-bottom: 5px;
 		}
-
+        .responsive-img {
+            width: 100%;      /* Lebar menyesuaikan container */
+            max-width: 100%; /* Maksimal lebar gambar */
+            height: auto;     /* Tinggi otomatis proporsional */
+            display: block;   /* Agar margin auto bisa bekerja */
+            margin: 0 auto;   /* Center gambar horizontal */
+        }
 		</style>
 		    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -373,8 +379,10 @@
 			</section>
 
 			<section id="kontak">
-				<h2 class="section-title">Kontak</h2>
-				<p>Alamat: Jl. Raya Indralaya, Kabupaten Ogan Ilir, Sumatera Selatan</p>
+				<h2 class="section-title">SPMB</h2>
+				<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/PPDB.jpg" 
+         alt="Siswa Praktikum" 
+         class="responsive-img">
 			</section>
 			
 			<section id="kontak">
