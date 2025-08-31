@@ -1,23 +1,28 @@
-// Ambil nilai counter dari localStorage
-let counter = parseInt(localStorage.getItem("total_visited")) || 0;
+// Set cookie berlaku 6 bulan ke depan
+let expiration = new Date();
+expiration.setMonth(expiration.getMonth() + 6);
+
+// Ambil nilai cookie "total_visited"
+let counter = parseInt(getCookie("total_visited")) || 0;
 counter++;
 
-// Simpan/update di localStorage
-localStorage.setItem("total_visited", counter);
+// Simpan/update cookie
+document.cookie = "total_visited=" + counter + ";expires=" + expiration.toUTCString() + ";path=/";
 
-// Tampilkan jumlah kunjungan
-function updateDisplay() {
-    document.getElementById('result').innerHTML = `
-        <h3>Anda telah mengunjungi halaman ini 
-            <label style='font-size:40px;' class='text-info'>${counter}</label> kali.
-        </h3>`;
+// Fungsi untuk membaca nilai cookie berdasarkan nama
+function getCookie(cookieName) {
+    let cookies = document.cookie.split("; ");
+    for (let i = 0; i < cookies.length; i++) {
+        let pair = cookies[i].split("=");
+        if (pair[0] === cookieName) {
+            return pair[1];
+        }
+    }
+    return 0;
 }
 
-updateDisplay();
-
-// Tambahkan fungsi reset
-document.getElementById('resetBtn').addEventListener('click', function() {
-    counter = 0;
-    localStorage.setItem("total_visited", counter);
-    updateDisplay();
-});
+// Tampilkan jumlah kunjungan
+document.getElementById('result').innerHTML = `
+    <h3>Anda telah mengunjungi halaman ini 
+        <label style='font-size:40px;' class='text-info'>${counter}</label> kali.
+    </h3>`;
