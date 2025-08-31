@@ -438,9 +438,6 @@
 		</nav>
 
 
-
-
-
 		<script>
 		function toggleChat() {
 			const chat = document.getElementById('chatBox');
@@ -499,56 +496,6 @@ function shareImage() {
     const whatsappUrl = `https://wa.me/?text=${text}`;
     window.open(whatsappUrl, '_blank');
 }
-</script>
-<style>
-/* Overlay tarik untuk refresh */
-#pullToRefresh {
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    text-align: center;
-    font-size: 16px;
-    color: #B22222;
-    padding: 10px;
-    display: none;
-    z-index: 5000;
-    background: #fff0;
-}
-</style>
-
-<div id="pullToRefresh">⬇ Tarik untuk refresh</div>
-
-<script>
-let startY = 0;
-let pull = false;
-
-window.addEventListener('touchstart', function(e) {
-    if (window.scrollY === 0) { // Hanya jika berada di atas
-        startY = e.touches[0].pageY;
-        pull = true;
-        document.getElementById('pullToRefresh').style.display = 'block';
-    }
-});
-
-window.addEventListener('touchmove', function(e) {
-    if (!pull) return;
-    let diff = e.touches[0].pageY - startY;
-    if (diff > 50) { // Jika ditarik lebih dari 50px
-        document.getElementById('pullToRefresh').innerText = "⟳ Lepas untuk refresh";
-    }
-});
-
-window.addEventListener('touchend', function(e) {
-    if (!pull) return;
-    let diff = e.changedTouches[0].pageY - startY;
-    document.getElementById('pullToRefresh').style.display = 'none';
-    if (diff > 50) {
-        location.reload(); // Refresh halaman
-    }
-    pull = false;
-});
 </script>
 
 		</body>
