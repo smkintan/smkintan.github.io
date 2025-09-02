@@ -264,7 +264,7 @@
 					 src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/ed5259c8-0ae9-446b-ae7b-9bde6184d6e3.jpg" 
 					 alt="Siswa Praktikum" 
 					 class="responsive-img">
-			
+
 		<div class="container">
 			<section id="tentang">
 <h2 class="section-title">Tentang Jurusan Mekatronika</h2>
@@ -348,19 +348,15 @@
         <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_1365.JPG" alt="Siswa Praktikum">
         <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_1732.JPG" alt="Siswa Praktikum">
         <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/a.JPG" alt="Siswa Praktikum">
-		
-        <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/b.JPG" alt="Siswa Praktikum">
+		<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/b.JPG" alt="Siswa Praktikum">
         <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/c.JPG" alt="Lab Mekatronika">
         <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/d.JPG" alt="Siswa Praktikum">
         <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/e.JPG" alt="Siswa Praktikum">
-        <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/f.JPG" alt="Siswa Praktikum">
-		
+        <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/f.JPG" alt="Siswa Praktikum">	
         <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/PHOTO-2025-08-15-11-31-36.jpg" alt="">
         <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_8087.JPG" alt="">
       </div>
-
-      <!-- Duplikasi untuk looping -->
-      <div class="marquee__group" aria-hidden="true">
+	<div class="marquee__group" aria-hidden="true">
         <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_0318.JPG" alt="">
         <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_1904.JPG" alt="">
         <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_0924.JPG" alt="">
@@ -378,8 +374,7 @@
         <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/PHOTO-2025-08-15-11-31-36.jpg" alt="">
         <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_8087.JPG" alt="">
       </div>
-    </div>
-  </div>
+	
 </section>
 
 <section id="prestasi">
@@ -410,7 +405,7 @@
   background: #fff; 
   border-radius: 10px; 
   box-shadow: 0 4px 10px rgba(0,0,0,.08); 
-  padding: 20px; 
+  padding: 10px; 
   margin-bottom: 30px;
 }
 
@@ -422,7 +417,7 @@
 .marquee {
   display: flex;
   gap: 16px;
-  animation: marquee-scroll 20s linear infinite;
+  animation: marquee-scroll 40s linear infinite;
 }
 
 .marquee__group {
@@ -431,7 +426,7 @@
 }
 
 .marquee img {
-  height: 160px;
+  height: 80px;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0,0,0,.12);
   transition: transform .3s;
@@ -443,7 +438,13 @@
 
 @keyframes marquee-scroll {
   from { transform: translateX(0); }
-  to   { transform: translateX(-200%); }
+  to   { transform: translateX(-70%); }
+}
+
+.marquee {
+  display: flex;
+  gap: 16px;
+  animation: marquee-scroll 40s linear infinite alternate;
 }
 </style>
 
