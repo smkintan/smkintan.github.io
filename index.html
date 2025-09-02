@@ -249,6 +249,51 @@
             display: block;   /* Agar margin auto bisa bekerja */
             margin: 0 auto;   /* Center gambar horizontal */
         }
+		
+
+
+    .gallery-container {
+      width: 100%;
+      margin: auto;
+      overflow-x: auto; /* Aktifkan scroll horizontal */
+      white-space: nowrap; /* Gambar berjajar horizontal */
+      border: 0px solid #ccc;
+      padding: 10px;
+      background: white;
+      scrollbar-width: thin; /* Untuk Firefox */
+      scrollbar-color: #888 #f4f4f4; /* Warna scrollbar */
+    }
+
+    .gallery-container::-webkit-scrollbar {
+      height: 10px; /* Tinggi scrollbar horizontal */
+    }
+
+    .gallery-container::-webkit-scrollbar-track {
+      background: #f4f4f4;
+    }
+
+    .gallery-container::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 5px;
+    }
+
+    .gallery-container::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+
+    .gallery-container img {
+      width: ;
+      height: 150px;
+      margin-right: 10px;
+      border-radius: 10px;
+      display: inline-block;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .gallery-container img:hover {
+      transform: scale(1.05);
+    }
 		</style>
 		    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -338,9 +383,7 @@
 			<section id="galeri" class="marquee-gallery">
   <h2 class="section-title">Galeri Kegiatan</h2>
 
-  <div class="marquee-wrapper">
-    <div class="marquee">
-      <div class="marquee__group">
+      <div class="gallery-container">
         <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_0318.JPG" alt="Siswa Praktikum">
         <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_1904.JPG" alt="Siswa Praktikum">
         <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_0924.JPG" alt="Lab Mekatronika">
@@ -355,26 +398,9 @@
         <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/f.JPG" alt="Siswa Praktikum">	
         <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/PHOTO-2025-08-15-11-31-36.jpg" alt="">
         <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_8087.JPG" alt="">
-      </div>
-	<div class="marquee__group" aria-hidden="true">
-        <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_0318.JPG" alt="">
-        <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_1904.JPG" alt="">
-        <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_0924.JPG" alt="">
-        <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_0321.JPG" alt="">
-        <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_1062.JPG" alt="">
-        <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_1365.JPG" alt="">
-        <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_1732.JPG" alt="">
-        <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/a.JPG" alt="">
-        <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/b.JPG" alt="">
-        <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/c.JPG" alt="">
-        <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/d.JPG" alt="">
-        <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/e.JPG" alt="">
-        <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/f.JPG" alt="">
+        <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/f4c00c09-1ea7-42e5-92fd-fee94d7a7760.jpeg" alt="">		
 		
-        <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/PHOTO-2025-08-15-11-31-36.jpg" alt="">
-        <img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_8087.JPG" alt="">
-      </div>
-	
+      </div>	
 </section>
 
 <section id="prestasi">
@@ -398,55 +424,6 @@
 					</center></p></br>				
 			</section>
 
-
-
-<style>
-.marquee-gallery { 
-  background: #fff; 
-  border-radius: 10px; 
-  box-shadow: 0 4px 10px rgba(0,0,0,.08); 
-  padding: 10px; 
-  margin-bottom: 30px;
-}
-
-.marquee-wrapper {
-  overflow: hidden;       /* penting agar tidak keluar */
-  width: 100%;
-}
-
-.marquee {
-  display: flex;
-  gap: 16px;
-  animation: marquee-scroll 20s linear infinite;
-}
-
-.marquee__group {
-  display: flex;
-  gap: 16px;
-}
-
-.marquee img {
-  height: 80px;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,.12);
-  transition: transform .3s;
-}
-
-.marquee img:hover {
-  transform: scale(1.06);
-}
-
-@keyframes marquee-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-500%); }
-}
-
-.marquee {
-  display: flex;
-  gap: 16px;
-  animation: marquee-scroll 20s linear infinite alternate;
-}
-</style>
 
 			<section id="kontak">
 				<h2 class="section-title">SPMB</h2>
