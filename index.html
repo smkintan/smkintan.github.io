@@ -251,49 +251,40 @@
 			}
 			
 
-
-		.gallery-container {
-		  width: 100%;
-		  margin: auto;
-		  overflow-x: auto; /* Aktifkan scroll horizontal */
-		  white-space: nowrap; /* Gambar berjajar horizontal */
-		  border: 0px solid #ccc;
-		  padding: 10px;
-		  background: white;
-		  scrollbar-width: thin; /* Untuk Firefox */
-		  scrollbar-color: #888 #f4f4f4; /* Warna scrollbar */
-		}
-
-		.gallery-container::-webkit-scrollbar {
-		  height: 10px; /* Tinggi scrollbar horizontal */
-		}
-
-		.gallery-container::-webkit-scrollbar-track {
-		  background: #f4f4f4;
-		}
-
-		.gallery-container::-webkit-scrollbar-thumb {
-		  background: #888;
-		  border-radius: 5px;
-		}
-
-		.gallery-container::-webkit-scrollbar-thumb:hover {
-		  background: #555;
-		}
-
-		.gallery-container img {
-		  width: ;
-		  height: 150px;
-		  margin-right: 10px;
-		  border-radius: 10px;
-		  display: inline-block;
-		  object-fit: cover;
-		  transition: transform 0.3s;
-		}
-
-		.gallery-container img:hover {
-		  transform: scale(1.05);
-		}
+	  .gallery1 {
+		max-width: 100%;
+		text-align: center;
+	  }
+	  .main-img {
+		width: 100%;          /* Lebar penuh */
+		max-width: 600px;     /* Batas maksimal */
+		height: auto;         /* Tinggi otomatis */
+		max-height: 400px;    /* Batas tinggi agar tidak terlalu besar */
+		object-fit: contain;  /* Pastikan gambar tidak terpotong */
+		border-radius: 8px;
+		margin-bottom: 15px;
+	  }
+	  .thumbs {
+		display: flex;
+		justify-content: ;
+		gap: 10px;
+		overflow-x: auto;
+	  }
+	  .thumbs img {
+		width: 80px;
+		height: 60px;
+		object-fit: cover;
+		cursor: pointer;
+		opacity: 0.6;
+		border-radius: 4px;
+		transition: 0.3s;
+	  }
+	  .thumbs img.active,
+	  .thumbs img:hover {
+		opacity: 1;
+		border: 2px solid #1e90ff;
+	  }
+			
 			</style>
 				<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -382,33 +373,43 @@
 		
 				<section id="galeri" class="marquee-gallery">
 	  <h2 class="section-title">Galeri Kegiatan</h2>
-
-		  <div class="gallery-container">
-			<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_0318.JPG" alt="Siswa Praktikum">
-			<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_1904.JPG" alt="Siswa Praktikum">
-			<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_0924.JPG" alt="Lab Mekatronika">
-			<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_0321.JPG" alt="Siswa Praktikum">
-			<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_1365.JPG" alt="Siswa Praktikum">
-			<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_1732.JPG" alt="Siswa Praktikum">
-			<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/a.JPG" alt="Siswa Praktikum">
-			<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/b.JPG" alt="Siswa Praktikum">
-			<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/c.JPG" alt="Lab Mekatronika">
-			<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/d.JPG" alt="Siswa Praktikum">
-			<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/e.JPG" alt="Siswa Praktikum">
-			<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/f.JPG" alt="Siswa Praktikum">	
-			
-		  </div>	
-		  <br>
-				<div class="gallery-container">
-			<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/PHOTO-2025-08-15-11-31-36.jpg" alt="">
-			<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_8087.JPG" alt="">
-			<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/f4c00c09-1ea7-42e5-92fd-fee94d7a7760.jpeg" alt="">		
-			<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/1a126d37-586d-4a83-b59f-2368728556e2.jpeg" alt="">
-			<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/c89666aa-ab6d-4516-93ca-20ff503690b4.jpeg" alt="">		
-			
-		  </div>	
+	  
 		  
+		  	<div class="gallery1">
+	<img id="mainImage" class="main-img" src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_1904.JPG" alt="Main Image">
+    <div class="thumbs">
+		<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_0318.JPG" onclick="changeImage(this)">
+		<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_1904.JPG" onclick="changeImage(this)">
+		<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_0924.JPG" onclick="changeImage(this)">
+		<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_0321.JPG" onclick="changeImage(this)">
+		<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_1365.JPG" onclick="changeImage(this)">
+		<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_1732.JPG" onclick="changeImage(this)">
+		<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/a.JPG" onclick="changeImage(this)">
+		<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/b.JPG" onclick="changeImage(this)">
+		<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/c.JPG" onclick="changeImage(this)">
+		<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/d.JPG" onclick="changeImage(this)">
+		<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/e.JPG" onclick="changeImage(this)">
+		<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/f.JPG" onclick="changeImage(this)">
+		<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/PHOTO-2025-08-15-11-31-36.jpg" onclick="changeImage(this)">
+		<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/IMG_8087.JPG" onclick="changeImage(this)">
+		<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/f4c00c09-1ea7-42e5-92fd-fee94d7a7760.jpeg" onclick="changeImage(this)">
+		<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/1a126d37-586d-4a83-b59f-2368728556e2.jpeg" onclick="changeImage(this)">
+		<img src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/c89666aa-ab6d-4516-93ca-20ff503690b4.jpeg" onclick="changeImage(this)">
+    </div>
+  </div>
 	</section>
+	
+
+
+<script>
+  function changeImage(el) {
+    const mainImage = document.getElementById('mainImage');
+    mainImage.src = el.src;
+
+    document.querySelectorAll('.thumbs img').forEach(img => img.classList.remove('active'));
+    el.classList.add('active');
+  }
+</script>
 
 	<section id="prestasi">
 					<h2 class="section-title">Kegiatan & Prestasi</h2>
