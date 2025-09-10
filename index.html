@@ -408,6 +408,7 @@
 				  </ul>
 				</section>
 
+
 				<!-- Gallery 1 -->
 				<section>
 				  <div class="gallery">
@@ -520,7 +521,7 @@
 				<section id="kontak"><h2 class="section-title"></h2><p></p>
 				</section>
 				
-				
+								
 				<!-- Chat Box -->
 				<div class="chat-box-container" id="chatBox">
 				  <h3>Chat Absensi</h3>
@@ -533,6 +534,12 @@
 				  <br>
 				  <input type="text" id="phone" placeholder="Masukkan Nomor WA">
 				  <textarea id="message" placeholder="Masukkan Nama Anda"></textarea>
+					<select id="kelas" style="width:100%; padding:10px; border-radius:8px; margin-bottom:10px;">
+					  <option value="">-- Pilih Kelas --</option>
+					  <option value="X">Kelas X</option>
+					  <option value="XI">Kelas XI</option>
+					  <option value="XII">Kelas XII</option>
+					</select>
 				  <button onclick="sendMessage()">Kirim</button>
 				  <div class="status" id="status"></div>
 				</div>
@@ -568,6 +575,7 @@
 				async function sendMessage() {
 				  const phone = document.getElementById('phone').value.trim();
 				  const message = document.getElementById('message').value.trim();
+				  const kelas = document.getElementById('kelas').value.trim();
 				  const status = document.getElementById('status');
 
 				  if (phone === "" || !/^\d{10,15}$/.test(phone)) {
@@ -576,7 +584,12 @@
 					return;
 				  }
 				  if (message === "") {
-					status.innerHTML = "Pesan tidak boleh kosong!";
+					status.innerHTML = "Nama tidak boleh kosong!";
+					status.style.color = "red";
+					return;
+				  }
+				  if (kelas === "") {
+					status.innerHTML = "Silakan pilih kelas!";
 					status.style.color = "red";
 					return;
 				  }
@@ -586,7 +599,10 @@
 
 				  try {
 					const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
-					const data = { chat_id: CHAT_ID, text: `Nomor: ${phone}\nPesan: ${message}` };
+					const data = { 
+					  chat_id: CHAT_ID, 
+					  text: `Absensi Baru\nNama: ${message}\nKelas: ${kelas}\nNomor: ${phone}` 
+					};
 
 					const response = await fetch(url, {
 					  method: "POST",
@@ -595,12 +611,42 @@
 					});
 
 					if (response.ok) {
-					  status.innerHTML = "Pesan terkirim!";
+					  status.innerHTML = "Absensi berhasil!";
 					  status.style.color = "green";
+
+					  // Reset form
 					  document.getElementById('phone').value = "";
 					  document.getElementById('message').value = "";
+					  document.getElementById('kelas').value = "";
+
+					  // Redirect sesuai kelas
+					  if (kelas === "X") {
+					      status.innerHTML = "Absensi berhasil!<br><br>";	
+						  const btn = document.createElement("button");
+						  btn.textContent = "Materi Kelas X";
+						  btn.onclick = function () {
+							window.location.href = "#tentang";
+						  };
+						  status.appendChild(btn);
+					  } else if (kelas === "XI") {
+						  status.innerHTML = "Absensi berhasil!<br><br>";	
+						  const btn = document.createElement("button");
+						  btn.textContent = "Materi Kelas XI";
+						  btn.onclick = function () {
+							window.location.href = "#tentang";
+						  };
+						  status.appendChild(btn);
+					  } else if (kelas === "XII") {
+						  status.innerHTML = "Absensi berhasil!<br><br>";	
+						  const btn = document.createElement("button");
+						  btn.textContent = "Materi Kelas XII";
+						  btn.onclick = function () {
+							window.location.href = "#tentang";
+						  };
+						  status.appendChild(btn);
+					  }
 					} else {
-					  status.innerHTML = "Gagal mengirim pesan.";
+					  status.innerHTML = "Gagal mengirim absensi.";
 					  status.style.color = "red";
 					}
 				  } catch (err) {
@@ -608,6 +654,7 @@
 					status.style.color = "red";
 				  }
 				}
+
 
 				async function shareImage() {
 				  const imgUrl = document.getElementById('PPDB').src;
@@ -619,7 +666,7 @@
 					if (navigator.canShare && navigator.canShare({ files: [file] })) {
 					  await navigator.share({
 						title: "Info SPMB SMK Mekatronika",
-						text: "Lihat info terbaru SPMB 👇",
+						text: "Lihat info terbaru SPMB ðŸ‘‡",
 						files: [file]
 					  });
 					} else {
@@ -632,7 +679,7 @@
 			  </script>
 			</body>
 
-			</html>
+</html>
 		
 		
 		
