@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pemutar Video Kustom</title>
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --accent:#4f46e5;
+      --muted:#94a3b8;
+      --text:#e6eef8;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:linear-gradient(180deg,#071022 0%, #071a2a 100%);
+      color:var(--text);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+      padding:24px;
+    }
+
+    .player {
+      width:100%;
+      max-width:960px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border-radius:12px;
+      padding:14px;
+      box-shadow:0 10px 30px rgba(2,6,23,0.6);
+      display:grid;
+      gap:12px;
+      grid-template-columns: 1fr 280px;
+      align-items:start;
+    }
+
+    /* area video */
+    .video-wrap{
+      position:relative;
+      border-radius:8px;
+      overflow:hidden;
+      background:#000;
+      min-height:300px;
+    }
+    video{
+      width:100%;
+      height:100%;
+      display:block;
+      background:black;
+      max-height:60vh;
+    }
+
+    /* overlay play button center */
+    .big-play {
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      pointer-events:none;
+    }
+    .big-play button{
+      pointer-events:auto;
+      background:rgba(0,0,0,0.45);
+      border:2px solid rgba(255,255,255,0.06);
+      color:white;
+      padding:18px 22px;
+      border-radius:999px;
+      font-size:20px;
+      backdrop-filter: blur(6px);
+      cursor:pointer;
+    }
+
+    /* controls */
+    .controls{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      padding:10px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+    }
+    .btn{
+      border:0;
+      background:none;
+      color:var(--text);
+      font-size:16px;
+      padding:8px;
+      cursor:pointer;
+      border-radius:8px;
+    }
+    .btn:hover{background:rgba(255,255,255,0.02)}
+    .progress{
+      -webkit-appearance:none;
+      appearance:none;
+      width:100%;
+      height:8px;
+      border-radius:8px;
+      background:rgba(255,255,255,0.06);
+      overflow:hidden;
+      cursor:pointer;
+    }
+    .progress::-webkit-slider-thumb{
+      -webkit-appearance:none;
+      width:14px;height:14px;border-radius:50%;
+      background:var(--accent);border:2px solid white;
+      margin-top:-3px;
+    }
+
+    .time{
+      font-size:13px;color:var(--muted);
+      min-width:72px;text-align:right;
+    }
+
+    .right-controls{display:flex;gap:6px;align-items:center}
+
+    /* sidebar playlist */
+    .playlist{
+      padding:8px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+      border-radius:8px;
+      max-height:66vh;
+      overflow:auto;
+    }
+    .playlist h4{margin:6px 8px;color:var(--muted);font-size:13px}
+    .track{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      padding:8px;
+      border-radius:8px;
+      cursor:pointer;
+    }
+    .track:hover{background:rgba(255,255,255,0.02)}
+    .track.active{background:linear-gradient(90deg, rgba(79,70,229,0.12), rgba(79,70,229,0.03));box-shadow:0 4px 12px rgba(79,70,229,0.06)}
+    .track img{width:60px;height:34px;object-fit:cover;border-radius:6px}
+    .track .meta{flex:1}
+    .track .meta .title{font-weight:600;font-size:14px}
+    .track .meta .desc{font-size:12px;color:var(--muted);margin-top:4px}
+
+    /* responsive */
+    @media (max-width:880px){
+      .player{grid-template-columns:1fr; padding:10px}
+      .playlist{max-height:220px}
+    }
+
+    /* small helpers */
+    .muted {color:var(--muted);font-size:13px}
+    .volume-slider{width:110px}
+    select, input[type="range"]{background:transparent;color:var(--text);border-radius:6px}
+    .file-drop {
+      border:2px dashed rgba(255,255,255,0.03);
+      border-radius:8px;
+      padding:8px;
+      margin:8px 0;
+      text-align:center;
+      font-size:13px;
+      color:var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <main class="player" aria-label="Video player">
+    <section>
+      <div class="video-wrap" id="videoWrap">
+        <video id="video" crossorigin="anonymous" preload="metadata" playsinline>
+          <!-- contoh video default; ganti src sesuai file lokal atau URL -->
+          <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+          <track id="track-en" label="Indonesia" srclang="id" kind="subtitles" default src="">
+          Browser Anda tidak mendukung tag video.
+        </video>
+
+        <div class="big-play" id="bigPlay">
+          <button id="bigPlayBtn" title="Play / Pause">►</button>
+        </div>
+      </div>
+
+      <!-- progress & controls -->
+      <div class="controls" style="margin-top:6px;">
+        <button class="btn" id="playBtn" title="Play / Pause">►</button>
+        <button class="btn" id="rewBtn" title="Mundur 10s">« 10s</button>
+        <button class="btn" id="fwdBtn" title="Maju 10s">10s »</button>
+
+        <input type="range" id="progress" class="progress" min="0" max="100" value="0" step="0.01" aria-label="Progress">
+
+        <div class="time" id="time">0:00 / 0:00</div>
+
+        <div class="right-controls" style="margin-left:8px">
+          <button class="btn" id="pipBtn" title="Picture-in-Picture">⧉</button>
+          <button class="btn" id="subBtn" title="Subtitle on/off">CC</button>
+          <input type="range" id="volume" class="volume-slider" min="0" max="1" step="0.01" value="1" title="Volume">
+          <select id="speed" title="Kecepatan playback">
+            <option value="0.5">0.5×</option>
+            <option value="0.75">0.75×</option>
+            <option value="1" selected>1×</option>
+            <option value="1.25">1.25×</option>
+            <option value="1.5">1.5×</option>
+            <option value="2">2×</option>
+          </select>
+          <button class="btn" id="fsBtn" title="Fullscreen">⤢</button>
+        </div>
+      </div>
+
+      <div class="file-drop" id="fileDrop">
+        Tarik & lepas file video di sini atau <label style="text-decoration:underline;cursor:pointer"><input id="fileInput" type="file" accept="video/*" style="display:none">pilih file</label>
+      </div>
+
+      <div style="display:flex;gap:8px;align-items:center">
+        <small class="muted">Tips: spasi = play/pause • ←/→ = mundur/maju 5s • ↑/↓ = volume</small>
+      </div>
+    </section>
+
+    <aside class="playlist" id="playlist">
+      <h4>Playlist</h4>
+      <!-- track contoh -->
+      <div class="track" data-src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4">
+        <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=600&q=60" alt="">
+        <div class="meta">
+          <div class="title">Contoh: Flower (MP4)</div>
+          <div class="desc">Durasi: otomatis</div>
+        </div>
+      </div>
+
+      <div class="track" data-src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm">
+        <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=600&q=60" alt="">
+        <div class="meta">
+          <div class="title">Contoh: Flower (WEBM)</div>
+          <div class="desc">Format alternatif</div>
+        </div>
+      </div>
+
+      <h4>Subtitle / Caption</h4>
+      <div style="padding:8px">
+        <input type="text" id="subtitleUrl" placeholder="URL atau path file .vtt (kosong jika tidak ada)" style="width:100%;padding:8px;border-radius:6px;background:transparent;border:1px solid rgba(255,255,255,0.03);color:var(--text)">
+        <button class="btn" id="loadSub" style="margin-top:8px">Muat subtitle</button>
+      </div>
+    </aside>
+  </main>
+
+  <script>
+    // elemen
+    const video = document.getElementById('video');
+    const playBtn = document.getElementById('playBtn');
+    const bigPlayBtn = document.getElementById('bigPlayBtn');
+    const bigPlayWrap = document.getElementById('bigPlay');
+    const progress = document.getElementById('progress');
+    const timeLabel = document.getElementById('time');
+    const volume = document.getElementById('volume');
+    const speed = document.getElementById('speed');
+    const fsBtn = document.getElementById('fsBtn');
+    const pipBtn = document.getElementById('pipBtn');
+    const subBtn = document.getElementById('subBtn');
+    const trackEl = document.getElementById('track-en');
+    const playlist = document.getElementById('playlist');
+    const fileInput = document.getElementById('fileInput');
+    const fileDrop = document.getElementById('fileDrop');
+    const loadSub = document.getElementById('loadSub');
+    const subtitleUrl = document.getElementById('subtitleUrl');
+    const rewBtn = document.getElementById('rewBtn');
+    const fwdBtn = document.getElementById('fwdBtn');
+
+    // helper format waktu
+    function fmt(t){
+      if (!isFinite(t)) return '0:00';
+      const mm = Math.floor(t/60);
+      const ss = Math.floor(t%60).toString().padStart(2,'0');
+      return `${mm}:${ss}`;
+    }
+
+    // update waktu & progress
+    function updateTime(){
+      const cur = video.currentTime;
+      const dur = video.duration || 0;
+      timeLabel.textContent = `${fmt(cur)} / ${fmt(dur)}`;
+      if (dur) progress.value = (cur/dur)*100;
+    }
+
+    // play/pause toggle
+    function togglePlay(){
+      if(video.paused || video.ended){
+        video.play();
+      } else {
+        video.pause();
+      }
+    }
+
+    video.addEventListener('play', ()=>{
+      playBtn.textContent = '❚❚';
+      bigPlayBtn.textContent = '❚❚';
+      bigPlayWrap.style.display = 'none';
+    });
+    video.addEventListener('pause', ()=>{
+      playBtn.textContent = '►';
+      bigPlayBtn.textContent = '►';
+      bigPlayWrap.style.display = '';
+    });
+
+    playBtn.addEventListener('click', togglePlay);
+    bigPlayBtn.addEventListener('click', togglePlay);
+
+    // progress interaction
+    progress.addEventListener('input', (e)=>{
+      const pct = Number(e.target.value);
+      if (video.duration) video.currentTime = (pct/100)*video.duration;
+    });
+
+    // update periodically
+    video.addEventListener('timeupdate', updateTime);
+    video.addEventListener('loadedmetadata', updateTime);
+    video.addEventListener('ratechange', ()=>{ speed.value = video.playbackRate; });
+
+    // volume & speed
+    volume.addEventListener('input', ()=>{ video.volume = Number(volume.value); });
+    speed.addEventListener('change', ()=>{ video.playbackRate = Number(speed.value); });
+
+    // fullscreen
+    fsBtn.addEventListener('click', ()=>{
+      const wrap = document.querySelector('.video-wrap');
+      if (!document.fullscreenElement) {
+        wrap.requestFullscreen?.();
+      } else {
+        document.exitFullscreen?.();
+      }
+    });
+
+    // pip (picture in picture)
+    pipBtn.addEventListener('click', async ()=>{
+      if ('pictureInPictureEnabled' in document) {
+        try {
+          if (video !== document.pictureInPictureElement) {
+            await video.requestPictureInPicture();
+          } else {
+            await document.exitPictureInPicture();
+          }
+        } catch (e) {
+          alert('PiP tidak tersedia untuk video ini.');
+        }
+      } else {
+        alert('Picture-in-Picture tidak didukung di browser Anda.');
+      }
+    });
+
+    // subtitle load / toggle
+    loadSub.addEventListener('click', ()=>{
+      const url = subtitleUrl.value.trim();
+      if (!url) { alert('Masukkan URL atau path file .vtt terlebih dulu.'); return; }
+      trackEl.src = url;
+      trackEl.addEventListener('load', ()=>{
+        trackEl.mode = 'showing';
+      }, {once:true});
+      alert('Subtitle dimuat. Tekan tombol CC untuk menyala/mati.');
+    });
+
+    subBtn.addEventListener('click', ()=>{
+      const t = trackEl;
+      if (!t.src) { alert('Belum ada subtitle dimuat.'); return; }
+      t.mode = (t.mode === 'showing') ? 'disabled' : 'showing';
+    });
+
+    // keyboard shortcuts
+    document.addEventListener('keydown', (e)=>{
+      if (e.target.tagName.toLowerCase() === 'input') return;
+      if (e.code === 'Space') { e.preventDefault(); togglePlay(); }
+      if (e.code === 'ArrowLeft') { video.currentTime = Math.max(0, video.currentTime - 5); }
+      if (e.code === 'ArrowRight') { video.currentTime = Math.min(video.duration || 0, video.currentTime + 5); }
+      if (e.code === 'ArrowUp') { video.volume = Math.min(1, video.volume + 0.05); volume.value = video.volume; }
+      if (e.code === 'ArrowDown') { video.volume = Math.max(0, video.volume - 0.05); volume.value = video.volume; }
+      if (e.key === 'f') { fsBtn.click(); }
+      if (e.key === 'm') { video.muted = !video.muted; }
+    });
+
+    // playlist click
+    playlist.addEventListener('click', (e)=>{
+      const track = e.target.closest('.track');
+      if (!track) return;
+      const src = track.dataset.src;
+      if (src) {
+        loadSource(src);
+        // set active class
+        [...playlist.querySelectorAll('.track')].forEach(t => t.classList.toggle('active', t===track));
+      }
+    });
+
+    function loadSource(src){
+      // support multiple source types - replace child <source>
+      while (video.firstChild) video.removeChild(video.firstChild);
+      const s = document.createElement('source');
+      s.src = src;
+      // try infer type
+      if (src.match(/\.m3u8($|\?)/i)) s.type = 'application/x-mpegURL';
+      else if (src.match(/\.mp4($|\?)/i)) s.type = 'video/mp4';
+      else if (src.match(/\.webm($|\?)/i)) s.type = 'video/webm';
+      video.appendChild(s);
+      // re-add track element
+      video.appendChild(trackEl);
+      video.load();
+      video.play().catch(()=>{ /* autoplay blocked */ });
+    }
+
+    // file input & drag drop
+    fileInput.addEventListener('change', (e)=>{
+      const f = e.target.files?.[0];
+      if (f) {
+        const url = URL.createObjectURL(f);
+        loadSource(url);
+      }
+    });
+
+    fileDrop.addEventListener('dragover', (e)=>{ e.preventDefault(); fileDrop.style.opacity = 0.8; });
+    fileDrop.addEventListener('dragleave', ()=>{ fileDrop.style.opacity = 1; });
+    fileDrop.addEventListener('drop', (e)=>{
+      e.preventDefault();
+      fileDrop.style.opacity = 1;
+      const f = e.dataTransfer.files?.[0];
+      if (f && f.type.startsWith('video/')) {
+        const url = URL.createObjectURL(f);
+        loadSource(url);
+      } else {
+        alert('Silakan drop file video.');
+      }
+    });
+
+    // rewind / forward
+    rewBtn.addEventListener('click', ()=>{ video.currentTime = Math.max(0, video.currentTime - 10); });
+    fwdBtn.addEventListener('click', ()=>{ video.currentTime = Math.min(video.duration || 0, video.currentTime + 10); });
+
+    // small UX: klik video toggle play
+    video.addEventListener('click', togglePlay);
+
+    // init default volume
+    video.volume = Number(volume.value);
+
+    // accessibility: update progress on seeked too
+    video.addEventListener('seeked', updateTime);
+
+    // handle errors
+    video.addEventListener('error', (e)=>{
+      console.error('Video error', e);
+      alert('Terjadi error memuat video. Cek konsol untuk detail.');
+    });
+
+    // optional: mark first playlist item as active
+    const first = playlist.querySelector('.track');
+    if (first) first.classList.add('active');
+
+  </script>
+</body>
+</html>
