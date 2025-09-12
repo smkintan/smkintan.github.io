@@ -366,6 +366,57 @@
       opacity: 1;
       border: 2px solid #1e90ff;
     }
+	
+	.slider {
+	  width: 100%;
+	  max-width: 1200px;
+	  aspect-ratio: 8 / 2;   /* tinggi otomatis mengikuti lebar layar */
+	  position: relative;
+	  overflow: hidden;
+	}
+
+	.slider img {
+	  width: 100%;
+	  height: 100%;
+	  object-fit: cover;   /* biar proporsi tetap rapi */
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  opacity: 0;
+	  transition: opacity 0.5s ease-in-out;
+	}
+    .slider img:first-child {
+      opacity: 1;
+    }
+
+    .navigation-button {
+      text-align: center;
+      position: relative;
+      margin-top: 10px;
+    }
+
+    .dot {
+      cursor: pointer;
+      height: 12px;
+      width: 12px;
+      margin: 0 4px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.3s;
+    }
+
+    .active,
+    .dot:hover {
+      background-color: #717171;
+    }
+
+    /* Media Query untuk HP */
+    @media (max-width: 600px) {
+      .slider {
+        height: 13vh; /* slider lebih kecil di HP */
+      }
+    }
   </style>
 </head>
 <body>
@@ -375,10 +426,36 @@
 			  </header>
 
 			  <div class="container">
-			  	<img id="spmbImage"
-				   src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/foto/ed5259c8-0ae9-446b-ae7b-9bde6184d6e32.jpg"
-				   alt="Siswa Praktikum"
-				   class="responsive-img">
+			  	
+				   
+				   <div class="slider">
+					<img id="img-1"
+					  src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/foto/ed5259c8-0ae9-446b-ae7b-9bde6184d6e32.jpg"
+					  alt="Image 1" />
+					<img id="img-2"
+					  src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/foto/PHOTO-2025-08-15-11-31-36.jpg"
+					  alt="Image 2" />
+					<img id="img-3"
+					  src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/foto/IMG_8087.JPG"
+					  alt="Image 3" />
+					<img id="img-4"
+					  src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/foto/f4c00c09-1ea7-42e5-92fd-fee94d7a7760.jpeg"
+					  alt="Image 4" />
+					<img id="img-5"
+					  src="https://raw.githubusercontent.com/dionikah/mekatronika/refs/heads/main/foto/c89666aa-ab6d-4516-93ca-20ff503690b4.jpeg"
+					  alt="Image 5" />
+				  </div>
+
+				  <div class="navigation-button">
+					<span class="dot active" onclick="changeSlide(0)"></span>
+					<span class="dot" onclick="changeSlide(1)"></span>
+					<span class="dot" onclick="changeSlide(2)"></span>
+					<span class="dot" onclick="changeSlide(3)"></span>
+					<span class="dot" onclick="changeSlide(4)"></span>
+				  </div>
+
+			  </section>
+			  
 				<!-- Tentang -->
 				<section id="tentang">
 				  <h2 class="section-title">Tentang Jurusan Mekatronika</h2>
@@ -677,6 +754,37 @@
 				  }
 				}
 			  </script>
+			  	<script>
+					var currentImg = 0;
+					var imgs = document.querySelectorAll('.slider img');
+					let dots = document.querySelectorAll('.dot');
+					var interval = 3000;
+					var timer = setInterval(changeSlide, interval);
+
+					function changeSlide(n) {
+					  for (var i = 0; i < imgs.length; i++) {
+						imgs[i].style.opacity = 0;
+						dots[i].className = dots[i].className.replace(' active', '');
+					  }
+
+					  currentImg = (currentImg + 1) % imgs.length;
+
+					  if (n != undefined) {
+						clearInterval(timer);
+						timer = setInterval(changeSlide, interval);
+						currentImg = n;
+					  }
+
+					  imgs[currentImg].style.opacity = 1;
+					  dots[currentImg].className += ' active';
+					}
+
+					function calculateDays(today, eventDate) {
+					  const difference = eventDate.getTime() - today.getTime();
+					  return Math.ceil(difference / (1000 * 3600 * 24));
+					}
+				  </script>
+			  
 			</body>
 
 </html>
