@@ -1,0 +1,801 @@
+		<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMKN 1 Intan - Mekatronika</title>
+  <link href="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/logo-removebg-preview.png" rel="icon">
+  <!-- Fonts & Icons -->
+  <link href="https://github.com/smkintan/mekatronika/blob/main/logo-removebg-preview.png" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #f8f9fa;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(90deg, #B22222, #8B0000);
+      color: white;
+      text-align: center;
+      padding: 4px;
+    }
+
+    header h1 {
+      margin-bottom: 0px;
+      font-size: 32px;
+    }
+
+    nav {
+      background: linear-gradient(90deg, #B22222, #8B0000);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 12px 0;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 5px 12px;
+      font-weight: 600;
+      font-size: 16px;
+      position: relative;
+    }
+
+    nav a::after {
+      content: "";
+      width: 0;
+      height: 2px;
+      background: white;
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      transition: 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 30px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #B22222;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: #B22222;
+      margin: 8px auto 0;
+      border-radius: 2px;
+    }
+
+    section {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      padding: 20px;
+      margin-bottom: 30px;
+      transition: 0.3s;
+    }
+
+    section:hover {
+      transform: translateY(-5px);
+    }
+
+    .program-list,
+    .facility-list,
+    .career-list,
+    .achievement-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 18px;
+      list-style: none;
+    }
+
+    .program-list li,
+    .facility-list li,
+    .career-list li,
+    .achievement-list li {
+      padding: 15px;
+      border-radius: 8px;
+      font-weight: 500;
+      text-align: left;
+      border-left: 6px solid #B22222;
+      transition: 0.3s;
+    }
+
+    .program-list li:hover,
+    .facility-list li:hover,
+    .career-list li:hover,
+    .achievement-list li:hover {
+      background: #ffd1d1;
+      transform: scale(1.05);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: 0.4s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.5);
+    }
+
+    footer {
+      background: #B22222;
+      color: white;
+      text-align: center;
+      padding: 12px;
+    }
+
+    /* Floating button */
+    .floating-nav {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      background: #B22222;
+      color: white;
+      padding: 18px 20px;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      z-index: 2000;
+      transition: 0.3s;
+    }
+
+    .floating-nav:hover {
+      background: #8B0000;
+      transform: rotate(90deg);
+    }
+
+    .floating-menu {
+      position: fixed;
+      bottom: 70px;
+      right: 15px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      padding: 10px;
+      display: none;
+      flex-direction: column;
+    }
+
+    .floating-menu a {
+      color: #B22222;
+      text-decoration: none;
+      padding: 12px;
+      font-weight: 600;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .floating-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .floating-menu a:hover {
+      background: #ffe6e6;
+    }
+
+    /* Chat Box */
+    .chat-box-container {
+      position: fixed;
+      bottom: 70px;
+      right: 15px;
+      width: 90%;
+      max-width: 350px;
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      display: none;
+      z-index: 3000;
+    }
+
+    .chat-box-container h3 {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: #B22222;
+    }
+
+    .chat-box-container input,
+    .chat-box-container textarea {
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 10px;
+      resize: none;
+    }
+
+    .chat-box-container button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      background: #28a745;
+      color: #fff;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .chat-box-container button:hover {
+      background: #218838;
+    }
+
+    .status {
+      text-align: center;
+      font-size: 14px;
+      margin-top: 8px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 24px;
+      }
+      nav a {
+        font-size: 14px;
+        margin: 5px 8px;
+      }
+      .section-title {
+        font-size: 22px;
+      }
+      .gallery {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      }
+    }
+
+    .bottom-grid-nav {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      background: #8B0000;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
+    }
+
+    .bottom-grid-nav a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3px 0;
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
+      transition: background 0.3s;
+    }
+
+    .bottom-grid-nav a:last-child {
+      border-right: none;
+    }
+
+    .bottom-grid-nav a:hover {
+      background: #a40000;
+    }
+
+    .bottom-grid-nav i {
+      font-size: 18px;
+      margin-bottom: 1px;
+    }
+
+    .responsive-img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .gallery1 {
+      max-width: 100%;
+      text-align: center;
+    }
+
+    .main-img {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      max-height: 400px;
+      object-fit: contain;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .thumbs {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+    }
+
+    .thumbs img {
+      width: 80px;
+      height: 60px;
+      object-fit: cover;
+      cursor: pointer;
+      opacity: 0.6;
+      border-radius: 4px;
+      transition: 0.3s;
+    }
+
+    .thumbs img.active,
+    .thumbs img:hover {
+      opacity: 1;
+      border: 2px solid #1e90ff;
+    }
+	
+	.slider {
+	  width: 100%;
+	  max-width: 1200px;
+	  aspect-ratio: 8 / 2;   /* tinggi otomatis mengikuti lebar layar */
+	  position: relative;
+	  overflow: hidden;
+	}
+
+	.slider img {
+	  width: 100%;
+	  height: 100%;
+	  object-fit: cover;   /* biar proporsi tetap rapi */
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  opacity: 0;
+	  transition: opacity 0.5s ease-in-out;
+	}
+    .slider img:first-child {
+      opacity: 1;
+    }
+
+    .navigation-button {
+      text-align: center;
+      position: relative;
+      margin-top: 10px;
+    }
+
+    .dot {
+      cursor: pointer;
+      height: 12px;
+      width: 12px;
+      margin: 0 4px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.3s;
+    }
+
+    .active,
+    .dot:hover {
+      background-color: #717171;
+    }
+
+    /* Media Query untuk HP */
+    @media (max-width: 600px) {
+      .slider {
+        height: 12vh; /* slider lebih kecil di HP */
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+			 <header>
+				<h1><i class="fas fa-robot"></i><br> Teknik Mekatronika</h1>
+				<p>SMK Negeri 1 Indralaya Selatan</p>
+			</header>
+			  	
+				   <center>
+				   <div class="slider">
+					<img id="img-1"
+					  src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/ed5259c8-0ae9-446b-ae7b-9bde6184d6e32.jpg"
+					  alt="Image 1" />
+					<img id="img-2"
+					  src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/PHOTO-2025-08-15-11-31-36.jpg"
+					  alt="Image 2" />
+					<img id="img-3"
+					  src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/IMG_8087.JPG"
+					  alt="Image 3" />
+					<img id="img-4"
+					  src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/f4c00c09-1ea7-42e5-92fd-fee94d7a7760.jpeg"
+					  alt="Image 4" />
+					<img id="img-5"
+					  src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/c89666aa-ab6d-4516-93ca-20ff503690b4.jpeg"
+					  alt="Image 5" />
+					<img id="img-6"
+					  src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/WAW_2340.jpeg"
+					  alt="Image 6" />
+				  </div>
+
+				  </center>
+				  <div class="navigation-button">
+					<span class="dot active" onclick="changeSlide(0)"></span>
+					<span class="dot" onclick="changeSlide(1)"></span>
+					<span class="dot" onclick="changeSlide(2)"></span>
+					<span class="dot" onclick="changeSlide(3)"></span>
+					<span class="dot" onclick="changeSlide(4)"></span>
+					<span class="dot" onclick="changeSlide(5)"></span>
+ </div>
+			 
+
+			  <div class="container">
+			  </section>
+			  
+				<!-- Tentang -->
+				<section id="tentang">
+				  <h2 class="section-title">Tentang Jurusan Mekatronika</h2>
+				  <p><strong>Sejarah Singkat:</strong> Jurusan Mekatronika SMK Negeri 1 Indralaya Selatan hadir untuk menjawab kebutuhan industri modern. Menggabungkan keahlian mekanika, elektronika, dan pemrograman, jurusan ini mencetak generasi ahli yang siap bersaing di era Revolusi Industri 4.0.</p>
+				  <p><strong>Visi:</strong></p>
+				  <p>Menjadi jurusan unggulan yang melahirkan tenaga kerja terampil, kreatif, dan adaptif terhadap perkembangan teknologi masa depan.</p>
+				  <p><strong>Misi:</strong></p>
+				  <ul>
+					<li>Menghadirkan pendidikan berbasis teknologi terkini yang relevan dengan dunia industri.</li>
+					<li>Mengasah keterampilan praktis melalui pembelajaran berbasis proyek nyata (project-based learning).</li>
+					<li>Membangun kerja sama erat dengan perusahaan dan dunia kerja untuk menjamin lulusan siap kerja.</li>
+				  </ul>
+				</section>
+
+				<header>
+				  <p>Jumlah Pengunjung : 4582 orang</p>
+				</header>
+
+				<!-- Program -->
+				<section id="program">
+				  <h2 class="section-title">Kompetensi Keahlian</h2>
+				  <ul class="program-list">
+					<li><strong>Dasar Listrik & Elektronika</strong><br>Memahami konsep dasar kelistrikan, rangkaian elektronika analog dan digital, serta penggunaan alat ukur listrik.</li>
+					<li><strong>Pemrograman Mikrokontroler (Arduino, PLC)</strong><br>Mempelajari cara membuat dan memprogram sistem otomatis menggunakan mikrokontroler.</li>
+					<li><strong>Sistem Pneumatik & Hidrolik</strong><br>Mengenal dan mengoperasikan sistem berbasis udara dan cairan untuk penggerak mesin otomatis.</li>
+					<li><strong>Robotika & Otomasi Industri</strong><br>Membuat, merakit, dan mengendalikan robot serta sistem otomatis berbasis sensor dan aktuator.</li>
+				  </ul>
+				</section>
+
+
+				<!-- Gallery 1 -->
+				<section>
+				  <div class="gallery">
+					<img src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/IMG_1732.JPG" alt="Siswa Praktikum">
+					<img src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/IMG_1904.JPG" alt="Siswa Praktikum">
+					<img src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/IMG_0924.JPG" alt="Lab Mekatronika">
+					<img src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/IMG_0321.JPG" alt="Siswa Praktikum">
+				  </div>
+				</section>
+
+				<!-- Karir -->
+				<section id="karir">
+				  <h2 class="section-title">Peluang Karir Lulusan</h2>
+				  <ul class="career-list">
+					<li><strong>Teknisi Mekatronika & Wirausaha Teknologi</strong><br>Merakit, memperbaiki, dan merawat sistem mekatronika serta mengembangkan usaha berbasis otomasi.</li>
+					<li><strong>Operator Otomasi Industri</strong><br>Mengoperasikan, mengawasi, dan memastikan kelancaran sistem produksi otomatis di pabrik.</li>
+					<li><strong>Programmer PLC & Robotika</strong><br>Membuat, menguji, dan mengembangkan program pengendali untuk PLC dan robot industri.</li>
+					<li><strong>Maintenance Engineer</strong><br>Melakukan perawatan, perbaikan, dan analisis kerusakan pada mesin produksi industri.</li>
+				  </ul>
+				</section>
+
+				<!-- Gallery 2 -->
+				<section>
+				  <div class="gallery">
+					<img src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/c.JPG" alt="Siswa Praktikum">
+					<img src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/IMG_1365.JPG" alt="Siswa Praktikum">
+					<img src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/IMG_1732.JPG" alt="Siswa Praktikum">
+					<img src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/e.JPG" alt="Siswa Praktikum">
+				  </div>
+				</section>
+
+				<!-- Fasilitas -->
+				<section id="fasilitas">
+				  <h2 class="section-title">Fasilitas Laboratorium</h2>
+				  <ul class="facility-list">
+					<li><strong>Laboratorium Mekatronika</strong><br>Digunakan untuk praktik integrasi mekanika, elektronika, dan kontrol, termasuk sensor, aktuator, dan rangkaian elektronik sederhana.</li>
+					<li><strong>Laboratorium Pneumatik, Hidrolik, PLC & Otomasi</strong><br>Tempat belajar sistem penggerak udara dan cairan, kontrol otomatis, pemrograman PLC, serta penerapan automasi industri.</li>
+					<li><strong>Workshop Robotika</strong><br>Ruang untuk merakit dan menguji robot, mulai dari robot sederhana hingga robot industri dengan sensor dan aktuator lengkap.</li>
+					<li><strong>Peralatan CAD & CNC</strong><br>Tersedia perangkat lunak CAD untuk desain komponen mesin serta mesin CNC untuk membuat prototipe secara presisi.</li>
+				  </ul>
+				</section>
+
+				<!-- Galeri -->
+				<section id="galeri" class="marquee-gallery">
+				  <h2 class="section-title">Galeri Kegiatan</h2>
+				  <div class="gallery1">
+					<img id="mainImage" class="main-img"
+						 src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/IMG_1904.JPG"
+						 alt="Main Image">
+					<div class="thumbs">
+					  <!-- Thumbnails -->
+
+					  <img src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/IMG_1904.JPG" onclick="changeImage(this)">
+					  <img src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/IMG_0924.JPG" onclick="changeImage(this)">
+					  <img src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/IMG_0321.JPG" onclick="changeImage(this)">
+					  <img src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/IMG_1365.JPG" onclick="changeImage(this)">
+					  <img src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/IMG_1732.JPG" onclick="changeImage(this)">
+					  <img src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/b.JPG" onclick="changeImage(this)">
+					  <img src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/c.JPG" onclick="changeImage(this)">
+					  <img src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/d.JPG" onclick="changeImage(this)">
+					  <img src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/e.JPG" onclick="changeImage(this)">
+					  <img src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/f.JPG" onclick="changeImage(this)">
+					  <img src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/PHOTO-2025-08-15-11-31-36.jpg" onclick="changeImage(this)">
+					  <img src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/IMG_8087.JPG" onclick="changeImage(this)">
+					  <img src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/f4c00c09-1ea7-42e5-92fd-fee94d7a7760.jpeg" onclick="changeImage(this)">
+					  <img src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/1a126d37-586d-4a83-b59f-2368728556e2.jpeg" onclick="changeImage(this)">
+					  <img src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/c89666aa-ab6d-4516-93ca-20ff503690b4.jpeg" onclick="changeImage(this)">
+						<img src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/WAW_2340.jpeg" onclick="changeImage(this)">
+					</div>
+				  </div>
+				</section>
+
+				<!-- Prestasi -->
+				<section id="prestasi">
+				  <h2 class="section-title">Kegiatan & Prestasi</h2>
+				  <ul class="achievement-list">
+					<li>Juara 3 LKS Tingkat Provinsi (Bidang Mekatronika)</li>
+					<li>Juara 2 Proyek Karya Inovasi</li>
+					<li>Kerjasama magang industri nasional</li>
+				  </ul>
+				</section>
+
+				<!-- Video Profil -->
+				<section>
+				  <h2 class="section-title">Video Profil Sekolah</h2>
+				  <center>
+					<iframe src="https://www.youtube.com/embed/18btDdUpM90"
+							frameborder="0"
+							allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+							allowfullscreen></iframe>
+				  </center>
+				</section>
+
+				<!-- SPMB -->
+				<section id="kontak">
+				  <h2 class="section-title">SPMB</h2>
+				  <img id="PPDB"
+					   src="https://raw.githubusercontent.com/smkintan/mekatronika/refs/heads/main/foto/PPDB.jpg"
+					   alt="Siswa Praktikum"
+					   class="responsive-img"
+					   onclick="shareImage()">
+				  <div style="text-align:center; margin-top:10px;">
+					<button onclick="shareImage()"
+							style="padding:10px 20px; background:#28a745; color:white; border:none; border-radius:8px; cursor:pointer;">
+					  <i class="fas fa-share"></i> Share Gambar
+					</button>
+				  </div>
+				</section>
+				<BR><BR>	
+				<section id="kontak"><h2 class="section-title"></h2><p></p>
+				</section>
+				
+								
+				<!-- Chat Box -->
+				<div class="chat-box-container" id="chatBox">
+				  <h3>Chat Absensi</h3>
+				  <center>
+					<iframe src="https://www.youtube.com/embed/XjzPg0vOdNs?si=Br82zYvoZHXGv3t3&autoplay=1"
+							frameborder="0"
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+							allowfullscreen></iframe>
+				  </center>
+				  <br>
+				  <input type="text" id="phone" placeholder="Masukkan Nomor WA">
+				  <textarea id="message" placeholder="Masukkan Nama Anda"></textarea>
+					<select id="kelas" style="width:100%; padding:10px; border-radius:8px; margin-bottom:10px;">
+					  <option value="">-- Pilih Kelas --</option>
+					  <option value="X">Kelas X</option>
+					  <option value="XI">Kelas XI</option>
+					  <option value="XII">Kelas XII</option>
+					</select>
+				  <button onclick="sendMessage()">Kirim</button>
+				  <div class="status" id="status"></div>
+				</div>
+			  </div>
+
+			  <!-- Bottom Nav -->
+			  <nav class="bottom-grid-nav">
+				<a href="index.html#profil">Home</a>
+				<a href="#program"><i class="fas fa-cogs"></i><span>Kompetensi</span></a>
+				<a href="#fasilitas"><i class="fas fa-tools"></i><span>Fasilitas</span></a>
+				<a href="#prestasi"><i class="fas fa-trophy"></i><span>Prestasi</span></a>
+				<a href="#karir"><i class="fas fa-briefcase"></i><span>Karir</span></a>
+				<a onclick="toggleChat()"><i class="fas fa-phone"></i><span>Absensi</span></a>
+			  </nav>
+
+			  
+			  <!-- Scripts -->
+			  <script>
+				function changeImage(el) {
+				  const mainImage = document.getElementById('mainImage');
+				  mainImage.src = el.src;
+				  document.querySelectorAll('.thumbs img').forEach(img => img.classList.remove('active'));
+				  el.classList.add('active');
+				}
+
+				function toggleChat() {
+				  const chat = document.getElementById('chatBox');
+				  chat.style.display = chat.style.display === 'block' ? 'none' : 'block';
+				}
+
+				const BOT_TOKEN = "8246941800:AAGJo-ZEYhTV4LjEOMYPfimLo-AO-KEKVOs";
+				const CHAT_ID = "6909703659";
+
+				async function sendMessage() {
+				  const phone = document.getElementById('phone').value.trim();
+				  const message = document.getElementById('message').value.trim();
+				  const kelas = document.getElementById('kelas').value.trim();
+				  const status = document.getElementById('status');
+
+				  if (phone === "" || !/^\d{10,15}$/.test(phone)) {
+					status.innerHTML = "Nomor WA tidak valid!";
+					status.style.color = "red";
+					return;
+				  }
+				  if (message === "") {
+					status.innerHTML = "Nama tidak boleh kosong!";
+					status.style.color = "red";
+					return;
+				  }
+				  if (kelas === "") {
+					status.innerHTML = "Silakan pilih kelas!";
+					status.style.color = "red";
+					return;
+				  }
+
+				  status.innerHTML = "Mengirim..";
+				  status.style.color = "black";
+
+				  try {
+					const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+					const data = { 
+					  chat_id: CHAT_ID, 
+					  text: `Absensi Baru\nNama: ${message}\nKelas: ${kelas}\nNomor: ${phone}` 
+					};
+
+					const response = await fetch(url, {
+					  method: "POST",
+					  headers: { "Content-Type": "application/json" },
+					  body: JSON.stringify(data)
+					});
+
+					if (response.ok) {
+					  status.innerHTML = "Absensi berhasil!";
+					  status.style.color = "green";
+
+					  // Reset form
+					  document.getElementById('phone').value = "";
+					  document.getElementById('message').value = "";
+					  document.getElementById('kelas').value = "";
+
+					  // Redirect sesuai kelas
+					  if (kelas === "X") {
+					      status.innerHTML = "Absensi berhasil!<br><br>";	
+						  const btn = document.createElement("button");
+						  btn.textContent = "Materi Kelas X";
+						  btn.onclick = function () {
+							window.location.href = "#tentang";
+						  };
+						  status.appendChild(btn);
+					  } else if (kelas === "XI") {
+						  status.innerHTML = "Absensi berhasil!<br><br>";	
+						  const btn = document.createElement("button");
+						  btn.textContent = "Materi Kelas XI";
+						  btn.onclick = function () {
+							window.location.href = "#tentang";
+						  };
+						  status.appendChild(btn);
+					  } else if (kelas === "XII") {
+						  status.innerHTML = "Absensi berhasil!<br><br>";	
+						  const btn = document.createElement("button");
+						  btn.textContent = "Materi Kelas XII";
+						  btn.onclick = function () {
+							window.location.href = "#tentang";
+						  };
+						  status.appendChild(btn);
+					  }
+					} else {
+					  status.innerHTML = "Gagal mengirim absensi.";
+					  status.style.color = "red";
+					}
+				  } catch (err) {
+					status.innerHTML = "Error: " + err.message;
+					status.style.color = "red";
+				  }
+				}
+
+
+				async function shareImage() {
+				  const imgUrl = document.getElementById('PPDB').src;
+				  try {
+					const response = await fetch(imgUrl);
+					const blob = await response.blob();
+					const file = new File([blob], "info-spmb.jpg", { type: blob.type });
+
+					if (navigator.canShare && navigator.canShare({ files: [file] })) {
+					  await navigator.share({
+						title: "Info SPMB SMK Mekatronika",
+						text: "Mekatronika SMK INTAN",
+						files: [file]
+					  });
+					} else {
+					  alert("Perangkat/browser ini tidak mendukung berbagi langsung file gambar.");
+					}
+				  } catch (err) {
+					console.error("Gagal membagikan gambar:", err);
+				  }
+				}
+				
+				
+					var currentImg = 0;
+					var imgs = document.querySelectorAll('.slider img');
+					let dots = document.querySelectorAll('.dot');
+					var interval = 3000;
+					var timer = setInterval(changeSlide, interval);
+
+					function changeSlide(n) {
+					  for (var i = 0; i < imgs.length; i++) {
+						imgs[i].style.opacity = 0;
+						dots[i].className = dots[i].className.replace(' active', '');
+					  }
+
+					  currentImg = (currentImg + 1) % imgs.length;
+
+					  if (n != undefined) {
+						clearInterval(timer);
+						timer = setInterval(changeSlide, interval);
+						currentImg = n;
+					  }
+
+					  imgs[currentImg].style.opacity = 1;
+					  dots[currentImg].className += ' active';
+					}
+
+					function calculateDays(today, eventDate) {
+					  const difference = eventDate.getTime() - today.getTime();
+					  return Math.ceil(difference / (1000 * 3600 * 24));
+					}
+				  </script>
+			  
+			</body>
+
+</html>
+		
+		
+		

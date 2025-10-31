@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMKN 1 Indralaya Selatan - Rekayasa Perangkat Lunak</title>
+  <link href="https://raw.githubusercontent.com/smkintan/rpl/refs/heads/main/logo-removebg-preview.png" rel="icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body { background: #f8f9fa; line-height: 1.6; }
+    header { background: linear-gradient(90deg, #1e3c72, #2a5298); color: white; text-align: center; padding: 4px; }
+    header h1 { margin-bottom: 0px; font-size: 32px; }
+    nav { background: linear-gradient(90deg, #1e3c72, #2a5298); display: flex; justify-content: center; flex-wrap: wrap; padding: 12px 0; position: fixed; bottom: 0; left: 0; width: 100%; z-index: 1000; }
+    nav a { color: white; text-decoration: none; margin: 5px 12px; font-weight: 600; font-size: 16px; position: relative; }
+    nav a::after { content: ""; width: 0; height: 2px; background: white; position: absolute; left: 0; bottom: -5px; transition: 0.3s; }
+    nav a:hover::after { width: 100%; }
+    .container { width: 90%; max-width: 1200px; margin: auto; padding: 30px 0; }
+    .section-title { text-align: center; font-size: 28px; margin-bottom: 20px; color: #1e3c72; position: relative; }
+    .section-title::after { content: ""; display: block; width: 60px; height: 4px; background: #1e3c72; margin: 8px auto 0; border-radius: 2px; }
+    section { background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); padding: 20px; margin-bottom: 30px; transition: 0.3s; }
+    section:hover { transform: translateY(-5px); }
+    .program-list, .facility-list, .career-list, .achievement-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; list-style: none; }
+    .program-list li, .facility-list li, .career-list li, .achievement-list li { padding: 15px; border-radius: 8px; font-weight: 500; text-align: left; border-left: 6px solid #1e3c72; transition: 0.3s; }
+    .program-list li:hover, .facility-list li:hover, .career-list li:hover, .achievement-list li:hover { background: #d8e2ff; transform: scale(1.05); }
+    footer { background: #1e3c72; color: white; text-align: center; padding: 12px; }
+  
+  /* Bottom navigation (mobile style) */
+    .bottom-nav{
+      position:fixed;left:0;right:0;bottom:0;height:62px;background:#000000);
+      display:flex;align-items:center;justify-content:space-around;gap:6px;padding:6px 10px;z-index:1500;border-top-left-radius:10px;border-top-right-radius:10px;
+      box-shadow:0 -6px 18px rgba(11,111,68,0.16);
+    }
+    .bn-item{flex:1;text-align:center;color:white;text-decoration:none;font-size:12px;font-weight:700}
+    .bn-item i{display:block;font-size:18px;margin-bottom:4px}
+
+    /* Floating action (quick absensi) */
+    .fab{
+      position:fixed;right:18px;bottom:78px;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+      background:var(--green-1);color:white;box-shadow:0 10px 24px rgba(11,111,68,0.18);cursor:pointer;z-index:1600;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="bottom-nav" role="navigation" aria-label="Menu bawah">
+    <a class="bn-item" href="index.html#profil"><i class="fa-solid fa-house"></i>Beranda</a>
+    <a class="bn-item" href="index.html#jurusan"><i class="fa-solid fa-graduation-cap"></i>Jurusan</a>
+    <a class="bn-item" href="index.html#galeri"><i class="fa-solid fa-images"></i>Galeri</a>
+    <a class="bn-item" href="index.html#kontak"><i class="fa-solid fa-envelope"></i>Kontak</a>
+    <a class="bn-item" href="index.html#prestasi"><i class="fa-solid fa-trophy"></i>Prestasi</a>
+  </nav>
+  <header>
+    <h1><i class="fas fa-laptop-code"></i><br>Rekayasa Perangkat Lunak</h1>
+    <p>SMK Negeri 1 Indralaya Selatan</p>
+  </header>
+
+  <div class="container">
+
+    <!-- Tentang -->
+    <section id="tentang">
+      <h2 class="section-title">Tentang Jurusan RPL</h2>
+      <p><strong>Sejarah Singkat:</strong> Jurusan Rekayasa Perangkat Lunak (RPL) di SMK Negeri 1 Indralaya Selatan berdiri untuk menjawab kebutuhan dunia industri digital terhadap tenaga profesional di bidang pengembangan aplikasi dan sistem informasi.</p>
+      <p><strong>Visi:</strong></p>
+      <p>Menjadi jurusan unggulan yang menghasilkan lulusan kreatif, inovatif, dan berkarakter unggul dalam bidang pengembangan perangkat lunak serta teknologi informasi.</p>
+      <p><strong>Misi:</strong></p>
+      <ul>
+        <li>Mengembangkan pembelajaran berbasis proyek digital dan software development.</li>
+        <li>Menyiapkan siswa agar mampu membuat aplikasi desktop, web, dan mobile.</li>
+        <li>Membentuk karakter mandiri, profesional, dan kreatif di bidang teknologi.</li>
+      </ul>
+    </section>
+
+    <!-- Kompetensi -->
+    <section id="program">
+      <h2 class="section-title">Kompetensi Keahlian</h2>
+      <ul class="program-list">
+        <li><strong>Pemrograman Dasar</strong><br>Mempelajari dasar-dasar logika pemrograman dan algoritma dengan bahasa seperti C++, Python, atau Java.</li>
+        <li><strong>Pengembangan Aplikasi Web</strong><br>Membuat website dinamis menggunakan HTML, CSS, JavaScript, PHP, dan database MySQL.</li>
+        <li><strong>Pengembangan Aplikasi Mobile</strong><br>Mendesain dan membuat aplikasi Android menggunakan Android Studio dan Flutter.</li>
+        <li><strong>Desain Antarmuka & UX</strong><br>Merancang tampilan aplikasi yang menarik dan mudah digunakan oleh pengguna.</li>
+        <li><strong>Database & Sistem Informasi</strong><br>Mengelola database, membuat sistem CRUD, dan merancang aplikasi informasi sekolah, kasir, atau inventaris.</li>
+      </ul>
+    </section>
+
+    <!-- Fasilitas -->
+    <section id="fasilitas">
+      <h2 class="section-title">Fasilitas Laboratorium</h2>
+      <ul class="facility-list">
+        <li><strong>Lab Pemrograman</strong><br>Dilengkapi dengan komputer berperforma tinggi untuk coding, debugging, dan testing aplikasi.</li>
+        <li><strong>Lab Desain UI/UX</strong><br>Dilengkapi perangkat dan software desain seperti Figma, Adobe XD, dan Canva.</li>
+        <li><strong>Server Development Room</strong><br>Tempat praktik pembuatan server, API, dan database cloud.</li>
+        <li><strong>Internet & Jaringan</strong><br>Mendukung pembelajaran online, upload project ke GitHub, dan kolaborasi tim.</li>
+      </ul>
+    </section>
+
+    <!-- Karir -->
+    <section id="karir">
+      <h2 class="section-title">Peluang Karir Lulusan</h2>
+      <ul class="career-list">
+        <li><strong>Software Developer</strong><br>Membuat aplikasi desktop, web, dan mobile untuk kebutuhan bisnis atau publik.</li>
+        <li><strong>Frontend / Backend Developer</strong><br>Spesialis dalam pengembangan tampilan dan sistem aplikasi berbasis server.</li>
+        <li><strong>Database Administrator</strong><br>Mengelola dan merancang sistem database perusahaan.</li>
+        <li><strong>Game Developer</strong><br>Mengembangkan game edukatif dan hiburan berbasis Android atau desktop.</li>
+        <li><strong>UI/UX Designer</strong><br>Merancang tampilan aplikasi yang interaktif dan nyaman digunakan.</li>
+        <li><strong>Freelancer / Startup Founder</strong><br>Mendirikan usaha digital mandiri di bidang software dan IT service.</li>
+      </ul>
+    </section>
+
+    <!-- Prestasi -->
+
+
+  </div>
+
+  <footer>
+    <p>© 2025 SMKN 1 Indralaya Selatan - Rekayasa Perangkat Lunak</p>
+  </footer>
+</body>
+</html>

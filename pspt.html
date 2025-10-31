@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMKN 1 Indralaya Selatan - Produksi dan Siaran Program Televisi (PSPT)</title>
+  <link href="https://raw.githubusercontent.com/smkintan/pspt/refs/heads/main/logo-pspt.png" rel="icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* --- Tema Ungu Elegan untuk PSPT (Broadcasting) --- */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body { background: #f7f5fa; line-height: 1.6; color: #2e003e; }
+    header { background: linear-gradient(90deg, #4a148c, #6a1b9a); color: white; text-align: center; padding: 8px; }
+    header h1 { margin-bottom: 0; font-size: 32px; }
+    nav { background: linear-gradient(90deg, #4a148c, #6a1b9a); display: flex; justify-content: center; flex-wrap: wrap; padding: 12px 0; position: fixed; bottom: 0; left: 0; width: 100%; z-index: 1000; }
+    nav a { color: white; text-decoration: none; margin: 5px 12px; font-weight: 600; font-size: 16px; position: relative; }
+    nav a::after { content: ""; width: 0; height: 2px; background: #ffeb3b; position: absolute; left: 0; bottom: -5px; transition: 0.3s; }
+    nav a:hover::after { width: 100%; }
+    .container { width: 90%; max-width: 1200px; margin: auto; padding: 30px 0; }
+    .section-title { text-align: center; font-size: 28px; margin-bottom: 20px; color: #4a148c; position: relative; text-transform: uppercase; }
+    .section-title::after { content: ""; display: block; width: 60px; height: 4px; background: #ffeb3b; margin: 8px auto 0; border-radius: 2px; }
+    section { background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); padding: 20px; margin-bottom: 30px; transition: 0.3s; }
+    section:hover { transform: translateY(-5px); }
+    .program-list, .facility-list, .career-list, .achievement-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; list-style: none; }
+    .program-list li, .facility-list li, .career-list li, .achievement-list li { padding: 15px; border-radius: 8px; font-weight: 500; text-align: left; border-left: 6px solid #6a1b9a; transition: 0.3s; }
+    .program-list li:hover, .facility-list li:hover, .career-list li:hover, .achievement-list li:hover { background: #f3e5f5; transform: scale(1.05); }
+    footer { background: #4a148c; color: white; text-align: center; padding: 12px; }
+
+    iframe { width: 100%; max-width: 720px; height: 405px; border-radius: 10px; border: 2px solid #6a1b9a; }
+	/* Bottom navigation (mobile style) */
+    .bottom-nav{
+      position:fixed;left:0;right:0;bottom:0;height:62px;background:#000000);
+      display:flex;align-items:center;justify-content:space-around;gap:6px;padding:6px 10px;z-index:1500;border-top-left-radius:10px;border-top-right-radius:10px;
+      box-shadow:0 -6px 18px rgba(11,111,68,0.16);
+    }
+    .bn-item{flex:1;text-align:center;color:white;text-decoration:none;font-size:12px;font-weight:700}
+    .bn-item i{display:block;font-size:18px;margin-bottom:4px}
+
+    /* Floating action (quick absensi) */
+    .fab{
+      position:fixed;right:18px;bottom:78px;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+      background:var(--green-1);color:white;box-shadow:0 10px 24px rgba(11,111,68,0.18);cursor:pointer;z-index:1600;
+    }
+  </style>
+</head>
+
+<body>
+ <nav class="bottom-nav" role="navigation" aria-label="Menu bawah">
+    <a class="bn-item" href="index.html#profil"><i class="fa-solid fa-house"></i>Beranda</a>
+    <a class="bn-item" href="index.html#jurusan"><i class="fa-solid fa-graduation-cap"></i>Jurusan</a>
+    <a class="bn-item" href="index.html#galeri"><i class="fa-solid fa-images"></i>Galeri</a>
+    <a class="bn-item" href="index.html#kontak"><i class="fa-solid fa-envelope"></i>Kontak</a>
+    <a class="bn-item" href="index.html#prestasi"><i class="fa-solid fa-trophy"></i>Prestasi</a>
+  </nav>	
+  <header>
+    <h1><i class="fas fa-video"></i><br>Produksi dan Siaran Program Televisi (PSPT)</h1>
+    <p>SMK Negeri 1 Indralaya Selatan</p>
+  </header>
+
+  <div class="container">
+
+    <!-- Tentang -->
+    <section id="tentang">
+      <h2 class="section-title">Tentang Jurusan PSPT</h2>
+      <p><strong>Sejarah Singkat:</strong> Jurusan Produksi dan Siaran Program Televisi (PSPT) SMK Negeri 1 Indralaya Selatan hadir untuk menjawab kebutuhan industri kreatif, media, dan penyiaran yang terus berkembang di era digital.</p>
+      <p><strong>Visi:</strong></p>
+      <p>Menjadi jurusan unggulan yang menghasilkan lulusan kreatif, profesional, dan kompeten dalam bidang produksi serta penyiaran program televisi.</p>
+      <p><strong>Misi:</strong></p>
+      <ul>
+        <li>Mengembangkan keterampilan siswa dalam bidang produksi video, penyutradaraan, dan penyiaran.</li>
+        <li>Meningkatkan kemampuan siswa dalam menggunakan peralatan broadcasting modern.</li>
+        <li>Membentuk karakter kreatif, disiplin, dan tanggung jawab di dunia media dan komunikasi.</li>
+      </ul>
+    </section>
+
+    <!-- Kompetensi -->
+    <section id="program">
+      <h2 class="section-title">Kompetensi Keahlian</h2>
+      <ul class="program-list">
+        <li><strong>Produksi Program Televisi</strong><br>Mempelajari proses pembuatan program TV mulai dari perencanaan, produksi, hingga pascaproduksi.</li>
+        <li><strong>Teknik Kamera dan Tata Cahaya</strong><br>Mengoperasikan kamera, lighting, dan teknik pengambilan gambar untuk siaran profesional.</li>
+        <li><strong>Penyutradaraan dan Penulisan Naskah</strong><br>Belajar membuat naskah kreatif, mengarahkan kru, dan mengelola produksi siaran.</li>
+        <li><strong>Editing dan Pasca Produksi</strong><br>Menguasai teknik editing video, mixing audio, serta efek visual dengan software profesional.</li>
+      </ul>
+    </section>
+
+    <!-- Fasilitas -->
+    <section id="fasilitas">
+      <h2 class="section-title">Fasilitas Laboratorium & Studio</h2>
+      <ul class="facility-list">
+        <li><strong>Studio Produksi TV</strong><br>Dilengkapi dengan kamera profesional, lighting set, dan green screen untuk simulasi siaran nyata.</li>
+        <li><strong>Ruang Editing dan Audio</strong><br>Ruang kedap suara dengan komputer editing yang dilengkapi software profesional seperti Adobe Premiere dan Audition.</li>
+        <li><strong>Peralatan Siaran Lapangan (OB Van)</strong><br>Fasilitas simulasi siaran luar ruangan menggunakan kamera portable dan mixer audio-video.</li>
+        <li><strong>Laboratorium Multimedia</strong><br>Tempat siswa belajar desain grafis, animasi, dan media digital interaktif.</li>
+      </ul>
+    </section>
+
+    <!-- Karir -->
+    <section id="karir">
+      <h2 class="section-title">Peluang Karir Lulusan</h2>
+      <ul class="career-list">
+        <li><strong>Kameramen / Videografer</strong><br>Mengambil gambar untuk produksi film, televisi, maupun media digital.</li>
+        <li><strong>Editor Video / Audio</strong><br>Menyunting video dan audio untuk menghasilkan tayangan berkualitas tinggi.</li>
+        <li><strong>Penyiar / Presenter</strong><br>Menjadi pembawa acara atau host di televisi, radio, maupun platform digital.</li>
+        <li><strong>Produser & Sutradara</strong><br>Mengelola keseluruhan proses produksi program TV dan konten kreatif.</li>
+      </ul>
+    </section>
+
+
+  </div>
+
+  <footer>
+    <p>© 2025 SMKN 1 Indralaya Selatan - Produksi dan Siaran Program Televisi</p>
+  </footer>
+</body>
+</html>
