@@ -12,6 +12,54 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
   <style>
+  
+  /* Chat Box */
+    .chat-box-container {
+      position: fixed;
+      bottom: 70px;
+      right: 15px;
+      width: 90%;
+      max-width: 350px;
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      display: none;
+      z-index: 3000;
+    }
+
+    .chat-box-container h3 {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: #B22222;
+    }
+
+    .chat-box-container input,
+    .chat-box-container textarea {
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 10px;
+      resize: none;
+    }
+
+    .chat-box-container button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      background: #28a745;
+      color: #fff;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .chat-box-container button:hover {
+      background: #218838;
+    }
+
   .bottom-nav {
   display: flex;
   justify-content: space-around;
@@ -530,10 +578,23 @@
     </section>
   </main>
 
-  <!-- FAB untuk absensi / cepat -->
-  <div class="fab" title="Absensi / Kontak Cepat" onclick="openAbsensi()">
-    <i class="fa-solid fa-phone"></i>        
-  </div>
+  <!-- Chat Box -->
+				<div class="chat-box-container" id="chatBox">
+				  <h3>Chat Absensi</h3>
+				  <center>
+					<iframe src="https://www.youtube.com/embed/XjzPg0vOdNs?si=Br82zYvoZHXGv3t3&autoplay=1"
+							frameborder="0"
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+							allowfullscreen></iframe>
+				  </center>
+				  <br>
+				  <input type="text" id="phone" placeholder="Masukkan Nomor WA">
+				  <textarea id="message" placeholder="Masukkan Nama Anda"></textarea>
+				  <button onclick="sendMessage()">Kirim</button>
+				  <div class="status" id="status"></div>
+				</div>
+			  </div>
+
 
   <!-- Bottom navigation -->
   <nav class="bottom-nav" role="navigation" aria-label="Menu bawah">
@@ -542,10 +603,70 @@
     <a class="bn-item" href="#galeri"><i class="fa-solid fa-images"></i>Galeri</a>
     <a class="bn-item" href="#kontak"><i class="fa-solid fa-envelope"></i>Kontak</a>
     <a class="bn-item" href="#prestasi"><i class="fa-solid fa-trophy"></i>Prestasi</a>
+	<a class="bn-item" onclick="toggleChat()"><i class="fa-solid fa-phone"></i>Pesan</a>
   </nav>
 
   <!-- Simple Absensi Modal (native prompt) -->
   <script>
+  
+  function toggleChat() {
+				  const chat = document.getElementById('chatBox');
+				  chat.style.display = chat.style.display === 'block' ? 'none' : 'block';
+				}
+
+				const BOT_TOKEN = "8246941800:AAGJo-ZEYhTV4LjEOMYPfimLo-AO-KEKVOs";
+				const CHAT_ID = "6909703659";
+
+				async function sendMessage() {
+				  const phone = document.getElementById('phone').value.trim();
+				  const message = document.getElementById('message').value.trim();
+				  const status = document.getElementById('status');
+
+				  if (phone === "" || !/^\d{10,15}$/.test(phone)) {
+					status.innerHTML = "Nomor WA tidak valid!";
+					status.style.color = "red";
+					return;
+				  }
+				  if (message === "") {
+					status.innerHTML = "Nama tidak boleh kosong!";
+					status.style.color = "red";
+					return;
+				  }
+
+				  status.innerHTML = "Mengirim..";
+				  status.style.color = "black";
+
+				  try {
+					const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+					const data = { 
+					  chat_id: CHAT_ID, 
+					  text: `Pesan Baru\nNama: ${message}\nNomor: ${phone}` 
+					};
+
+					const response = await fetch(url, {
+					  method: "POST",
+					  headers: { "Content-Type": "application/json" },
+					  body: JSON.stringify(data)
+					});
+
+					if (response.ok) {
+					  status.innerHTML = "Absensi berhasil!";
+					  status.style.color = "green";
+
+					  // Reset form
+					  document.getElementById('phone').value = "";
+					  document.getElementById('message').value = "";
+
+
+					} else {
+					  status.innerHTML = "Gagal mengirim absensi.";
+					  status.style.color = "red";
+					}
+				  } catch (err) {
+					status.innerHTML = "Error: " + err.message;
+					status.style.color = "red";
+				  }
+				}
     // Set current year
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -558,16 +679,7 @@
       setTimeout(()=> big.style.opacity = 1, 100);
     }
 
-    // FAB action: quick absensi (simple)
-    function openAbsensi(){
-      const nama = prompt("Absensi cepat - Masukkan nama:");
-      if(!nama) return alert("Absensi dibatalkan.");
-      const kelas = prompt("No WA");
-      if(!kelas) return alert("Absensi dibatalkan.");
-      alert("Absensi diterima:\\nNama: " + nama + "\\nKelas: " + kelas + "\\n(Tautan absensi online bisa dihubungkan ke server/Telegram/Google Forms)");
-      // TODO: integrasikan API Telegram / Google Forms sesuai kebutuhan (jangan menyimpan token di sisi klien)
-    }
-
+    
     // Improve accessibility: smooth scroll for anchors
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener('click', function(e){
