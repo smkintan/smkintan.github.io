@@ -353,7 +353,7 @@
     body { background: #f8f9fa; line-height: 1.6; }
     header { background: linear-gradient(90deg, #B22222, #8B0000); color: white; text-align: center; padding: 4px; }
     header h1 { margin-bottom: 0px; font-size: 32px; }
-    .slider { width: 100%; max-width: 1200px; aspect-ratio: 8 / 3; position: relative; overflow: hidden; margin: 20px auto; }
+    .slider { width: 100%; max-width: 1200px; aspect-ratio: 8 / 3; position: relative; overflow: hidden; margin: 0px auto; }
     .slider img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; opacity: 0; transition: opacity 0.5s ease-in-out; }
     .slider img:first-child { opacity: 1; }
     .navigation-button { text-align: center; margin-top: 10px; }
@@ -386,9 +386,25 @@
         <p>Menyiapkan lulusan terampil, profesional, dan siap masuk dunia kerja melalui kurikulum praktik dan kerja industri.</p>
         <small class="muted" style="display:block;margin-top:8px"></small>
       </div>
-      <div class="hero-photo" aria-hidden="true">
-        <img src="https://raw.githubusercontent.com/smkintan/smkintan.github.io/refs/heads/main/foto1/1.jpg" alt="Gedung Sekolah">
+      <div class="hero-photo" aria-hidden="true">		
+    <div class="slider">
+      <img src="https://raw.githubusercontent.com/smkintan/smkintan.github.io/refs/heads/main/foto1/1.jpg" alt="Image 1">
+      <img src="https://raw.githubusercontent.com/smkintan/smkintan.github.io/refs/heads/main/foto1/2.jpg" alt="Image 2">
+      <img src="https://raw.githubusercontent.com/smkintan/smkintan.github.io/refs/heads/main/foto1/3.jpeg" alt="Image 3">
+      <img src="https://raw.githubusercontent.com/smkintan/smkintan.github.io/refs/heads/main/foto1/4.jfif" alt="Image 4">
+	  
+    </div>
+  </center>
+
+  <div class="navigation-button">
+    <span class="dot active" onclick="changeSlide(0)"></span>
+    <span class="dot" onclick="changeSlide(1)"></span>
+    <span class="dot" onclick="changeSlide(2)"></span>
+    <span class="dot" onclick="changeSlide(3)"></span>
+  </div>
+		
       </div>
+	  
     </section>
 
     <!-- Profil Sekolah (dengan Visi-Misi-Tujuan-Motto) -->
@@ -549,23 +565,28 @@
         <h2 id="galeri-title">Galeri Kegiatan</h2>
         <div class="section-sub">Kegiatan praktikum, lomba, dan kunjungan industri</div>
       </div>
-  
-	    <center>
-    <div class="slider">
-      <img src="https://raw.githubusercontent.com/smkintan/smkintan.github.io/refs/heads/main/foto1/1.jpg" alt="Image 1">
-      <img src="https://raw.githubusercontent.com/smkintan/smkintan.github.io/refs/heads/main/foto1/2.jpg" alt="Image 2">
-      <img src="https://raw.githubusercontent.com/smkintan/smkintan.github.io/refs/heads/main/foto1/3.jpeg" alt="Image 3">
-      <img src="https://raw.githubusercontent.com/smkintan/smkintan.github.io/refs/heads/main/foto1/4.jfif" alt="Image 4">
-	  
-    </div>
-  </center>
 
-  <div class="navigation-button">
-    <span class="dot active" onclick="changeSlide(0)"></span>
-    <span class="dot" onclick="changeSlide(1)"></span>
-    <span class="dot" onclick="changeSlide(2)"></span>
-    <span class="dot" onclick="changeSlide(3)"></span>
-  </div>
+      <div class="big-view" id="bigView">
+        <img src="https://raw.githubusercontent.com/smkintan/smkintan.github.io/refs/heads/main/foto1/1.jpg" alt="Kegiatan Sekolah" id="bigViewImg">
+      </div>
+
+      <div class="gallery" aria-hidden="false">
+        <!-- Ganti src tiap gambar dengan foto sekolah sebenarnya -->
+        <img src="https://raw.githubusercontent.com/smkintan/smkintan.github.io/refs/heads/main/foto1/1.jpg"  alt="Foto 1" onclick="setBig(this)">
+        <img src="https://raw.githubusercontent.com/smkintan/smkintan.github.io/refs/heads/main/foto1/2.jpg"  alt="Foto 2" onclick="setBig(this)">
+        <img src="https://raw.githubusercontent.com/smkintan/smkintan.github.io/refs/heads/main/foto1/3.jpeg"  alt="Foto 3" onclick="setBig(this)">
+        <img src="https://raw.githubusercontent.com/smkintan/smkintan.github.io/refs/heads/main/foto1/4.jfif"  alt="Foto 4" onclick="setBig(this)">
+        <img src="https://raw.githubusercontent.com/smkintan/smkintan.github.io/refs/heads/main/foto1/5.jpg"  alt="Foto 5" onclick="setBig(this)">
+        <img src="https://raw.githubusercontent.com/smkintan/smkintan.github.io/refs/heads/main/foto1/6.jpg"  alt="Foto 6" onclick="setBig(this)">
+		<img src="https://raw.githubusercontent.com/smkintan/smkintan.github.io/refs/heads/main/foto1/7.jpg"  alt="Foto 7" onclick="setBig(this)">
+        <img src="https://raw.githubusercontent.com/smkintan/smkintan.github.io/refs/heads/main/foto1/8.jpg"  alt="Foto 8" onclick="setBig(this)">
+        <img src="https://raw.githubusercontent.com/smkintan/smkintan.github.io/refs/heads/main/foto1/9.jpg"  alt="Foto 9" onclick="setBig(this)">
+        <img src="https://raw.githubusercontent.com/smkintan/smkintan.github.io/refs/heads/main/foto1/10.jpg" alt="Foto 10" onclick="setBig(this)">
+        <img src="https://raw.githubusercontent.com/smkintan/smkintan.github.io/refs/heads/main/foto1/11.jpg" alt="Foto 11" onclick="setBig(this)">
+        <img src="https://raw.githubusercontent.com/smkintan/smkintan.github.io/refs/heads/main/foto1/12.jpg" alt="Foto 12" onclick="setBig(this)">
+      </div>
+	  
+	  
     </section>
 
     <!-- Prestasi -->
