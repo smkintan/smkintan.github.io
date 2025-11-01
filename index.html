@@ -13,52 +13,77 @@
 
   <style>
   
-  /* Chat Box */
-    .chat-box-container {
-      position: fixed;
-      bottom: 70px;
-      right: 15px;
-      width: 90%;
-      max-width: 350px;
-      background: #fff;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      display: none;
-      z-index: 3000;
-    }
+  /* Chat Box Responsif */
+.chat-box-container {
+  position: fixed;
+  bottom: 0px;
+  right: 60px; /* jangan gunakan 60%0px */
+  width: 90%;
+  max-width: 350px;
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  display: none;
+  z-index: 3000;
+  box-sizing: border-box;
+}
 
-    .chat-box-container h3 {
-      text-align: center;
-      margin-bottom: 10px;
-      font-size: 18px;
-      color: #B22222;
-    }
+.chat-box-container h3 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #B22222;
+}
 
-    .chat-box-container input,
-    .chat-box-container textarea {
-      width: 100%;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 10px;
-      margin-bottom: 10px;
-      resize: none;
-    }
+.chat-box-container input,
+.chat-box-container textarea {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  resize: none;
+  box-sizing: border-box; /* penting supaya padding tidak merusak ukuran */
+  font-size: 14px; /* stabil di mobile agar tidak zoom */
+}
 
-    .chat-box-container button {
-      width: 100%;
-      padding: 10px;
-      border: none;
-      background: #28a745;
-      color: #fff;
-      font-size: 16px;
-      border-radius: 8px;
-      cursor: pointer;
-    }
+.chat-box-container button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: #28a745;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
 
-    .chat-box-container button:hover {
-      background: #218838;
-    }
+.chat-box-container button:hover {
+  background: #218838;
+}
+
+/* Agar tetap responsif di layar kecil */
+@media screen and (max-width: 400px) {
+  .chat-box-container {
+    width: 95%;
+    right: 10px;
+    bottom: 10px;
+    padding: 10px;
+  }
+
+  .chat-box-container input,
+  .chat-box-container textarea {
+    font-size: 13px;
+  }
+
+  .chat-box-container button {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
 
   .bottom-nav {
   display: flex;
@@ -248,7 +273,7 @@
 
     /* Floating action (quick absensi) */
     .fab{
-      position:fixed;right:18px;bottom:78px;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+      position:fixed;right:5px;bottom:65px;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;
       background:var(--green-1);color:white;box-shadow:0 10px 24px rgba(11,111,68,0.18);cursor:pointer;z-index:1600;
     }
 
@@ -550,7 +575,7 @@
         <div class="contact-card">
           <div style="font-weight:800">Email</div>
           <a href="">Kirim Email</a>
-		  <a class="bn-item" onclick="toggleChat()"><i class="fa-solid fa-phone"></i>Pesan</a>
+
         </div>
 
       </div>
@@ -596,6 +621,10 @@
 				</div>
 			  </div>
 
+			    <!-- FAB untuk absensi / cepat -->
+  <div class="fab" title="Absensi / Kontak Cepat" onclick="toggleChat()">
+    <i class="fa-solid fa-phone"></i>    
+  </div>
 
   <!-- Bottom navigation -->
   <nav class="bottom-nav" role="navigation" aria-label="Menu bawah">
