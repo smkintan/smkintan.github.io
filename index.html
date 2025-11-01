@@ -6,12 +6,37 @@
   <title>SMK Negeri 1 Indralaya Selatan</title>
   <meta name="description" content="Situs resmi SMK Negeri 1 Indralaya Selatan - Profil sekolah, jurusan, fasilitas, galeri, dan kontak.">
   <meta name="author" content="SMK Negeri 1 Indralaya Selatan">
-  <link rel="icon" href="https://via.placeholder.com/80x80.png?text=Logo">
+  <link rel="icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiEAVhietCBDPlFLNy6q40CC5VrRPW1Kh2yRdAbO7n2Fw1Z84oZMdmXmziTpHNSuD9sZWcO7fzaMGXguW8_LeUPUSvUPfCILbYTDKlenpBEv2yINKoXNqdVH1viwbUFWAm539jl7dsvHRQ1/s1600/Untitled.jpg">
 
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
   <style>
+  .bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  background-color: #2f855a; /* Warna dasar nav */
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.bn-item {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  text-align: center;
+  transition: 0.3s; /* animasi halus */
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.bn-item:hover {
+  background-color: #68d391; /* warna saat hover */
+  color: #1a202c; /* warna teks saat hover */
+}
     :root{
       --green-1: #0f9d58;
       --green-2: #2bb673;
@@ -270,85 +295,149 @@
     </section>
 	
     <!-- Jurusan -->
-    <section id="jurusan" class="card" aria-labelledby="jurusan-title">
-      <div class="section-title">
-        <h2 id="jurusan-title">Kompetensi / Jurusan</h2>
-        <div class="section-sub">Jurusan unggulan yang kami buka</div>
-      </div>
+<style>
+  .small-card-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    background: #f0f0f0;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #000;
+    transition: 0.3s;
+  }
 
-      <div class="grid" role="list">
-		
-        <div class="small-card" role="listitem">
-          <center><a href="titl.html">Teknik Instalasi Tenaga Lsitrik (TITL)</a>
-        </div>
+  /* Efek hover: background dan teks berubah warna */
+  .small-card-button:hover {
+    background: #4CAF50; /* warna hijau saat hover */
+    color: #fff;
+    cursor: pointer;
+  }
 
-        <div class="small-card" role="listitem">
-          <center><a href="tkj.html">Teknik Komputer & Jaringan (TKJ)</a>
-        </div>
-		
-        <div class="small-card" role="listitem">
-          <center><a href="meka.html">Teknink Mekatronika (TM)</a>
-        </div>
+  .small-card-button i {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    transition: 0.3s;
+  }
 
-        <div class="small-card" role="listitem">
-          <center><a href="rpl.html">Rekayasa Perangkat Lunak (RPL)</a>
-        </div>
+  .small-card-button:hover i {
+    color: #fff; /* ikon juga berubah warna saat hover */
+  }
 
-        <div class="small-card" role="listitem">
-          <center><a href="pspt.html">(PSPT)</a>
-        </div>
+  .small-card-button span {
+    font-size: 0.85rem;
+    text-align: center;
+  }
+</style>
 
-        <div class="small-card" role="listitem">
-          <center><a href="apat.html">Agribisnis Perikanan Air Tawar (APAT)</a>
-        </div>
+<section id="jurusan" class="card" aria-labelledby="jurusan-title">
+  <div class="section-title">
+    <h2 id="jurusan-title" style="font-size:1.5rem;">Kompetensi / Jurusan</h2>
+    <div class="section-sub" style="font-size:0.9rem;">Jurusan unggulan yang kami buka</div>
+  </div>
 
-        <div class="small-card" role="listitem">
-          <center><a href="tpl.html">Teknik Pengelasan (TPL)</a>
-        </div>
-      </div>
-    </section>
+  <div class="grid" role="list" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px">
+
+    <a href="titl.html" class="small-card-button" role="listitem">
+      <i class="fa-solid fa-bolt"></i>
+      <span>Teknik Instalasi Tenaga Listrik (TITL)</span>
+    </a>
+
+    <a href="tkj.html" class="small-card-button" role="listitem">
+      <i class="fa-solid fa-computer"></i>
+      <span>Teknik Komputer & Jaringan (TKJ)</span>
+    </a>
+
+    <a href="meka.html" class="small-card-button" role="listitem">
+      <i class="fa-solid fa-robot"></i>
+      <span>Teknik Mekatronika (TM)</span>
+    </a>
+
+    <a href="rpl.html" class="small-card-button" role="listitem">
+      <i class="fa-solid fa-code"></i>
+      <span>Rekayasa Perangkat Lunak (RPL)</span>
+    </a>
+
+    <a href="pspt.html" class="small-card-button" role="listitem">
+      <i class="fa-solid fa-video"></i>
+      <span>Produksi dan Siaran Program Televisi (PSPT)</span>
+    </a>
+
+    <a href="apat.html" class="small-card-button" role="listitem">
+      <i class="fa-solid fa-fish"></i>
+      <span>Agribisnis Perikanan Air Tawar (APAT)</span>
+    </a>
+
+    <a href="tpl.html" class="small-card-button" role="listitem">
+      <i class="fa-solid fa-fire-flame-simple"></i>
+      <span>Teknik Pengelasan (TPL)</span>
+    </a>
+
+  </div>
+</section>
+
+
 
     <!-- Fasilitas -->
-    <section id="fasilitas" class="card" aria-labelledby="fasilitas-title">
-      <div class="section-title">
-        <h2 id="fasilitas-title">Fasilitas Laboratorium & Workshop</h2>
-        <div class="section-sub">Dukungan sarana praktik untuk siswa</div>
+<section id="fasilitas" class="card" aria-labelledby="fasilitas-title">
+  <div class="section-title">
+    <h2 id="fasilitas-title">Fasilitas Laboratorium & Workshop</h2>
+    <div class="section-sub">Dukungan sarana praktik untuk siswa</div>
+  </div>
+
+  <div style="display:grid;gap:10px">
+    <div class="list-item">
+      <i class="fa-solid fa-computer"></i>
+      <div>
+        <div style="font-weight:700">Laboratorium Komputer, Jaringan dan Server</div>
+        <div class="meta">Komputer modern, server mini, switch, router, dan perangkat jaringan untuk praktik TKJ dan komputer.</div>
       </div>
+    </div>
 
-      <div style="display:grid;gap:10px">
-        <div class="list-item">
-          <i class="fa-solid fa-microchip"></i>
-          <div>
-            <div style="font-weight:700">Laboratorium Elektronika & Mikrokontroler</div>
-            <div class="meta">Board Arduino, sensor, osiloskop, dan peralatan praktek.</div>
-          </div>
-        </div>
-
-        <div class="list-item">
-          <i class="fa-solid fa-robot"></i>
-          <div>
-            <div style="font-weight:700">Workshop Robotika & Mekatronika</div>
-            <div class="meta">Robot mobile, aktuator, PLC, dan sistem otomasi sederhana.</div>
-          </div>
-        </div>
-
-        <div class="list-item">
-          <i class="fa-solid fa-network-wired"></i>
-          <div>
-            <div style="font-weight:700">Lab Jaringan & Server</div>
-            <div class="meta">Router, switch, server mini untuk praktik TKJ.</div>
-          </div>
-        </div>
-
-        <div class="list-item">
-          <i class="fa-solid fa-chalkboard-user"></i>
-          <div>
-            <div style="font-weight:700">Ruang Kelas Digital</div>
-            <div class="meta">Proyektor, laptop, LMS, dan perangkat presentasi.</div>
-          </div>
-        </div>
+    <div class="list-item">
+      <i class="fa-solid fa-bolt"></i>
+      <div>
+        <div style="font-weight:700">Laboratorium Kelistrikan</div>
+        <div class="meta">Peralatan kelistrikan, robot mobile, aktuator, PLC, dan sistem otomasi sederhana.</div>
       </div>
-    </section>
+    </div>
+
+    <div class="list-item">
+      <i class="fa-solid fa-microchip"></i>
+      <div>
+        <div style="font-weight:700">Laboratorium Elektronika</div>
+        <div class="meta">Komponen elektronik, rangkaian praktikum, multimeter, dan kit eksperimen untuk praktik elektronika.</div>
+      </div>
+    </div>
+
+    <div class="list-item">
+      <i class="fa-solid fa-fish"></i>
+      <div>
+        <div style="font-weight:700">Laboratorium Perikanan</div>
+        <div class="meta">Akuarium, alat ukur kualitas air, bahan praktikum budidaya ikan, dan media pembelajaran perikanan.</div>
+      </div>
+    </div>
+
+    <div class="list-item">
+      <i class="fa-solid fa-fire-flame-simple"></i>
+      <div>
+        <div style="font-weight:700">Laboratorium Pengelasan</div>
+        <div class="meta">Mesin las, peralatan keselamatan kerja, meja kerja, dan material logam untuk praktik pengelasan.</div>
+      </div>
+    </div>
+
+    <div class="list-item">
+      <i class="fa-solid fa-video"></i>
+      <div>
+        <div style="font-weight:700">Studio Perfileman</div>
+        <div class="meta">Kamera, lampu studio, green screen, perangkat editing, dan perlengkapan produksi film dan video.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 
     <!-- Galeri -->
     <section id="galeri" class="card" aria-labelledby="galeri-title">
