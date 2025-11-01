@@ -624,6 +624,29 @@
     </section>
 	
 	
+	    <!-- Video Profil -->
+    <section class="card" aria-labelledby="video-title">
+      <div class="section-title">
+        <h2 id="video-title">Mars SMK INTAN</h2>
+      </div>
+				  <center>
+				  		  <audio id="myAudio" controls preload="metadata">
+    <source src="https://raw.githubusercontent.com/smkintan/smkintan.github.io/refs/heads/main/foto1/smk.mp3" type="audio/mpeg">
+    Browser Anda tidak mendukung elemen audio.
+  </audio>
+
+
+  <script>
+    const audio = document.getElementById('myAudio');
+    document.getElementById('playBtn').addEventListener('click', () => audio.play());
+    document.getElementById('pauseBtn').addEventListener('click', () => audio.pause());
+    document.getElementById('skipBtn').addEventListener('click', () => audio.currentTime += 10);
+    document.getElementById('vol').addEventListener('input', (e) => audio.volume = e.target.value);
+  </script>
+				  </center>
+    </section>
+
+	
     <!-- Video Profil -->
     <section class="card" aria-labelledby="video-title">
       <div class="section-title">
@@ -638,6 +661,7 @@
 				  </center>
     </section>
 	
+
 	
     <!-- Footer small -->
     <section class="card" aria-hidden="true" style="text-align:center;font-size:13px;color:var(--muted)">
