@@ -271,7 +271,7 @@
 
     /* Big gallery view */
     .big-view{
-      width:100%;height:220px;border-radius:10px;overflow:hidden;margin-bottom:8px;
+      width:100%;height:100px;border-radius:10px;overflow:hidden;margin-bottom:8px;
       background:#e9f6eb;display:flex;align-items:center;justify-content:center;
     }
     .big-view img{width:100%;height:100%;object-fit:cover}
@@ -357,9 +357,9 @@
     .slider img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; opacity: 0; transition: opacity 0.5s ease-in-out; }
     .slider img:first-child { opacity: 1; }
     .navigation-button { text-align: ; margin-top: }
-    .dot { cursor: pointer; height: 12px; width: 12px; margin: 0 4px; background-color: #bbb; border-radius: 50%; display: inline-block; transition: background-color 0.3s; }
+    .dot { cursor: pointer; height: 12px; width: 12px; margin: 0px; background-color: #bbb; border-radius: 20%; display: inline-block; transition: background-color 0.3s; }
     .active, .dot:hover { background-color: #717171; }
-    @media (max-width: 600px) { .slider { height: 12vh; } }
+    @media (max-width: 60px) { .slider { height: 12vh; } }
   </style>
 </head>
 <body>
@@ -393,14 +393,16 @@
 		</div>
 		</center>
 
-		<div class="navigation-button">
-		<p><span class="dot active" onclick="changeSlide(0)"></span>
-		<p><span class="dot" onclick="changeSlide(1)"></span>
-		<p><span class="dot" onclick="changeSlide(2)"></span>
-		<p><span class="dot" onclick="changeSlide(3)"></span>
-		</div>
-	  
     </section>
+	<div class="navigation-button">
+		<p><span class="dot active" onclick="changeSlide(0)"></span>
+		<span class="dot" onclick="changeSlide(1)"></span>
+		<span class="dot" onclick="changeSlide(2)"></span>
+		<span class="dot" onclick="changeSlide(3)"></span>
+		<span class="dot" onclick="changeSlide(1)"></span>
+		<span class="dot" onclick="changeSlide(2)"></span>
+		<span class="dot" onclick="changeSlide(3)"></span>
+		</div>
 
     <!-- Profil Sekolah (dengan Visi-Misi-Tujuan-Motto) -->
     <section  id="profil1"  class="card" aria-labelledby="profil-title">
@@ -425,6 +427,7 @@
             <li>Memberikan bekal keterampilan bagi lulusan.</li>
           </ol>
 <br>
+
         </div>
 
         <div style="width:100px">
@@ -434,7 +437,6 @@
 <br><br>  <small class="muted">Jumlah Siswa</small>
           <div style="font-weight:800;font-size:20px;margin-top:px">1200+</div>
           <small class="muted">Terdiri dari 7 Program Keahlian</small>
-		  
 		  
 		  
         </div>
@@ -486,6 +488,11 @@
     <a href="tpl.html" class="small-card-button" role="listitem">
       <i class="fa-solid fa-fire-flame-simple"></i>
       <span>Teknik Pengelasan (TPL)</span>
+    </a>
+	
+	    <a href="#jurusan" class="small-card-button" role="listitem">
+      <i class=""></i>
+      <span></span>
     </a>
 
   </div>
@@ -552,7 +559,20 @@
   </div>
 </section>
 
+<!-- Prestasi -->
+    <section id="prestasi" class="card" aria-labelledby="prestasi-title">
+      <div class="section-title">
+        <h2 id="prestasi-title">Prestasi & Kegiatan</h2>
+        <div class="section-sub">Beberapa prestasi siswa dan program unggulan</div>
+      </div>
 
+      <ul style="list-style:disc;margin-left:18px;color:var(--muted);line-height:1.6">
+        <li>Juara LKS bidang Otomasi Industri tingkat nasional</li>
+		<li>Juara LKS bidang Mekatronika tingkat provinsi</li>
+        <li>Program magang industri ke Jepang</li>
+        <li>Proyek kewirausahaan siswa (start-up sederhana)</li>
+      </ul>
+    </section>
 
     <!-- Galeri -->
     <section id="galeri" class="card" aria-labelledby="galeri-title">
@@ -581,26 +601,9 @@
         <img src="https://raw.githubusercontent.com/smkintan/smkintan.github.io/refs/heads/main/foto1/12.jpg" alt="Foto 12" onclick="setBig(this)">
       </div>
 	  
-	  
     </section>
 
-    <!-- Prestasi -->
-    <section id="prestasi" class="card" aria-labelledby="prestasi-title">
-      <div class="section-title">
-        <h2 id="prestasi-title">Prestasi & Kegiatan</h2>
-        <div class="section-sub">Beberapa prestasi siswa dan program unggulan</div>
-      </div>
-
-      <ul style="list-style:disc;margin-left:18px;color:var(--muted);line-height:1.6">
-        <li>Juara LKS bidang Otomasi Industri tingkat nasional</li>
-		<li>Juara LKS bidang Mekatronika tingkat provinsi</li>
-        <li>Program magang industri ke Jepang</li>
-        <li>Proyek kewirausahaan siswa (start-up sederhana)</li>
-      </ul>
-    </section>
-
-
-
+    
     <!-- Kontak & SPMB -->
     <section id="kontak" class="card" aria-labelledby="kontak-title">
       <div class="section-title">
