@@ -13,6 +13,23 @@
 
   <style>
   
+  /* Tombol Close */
+.chat-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #B22222;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.3s;
+}
+
+.chat-close:hover {
+  color: #ff0000;
+}
+
   /* Chat Box Responsif */
 .chat-box-container {
   position: fixed;
@@ -605,21 +622,24 @@
   </main>
 
   <!-- Chat Box -->
-				<div class="chat-box-container" id="chatBox">
-				  <h3>Chat Absensi</h3>
-				  <center>
-					<iframe src="https://www.youtube.com/embed/XjzPg0vOdNs?si=Br82zYvoZHXGv3t3&autoplay=1"
-							frameborder="0"
-							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-							allowfullscreen></iframe>
-				  </center>
-				  <br>
-				  <input type="text" id="phone" placeholder="Masukkan Nomor WA">
-				  <textarea id="message" placeholder="Masukkan Nama Anda"></textarea>
-				  <button onclick="sendMessage()">Kirim</button>
-				  <div class="status" id="status"></div>
-				</div>
-			  </div>
+<div class="chat-box-container" id="chatBox">
+  <!-- Tombol Close -->
+  <span class="chat-close" onclick="closeChatBox()">×</span>
+
+  <h3>Chat Absensi</h3>
+  <center>
+    <iframe src="https://www.youtube.com/embed/XjzPg0vOdNs?si=Br82zYvoZHXGv3t3&autoplay=1"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+  </center>
+  <br>
+  <input type="text" id="phone" placeholder="Masukkan Nomor WA">
+  <textarea id="message" placeholder="Masukkan Nama Anda"></textarea>
+  <button onclick="sendMessage()">Kirim</button>
+  <div class="status" id="status"></div>
+</div>
+
 
 			    <!-- FAB untuk absensi / cepat -->
   <div class="fab" title="Absensi / Kontak Cepat" onclick="toggleChat()">
@@ -732,6 +752,12 @@
         location.hash = '#galeri';
       }
     });
+	
+	// Fungsi untuk menutup chat box
+function closeChatBox() {
+  document.getElementById("chatBox").style.display = "none";
+}
+
   </script>
 </body>
 </html>
