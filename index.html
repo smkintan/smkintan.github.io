@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>SMK Negeri 1 Indralaya Selatan</title>
   <meta name="description" content="Situs resmi SMK Negeri 1 Indralaya Selatan - Profil sekolah, jurusan, fasilitas, galeri, dan kontak.">
   <meta name="author" content="SMK Negeri 1 Indralaya Selatan">
@@ -43,6 +43,12 @@
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   display: none;
   z-index: 3000;
+  box-sizing: border-box;
+}
+
+.chat-box-container input,
+.chat-box-container textarea {
+  font-size: 16px; /* minimal 16px agar mobile tidak zoom */
   box-sizing: border-box;
 }
 
@@ -635,7 +641,7 @@
   </center>
   <br>
   <input type="text" id="phone" placeholder="Masukkan Nomor WA">
-  <textarea id="message" placeholder="Masukkan Nama Anda"></textarea>
+  <textarea id="message" placeholder="Masukkan Nama Anda dan Pesan anda"></textarea>
   <button onclick="sendMessage()">Kirim</button>
   <div class="status" id="status"></div>
 </div>
