@@ -313,6 +313,41 @@
     small.muted{display:block;color:var(--muted);font-size:12px;margin-top:6px}
     .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:linear-gradient(90deg,var(--green-2),var(--green-1));color:white;font-weight:700;font-size:12px}
   </style>
+  <style>
+  .small-card-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    background: #f0f0f0;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #000;
+    transition: 0.3s;
+  }
+
+  /* Efek hover: background dan teks berubah warna */
+  .small-card-button:hover {
+    background: #4CAF50; /* warna hijau saat hover */
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .small-card-button i {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    transition: 0.3s;
+  }
+
+  .small-card-button:hover i {
+    color: #fff; /* ikon juga berubah warna saat hover */
+  }
+
+  .small-card-button span {
+    font-size: 0.85rem;
+    text-align: center;
+  }
+</style>
 </head>
 <body>
   <!-- Topbar -->
@@ -366,16 +401,6 @@
             <li>Memberikan bekal keterampilan bagi lulusan.</li>
           </ol>
 <br>
-          <p><strong>TUJUAN SEKOLAH</strong></p>
-          <ol style="margin-left:18px;color:var(--muted);line-height:1.6">
-            <li>Meningkatkan kompetensi peserta didik dalam bidang teknologi, <p>baik Kelistrikan maupun Ilmu Komputer.</li>
-            <li>Mengeluarkan lulusan-lulusan yang profesional di bidangnya.</li>
-            <li>Menjadikan siswa-siswi SMK Negeri 1 Indralaya Selatan yang <p>berakhlak mulia dan berbudi pekerti luhur.</li>
-          </ol>
-<br>
-          <p><strong>MOTTO SEKOLAH</strong></p>
-          <p style="font-weight:700; margin-top:6px">“TAJAM, TANGGUH, TERPUJI, dan TERDEPAN”</p>
-		  </small></p>
         </div>
 
         <div style="width:100px">
@@ -385,47 +410,16 @@
 <br><br>  <small class="muted">Jumlah Siswa</small>
           <div style="font-weight:800;font-size:20px;margin-top:px">1200+</div>
           <small class="muted">Terdiri dari 7 Program Keahlian</small>
+		  
+		  
+		  
         </div>
 		
       </div>
     </section>
 	
     <!-- Jurusan -->
-<style>
-  .small-card-button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    background: #f0f0f0;
-    border-radius: 8px;
-    text-decoration: none;
-    color: #000;
-    transition: 0.3s;
-  }
 
-  /* Efek hover: background dan teks berubah warna */
-  .small-card-button:hover {
-    background: #4CAF50; /* warna hijau saat hover */
-    color: #fff;
-    cursor: pointer;
-  }
-
-  .small-card-button i {
-    font-size: 1.2rem;
-    margin-bottom: 5px;
-    transition: 0.3s;
-  }
-
-  .small-card-button:hover i {
-    color: #fff; /* ikon juga berubah warna saat hover */
-  }
-
-  .small-card-button span {
-    font-size: 0.85rem;
-    text-align: center;
-  }
-</style>
 
 <section id="jurusan" class="card" aria-labelledby="jurusan-title">
   <div class="section-title">
@@ -479,15 +473,15 @@
 <section id="fasilitas" class="card" aria-labelledby="fasilitas-title">
   <div class="section-title">
     <h2 id="fasilitas-title">Fasilitas Laboratorium & Workshop</h2>
-    <div class="section-sub">Dukungan sarana praktik untuk siswa</div>
+    <div class="section-sub">Sarana praktik siswa</div>
   </div>
 
-  <div style="display:grid;gap:10px">
+  <div style="display:grid;gap:5px">
     <div class="list-item">
       <i class="fa-solid fa-computer"></i>
       <div>
-        <div style="font-weight:700">Laboratorium Komputer, Jaringan dan Server</div>
-        <div class="meta">Komputer modern, server mini, switch, router, dan perangkat jaringan untuk praktik TKJ dan komputer.</div>
+        <div style="font-weight:700">Laboratorium Komputer</div>
+        <div class="meta">Komputer, server, switch, router untuk praktik TKJ.</div>
       </div>
     </div>
 
@@ -495,7 +489,7 @@
       <i class="fa-solid fa-bolt"></i>
       <div>
         <div style="font-weight:700">Laboratorium Kelistrikan</div>
-        <div class="meta">Peralatan kelistrikan, robot mobile, aktuator, PLC, dan sistem otomasi sederhana.</div>
+        <div class="meta">Peralatan kelistrikan, robot, PLC, dan otomasi sederhana.</div>
       </div>
     </div>
 
@@ -503,7 +497,7 @@
       <i class="fa-solid fa-microchip"></i>
       <div>
         <div style="font-weight:700">Laboratorium Elektronika</div>
-        <div class="meta">Komponen elektronik, rangkaian praktikum, multimeter, dan kit eksperimen untuk praktik elektronika.</div>
+        <div class="meta">Komponen elektronik, PLC, HMI, Sitem Robotik.</div>
       </div>
     </div>
 
@@ -511,7 +505,7 @@
       <i class="fa-solid fa-fish"></i>
       <div>
         <div style="font-weight:700">Laboratorium Perikanan</div>
-        <div class="meta">Akuarium, alat ukur kualitas air, bahan praktikum budidaya ikan, dan media pembelajaran perikanan.</div>
+        <div class="meta">Akuarium, alat ukur kualitas air, dan bahan budidaya ikan.</div>
       </div>
     </div>
 
@@ -519,7 +513,7 @@
       <i class="fa-solid fa-fire-flame-simple"></i>
       <div>
         <div style="font-weight:700">Laboratorium Pengelasan</div>
-        <div class="meta">Mesin las, peralatan keselamatan kerja, meja kerja, dan material logam untuk praktik pengelasan.</div>
+        <div class="meta">Mesin las, meja kerja, material logam, dan alat keselamatan.</div>
       </div>
     </div>
 
@@ -527,12 +521,13 @@
       <i class="fa-solid fa-video"></i>
       <div>
         <div style="font-weight:700">Studio Perfileman</div>
-        <div class="meta">Kamera, lampu studio, green screen, perangkat editing, dan perlengkapan produksi film dan video.</div>
+        <div class="meta">Kamera, lampu, green screen, editing, dan perlengkapan produksi.</div>
       </div>
     </div>
 
   </div>
 </section>
+
 
 
     <!-- Galeri -->
@@ -583,21 +578,21 @@
 
       <div class="contact-grid">
         <div class="contact-card">
-          <div style="font-weight:800">Alamat</div>
-          <div style="margin-top:6px;color:var(--muted)">Jl. Raya Tanah Tinggi, Desa Meranjat I, Kec. Indralaya Selatan, Kab. Ogan Ilir, Prov. Sumatera Selatan, Kode Pos 30662.</div>
+          <div style="font-weight:800"><a onclick="alert('Jl. Raya Tanah Tinggi, Desa Meranjat I, Kec. Indralaya Selatan, Kab. Ogan Ilir, Prov. Sumatera Selatan, Kode Pos 30662.');return false">Alamat</div>
+         </a>
         </div>
         <div class="contact-card">
-          <div style="font-weight:800">Pendaftaran (SPMB)</div>
-          <div style="margin-top:6px;color:var(--muted)">Klik untuk informasi pendaftaran</div>
-          <a href="#spmb" onclick="alert('Siapkan formulir pendaftaran dan berkas. Link pendaftaran akan diupdate sekolahkan.');return false">Info SPMB</a>
+          <div style="font-weight:800"><a onclick="alert('Siapkan formulir pendaftaran dan berkas. Link pendaftaran akan diupdate sekolahkan.');return false">Pendaftaran (SPMB)</div>
+          </a>
         </div>
         <div class="contact-card">
-          <div style="font-weight:800">Telepon</div>
-          <div style="margin-top:6px;color:var(--muted)">(021) - (nomor)</div>
+          <div style="font-weight:800"><a onclick="alert('08....');return false">Telpon	</div>
+          </a>
+
         </div>
         <div class="contact-card">
-          <div style="font-weight:800">Email</div>
-          <a href="">Kirim Email</a>
+          <div style="font-weight:800"><a onclick="alert('...@...com');return false">Email</div>
+          </a>
 
         </div>
 
@@ -663,6 +658,7 @@
   </nav>
 
   <!-- Simple Absensi Modal (native prompt) -->
+  
   <script>
   
   function toggleChat() {
