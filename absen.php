@@ -669,7 +669,7 @@ async function startQRScanner() {
         const placeholder = document.getElementById('qrPlaceholder');
         
         qrStream = await navigator.mediaDevices.getUserMedia({
-            video: { facingMode: 'environment' }
+            video: { facingMode: 'development' }
         });
         
         video.srcObject = qrStream;
