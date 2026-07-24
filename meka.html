@@ -623,26 +623,58 @@
 				
 								
 				<!-- Chat Box -->
-				<div class="chat-box-container" id="chatBox">
-				  <h3>Chat Absensi</h3>
-				  <center>
-					<iframe src="https://www.youtube.com/embed/XjzPg0vOdNs?si=Br82zYvoZHXGv3t3&autoplay=1"
-							frameborder="0"
-							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-							allowfullscreen></iframe>
-				  </center>
-				  <br>
-				  <input type="text" id="phone" placeholder="Masukkan Nomor WA">
-				  <textarea id="message" placeholder="Masukkan Nama Anda"></textarea>
-					<select id="kelas" style="width:100%; padding:10px; border-radius:8px; margin-bottom:10px;">
-					  <option value="">-- Pilih Kelas --</option>
-					  <option value="X">Kelas X</option>
-					  <option value="XI">Kelas XI</option>
-					  <option value="XII">Kelas XII</option>
-					</select>
-				  <button onclick="sendMessage()">Kirim</button>
-				  <div class="status" id="status"></div>
-				</div>
+<div class="chat-box-container" id="chatBox">
+
+<h3 style="text-align:center;color:#1565c0;">
+CEK KEHADIRAN SISWA
+</h3>
+
+<label>Pilih Nama Anak</label>
+
+<select id="uid">
+    <option value="">-- Pilih Siswa --</option>
+</select>
+
+<button onclick="cek()">
+CEK KEHADIRAN
+</button>
+
+<div id="loading" class="loading"></div>
+
+<div id="hasil" style="display:none;">
+
+    <div class="info">
+
+        <b>Nama :</b>
+        <span id="nama"></span>
+
+        <br>
+
+        <b>Kelas :</b>
+        <span id="kelas"></span>
+
+    </div>
+
+    <h3>Riwayat Kehadiran</h3>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Tanggal</th>
+                <th>Jam</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody id="tbody"></tbody>
+
+    </table>
+
+</div>
+
+</div>
+
 			  </div>
 
 			  <!-- Bottom Nav -->
@@ -655,6 +687,7 @@
 				<a onclick="toggleChat()"><i class="fas fa-phone"></i><span>Absensi</span></a>
 			  </nav>
 
+			  
 			  
 			  <!-- Scripts -->
 			  <script>
@@ -807,6 +840,88 @@
 					  const difference = eventDate.getTime() - today.getTime();
 					  return Math.ceil(difference / (1000 * 3600 * 24));
 					}
+				  
+				  window.onload=function(){
+
+    google.script.run
+    .withSuccessHandler(function(data){
+
+        var select=document.getElementById("uid");
+
+        data.forEach(function(s){
+
+            var option=document.createElement("option");
+
+            option.value=s.uid;
+            option.text=s.nama+" - "+s.kelas;
+
+            select.appendChild(option);
+
+        });
+
+    })
+    .daftarSiswa();
+
+}
+
+function cek(){
+
+    var uid=document.getElementById("uid").value;
+
+    if(uid==""){
+        alert("Pilih nama siswa");
+        return;
+    }
+
+    document.getElementById("loading").innerHTML="Mengambil data...";
+
+    google.script.run
+    .withSuccessHandler(function(data){
+
+        document.getElementById("loading").innerHTML="";
+
+        tampil(data);
+
+    })
+    .withFailureHandler(function(err){
+
+        document.getElementById("loading").innerHTML="";
+
+        alert(err.message);
+
+    })
+    .cariAbsensi(uid);
+
+}
+
+function tampil(data){
+
+    if(data.error){
+        alert(data.error);
+        return;
+    }
+
+    document.getElementById("hasil").style.display="block";
+
+    document.getElementById("nama").innerHTML=data.nama;
+    document.getElementById("kelas").innerHTML=data.kelas;
+
+    var html="";
+
+    data.absensi.forEach(function(r){
+
+        html+="<tr>";
+        html+="<td>"+r.tanggal+"</td>";
+        html+="<td>"+r.jam+"</td>";
+        html+="<td>"+r.status+"</td>";
+        html+="</tr>";
+
+    });
+
+    document.getElementById("tbody").innerHTML=html;
+
+}
+
 				  </script>
 			  
 			</body>
