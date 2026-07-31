@@ -1,338 +1,770 @@
 <!DOCTYPE html>
-
 <html lang="id">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Pembuat Kartu Pelajar Mekatronika</title>
 
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
 <style>
+
+/* ==================================================
+PENGATURAN DASAR
+================================================== */
+
 *{
 box-sizing:border-box;
 }
 
 body{
 margin:0;
+
 font-family:Arial,sans-serif;
+
 color:#222;
+
 min-height:100vh;
+
 background:
-radial-gradient(circle at 10% 10%,#ff313155 0 2%,transparent 22%),
-radial-gradient(circle at 90% 90%,#ff000044 0 3%,transparent 25%),
-linear-gradient(135deg,#090909,#330000 45%,#700000 100%);
+
+radial-gradient(
+circle at 10% 10%,
+rgba(255,49,49,.25),
+transparent 25%
+),
+
+radial-gradient(
+circle at 90% 90%,
+rgba(255,0,0,.20),
+transparent 30%
+),
+
+linear-gradient(
+135deg,
+#090909,
+#330000 45%,
+#700000 100%
+);
+
 background-attachment:fixed;
 }
 
+
+/* EFEK CAHAYA HALUS
+GARIS DIHILANGKAN */
+
 body:before{
+
 content:"";
+
 position:fixed;
+
 inset:0;
+
 pointer-events:none;
-opacity:.16;
-background-image:
-linear-gradient(30deg,transparent 49%,#fff 50%,transparent 51%),
-linear-gradient(150deg,transparent 49%,#fff 50%,transparent 51%);
-background-size:90px 150px;
+
+background:
+
+radial-gradient(
+circle at 20% 20%,
+rgba(255,255,255,.06),
+transparent 30%
+),
+
+radial-gradient(
+circle at 80% 75%,
+rgba(255,0,0,.10),
+transparent 35%
+);
+
 }
+
+
+/* ==================================================
+HEADER
+================================================== */
 
 header{
+
 position:relative;
+
 overflow:hidden;
-background:
-linear-gradient(135deg,#170000,#9e0000 55%,#280000);
-color:#fff;
-text-align:center;
-padding:25px;
-border-bottom:3px solid #ffffff55;
-box-shadow:0 8px 25px #0009;
-}
-
-header:after{
-content:"⚙  ⚡  ◇  ⚙  ⚡";
-position:absolute;
-left:-5%;
-right:-5%;
-bottom:-20px;
-font-size:70px;
-letter-spacing:45px;
-color:#ffffff10;
-white-space:nowrap;
-transform:rotate(-4deg);
-}
-
-header h1{
-margin:0;
-font-size:28px;
-}
-
-header p{
-margin:7px 0 0;
-}
-
-.wrap{
-max-width:1150px;
-margin:auto;
-padding:22px;
-display:grid;
-grid-template-columns:380px 1fr;
-gap:24px;
-}
-
-.panel{
-background:linear-gradient(145deg,#fff,#eeeeee);
-border:1px solid #ffffffaa;
-border-radius:18px;
-padding:22px;
-box-shadow:0 12px 35px #0008;
-position:relative;
-overflow:hidden;
-}
-
-.panel:before{
-content:"MEKATRONIKA";
-position:absolute;
-right:-45px;
-top:30px;
-transform:rotate(35deg);
-font-size:35px;
-font-weight:bold;
-color:#b4000008;
-}
-
-label{
-display:block;
-font-weight:bold;
-margin-top:13px;
-}
-
-input{
-width:100%;
-padding:12px;
-margin-top:6px;
-border:1px solid #ccc;
-border-radius:9px;
-font-size:16px;
-}
-
-button{
-width:100%;
-padding:14px;
-border:0;
-border-radius:10px;
-margin-top:18px;
-font-size:16px;
-font-weight:bold;
-cursor:pointer;
-}
-
-.preview{
-background:
-linear-gradient(145deg,#ffffffee,#cccccc);
-border:1px solid #ffffff99;
-border-radius:18px;
-padding:22px;
-box-shadow:0 12px 35px #0009;
-text-align:center;
-overflow:auto;
-position:relative;
-}
-
-.preview:before{
-content:"";
-position:absolute;
-inset:10px;
-border-radius:13px;
-border:1px solid #b4000033;
-pointer-events:none;
-}
-
-/* =========================
-BACKGROUND KARTU BARU
-========================= */
-
-#card{
-width:540px;
-height:850px;
-margin:auto;
-position:relative;
-overflow:hidden;
-border-radius:28px;
 
 background:
-radial-gradient(circle at 82% 18%,#ff303055 0 5%,transparent 22%),
-radial-gradient(circle at 8% 82%,#ff000044 0 7%,transparent 26%),
 
 linear-gradient(
-125deg,
-#0a0a0a 0%,
-#181818 22%,
-#8f0000 23%,
-#d60000 44%,
-#f5f5f5 45%,
-#ffffff 100%
+135deg,
+#170000,
+#9e0000 55%,
+#280000
 );
+
+color:white;
+
+text-align:center;
+
+padding:25px;
+
+border-bottom:
+
+3px solid
+rgba(255,255,255,.25);
 
 box-shadow:
-0 18px 45px #0009,
-inset 0 0 0 3px #ffffff55;
+
+0 8px 25px
+rgba(0,0,0,.60);
+
 }
 
-/* GARIS TEKNOLOGI */
 
-#card:before{
-content:"";
+header:after{
+
+content:
+"⚙  ⚡  ◇  ⚙  ⚡";
+
 position:absolute;
-inset:0;
+
+left:-5%;
+
+right:-5%;
+
+bottom:-20px;
+
+font-size:70px;
+
+letter-spacing:45px;
+
+color:
+rgba(255,255,255,.06);
+
+white-space:nowrap;
+
+transform:
+rotate(-4deg);
+
+}
+
+
+header h1{
+
+position:relative;
+
+z-index:2;
+
+margin:0;
+
+font-size:28px;
+
+}
+
+
+header p{
+
+position:relative;
+
+z-index:2;
+
+margin:
+
+7px 0 0;
+
+}
+
+
+/* ==================================================
+LAYOUT
+================================================== */
+
+.wrap{
+
+max-width:1150px;
+
+margin:auto;
+
+padding:22px;
+
+display:grid;
+
+grid-template-columns:
+
+380px 1fr;
+
+gap:24px;
+
+}
+
+
+/* ==================================================
+PANEL BIODATA
+================================================== */
+
+.panel{
 
 background:
 
 linear-gradient(
-90deg,
-transparent 0 7%,
-#ffffff33 7.3% 7.8%,
-transparent 8.2%
+145deg,
+#ffffff,
+#eeeeee
+);
+
+border:
+
+1px solid
+rgba(255,255,255,.70);
+
+border-radius:18px;
+
+padding:22px;
+
+box-shadow:
+
+0 12px 35px
+rgba(0,0,0,.50);
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+
+.panel:before{
+
+content:
+"MEKATRONIKA";
+
+position:absolute;
+
+right:-45px;
+
+top:30px;
+
+transform:
+rotate(35deg);
+
+font-size:35px;
+
+font-weight:bold;
+
+color:
+rgba(180,0,0,.04);
+
+}
+
+
+.panel h2{
+
+position:relative;
+
+margin-top:0;
+
+padding-bottom:10px;
+
+border-bottom:
+
+4px solid
+#b40000;
+
+}
+
+
+label{
+
+display:block;
+
+font-weight:bold;
+
+margin-top:13px;
+
+}
+
+
+input{
+
+width:100%;
+
+padding:12px;
+
+margin-top:6px;
+
+border:
+
+1px solid
+#cccccc;
+
+border-radius:9px;
+
+font-size:16px;
+
+outline:none;
+
+}
+
+
+input:focus{
+
+border-color:
+#b40000;
+
+box-shadow:
+
+0 0 0 3px
+rgba(180,0,0,.10);
+
+}
+
+
+/* ==================================================
+TOMBOL
+================================================== */
+
+button{
+
+width:100%;
+
+padding:14px;
+
+border:0;
+
+border-radius:10px;
+
+margin-top:18px;
+
+font-size:16px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+transition:.2s;
+
+}
+
+
+button:hover{
+
+transform:
+
+translateY(-2px);
+
+box-shadow:
+
+0 7px 18px
+rgba(0,0,0,.35);
+
+}
+
+
+.btn-preview{
+
+background:
+
+linear-gradient(
+135deg,
+#750000,
+#d60000,
+#870000
+);
+
+color:white;
+
+}
+
+
+.btn-download{
+
+background:
+
+linear-gradient(
+135deg,
+#111111,
+#333333
+);
+
+color:white;
+
+}
+
+
+/* ==================================================
+PREVIEW
+================================================== */
+
+.preview{
+
+position:CENTER;
+
+background:
+
+linear-gradient(
+145deg,
+rgba(255,255,255,.95),
+rgba(204,204,204,.95)
+);
+
+border:
+
+1px solid
+rgba(255,255,255,.60);
+
+border-radius:18px;
+
+padding:22px;
+
+box-shadow:
+
+0 12px 35px
+rgba(0,0,0,.60);
+
+text-align:center;
+
+overflow:auto;
+
+}
+
+
+.preview:before{
+
+content:"";
+
+position:absolute;
+
+inset:10px;
+
+border-radius:13px;
+
+border:
+
+1px solid
+rgba(180,0,0,.20);
+
+pointer-events:none;
+
+}
+
+
+/* ==================================================
+KARTU
+================================================== */
+
+#card{
+
+width:540px;
+
+height:850px;
+
+margin:auto;
+
+position:relative;
+
+overflow:hidden;
+
+border-radius:28px;
+
+
+/* GRADIEN BERSIH
+TANPA GARIS BERULANG */
+
+background:
+
+radial-gradient(
+
+circle at 85% 18%,
+
+rgba(255,60,60,.32),
+
+transparent 25%
+
+),
+
+radial-gradient(
+
+circle at 10% 80%,
+
+rgba(255,0,0,.22),
+
+transparent 30%
+
 ),
 
 linear-gradient(
-0deg,
-transparent 0 25%,
-#ff000033 25.4% 25.8%,
-transparent 26.2%
-),
 
-repeating-linear-gradient(
-135deg,
-transparent 0 42px,
-#ffffff12 43px 46px
-),
+125deg,
 
-repeating-linear-gradient(
-45deg,
-transparent 0 70px,
-#9900000d 71px 74px
+#090909 0%,
+
+#1a1a1a 22%,
+
+#870000 23%,
+
+#d50000 44%,
+
+#f2f2f2 45%,
+
+#ffffff 100%
+
 );
 
-background-size:
-105px 100px,
-150px 130px,
-80px 80px,
-100px 100px;
 
-opacity:.9;
+box-shadow:
+
+0 18px 45px
+rgba(0,0,0,.70),
+
+inset
+
+0 0 0 3px
+
+rgba(255,255,255,.25);
+
 }
 
-/* RODA GIGI */
+
+/* ==================================================
+EFEK CAHAYA KARTU
+TANPA GARIS
+================================================== */
+
+#card:before{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+pointer-events:none;
+
+background:
+
+radial-gradient(
+
+circle at 15% 15%,
+
+rgba(255,255,255,.12),
+
+transparent 28%
+
+),
+
+radial-gradient(
+
+circle at 88% 70%,
+
+rgba(255,0,0,.14),
+
+transparent 32%
+
+),
+
+linear-gradient(
+
+135deg,
+
+transparent 30%,
+
+rgba(255,255,255,.05) 50%,
+
+transparent 70%
+
+);
+
+opacity:.80;
+
+}
+
+
+/* ==================================================
+RODA GIGI
+================================================== */
 
 #card:after{
+
 content:"⚙";
+
 position:absolute;
+
 right:-65px;
+
 top:160px;
 
 font-size:300px;
+
 font-weight:bold;
 
-color:#ffffff13;
+color:
 
-transform:rotate(18deg);
+rgba(255,255,255,.06);
+
+transform:
+
+rotate(18deg);
 
 z-index:1;
+
 }
 
-/* CIRCUIT */
+
+/* ==================================================
+EFEK TEKNOLOGI HALUS
+================================================== */
 
 .circuit{
+
 position:absolute;
+
 inset:0;
+
 z-index:2;
+
 pointer-events:none;
 
 background:
 
-linear-gradient(
-90deg,
-transparent 0 14%,
-#ffffff66 14.2% 14.8%,
-transparent 15%
+radial-gradient(
+
+circle at 8% 35%,
+
+rgba(255,255,255,.40)
+
+0 4px,
+
+transparent 5px
+
 ),
 
-linear-gradient(
-90deg,
-transparent 0 82%,
-#ff000044 82.2% 82.8%,
-transparent 83%
+radial-gradient(
+
+circle at 92% 55%,
+
+rgba(255,255,255,.28)
+
+0 4px,
+
+transparent 5px
+
 ),
 
-linear-gradient(
-0deg,
-transparent 0 64%,
-#ffffff44 64.2% 64.8%,
-transparent 65%
+radial-gradient(
+
+circle at 78% 22%,
+
+rgba(255,0,0,.25)
+
+0 5px,
+
+transparent 6px
+
 );
 
-background-size:
-130px 100px,
-170px 130px,
-140px 110px;
+opacity:.60;
 
-opacity:.65;
 }
 
-/* BAGIAN ATAS */
+
+/* ==================================================
+BAGIAN ATAS KARTU
+================================================== */
 
 .top{
+
 position:relative;
+
 z-index:5;
-color:#fff;
-padding:28px 25px 20px;
+
+color:white;
+
+padding:
+
+28px 25px 20px;
+
 text-align:center;
 
 background:
 
 linear-gradient(
+
 135deg,
-#080808cc,
-#700000aa 50%,
-#d00000aa
+
+rgba(8,8,8,.92),
+
+rgba(112,0,0,.82) 50%,
+
+rgba(208,0,0,.82)
+
 );
 
 clip-path:
+
 polygon(
+
 0 0,
+
 100% 0,
+
 100% 88%,
+
 88% 100%,
+
 0 92%
+
 );
+
 }
 
+
+/* ==================================================
+LOGO
+================================================== */
+
 .logo{
+
 width:105px;
+
 height:105px;
+
 margin:auto;
+
 padding:5px;
 
 display:flex;
+
 align-items:center;
+
 justify-content:center;
 
-background:#ffffff;
+background:white;
 
-border:1px solid #ffffff;
+border:
+
+2px solid white;
 
 border-radius:50%;
 
 overflow:hidden;
 
 box-shadow:
-0 0 20px #ff4444,
-0 8px 18px #0008;
+
+0 0 20px
+rgba(255,68,68,.70),
+
+0 8px 18px
+rgba(0,0,0,.50);
+
 }
 
+
 .logo img{
+
 width:100%;
+
 height:100%;
 
 display:block;
@@ -341,48 +773,74 @@ object-fit:contain;
 
 border-radius:50%;
 
-background:#ffffff;
+background:white;
+
 }
 
 
-box-shadow:
-
-0 0 18px #ff5555,
-
-0 6px 15px #0008;
-}
+/* ==================================================
+TEKS SEKOLAH
+================================================== */
 
 .school{
+
 font-size:23px;
+
 font-weight:900;
+
 margin-top:10px;
+
 line-height:1.1;
+
+color:white;
+
 }
 
+
 .dept{
+
 font-size:39px;
+
 font-weight:900;
+
 letter-spacing:1px;
+
 margin-top:18px;
+
+color:white;
 
 text-shadow:
 
-2px 3px 2px #400000,
+2px 3px 2px
+#400000,
 
-0 0 15px #ff4444;
+0 0 15px
+rgba(255,68,68,.70);
+
 }
+
 
 .sub{
+
 font-size:15px;
+
 font-weight:bold;
-margin-top:6px;
+
+margin-top:-14px;
+
 letter-spacing:1px;
+
+color:white;
 
 }
 
-/* BAGIAN DATA */
+
+/* ==================================================
+BAGIAN DATA
+================================================== */
 
 .body{
+
 position:absolute;
 
 z-index:6;
@@ -400,25 +858,40 @@ padding:25px;
 background:
 
 linear-gradient(
+
 135deg,
-#ffffffee,
-#eeeeeeee 55%,
-#ffffff
+
+rgba(255,255,255,.94),
+
+rgba(238,238,238,.94) 55%,
+
+rgba(255,255,255,.96)
+
 );
 
 clip-path:
 
 polygon(
+
 0 3%,
+
 100% 0,
+
 100% 100%,
+
 0 100%
+
 );
+
 }
 
-/* FOTO */
+
+/* ==================================================
+FOTO
+================================================== */
 
 .photo{
+
 width:235px;
 
 height:285px;
@@ -426,14 +899,19 @@ height:285px;
 background:
 
 linear-gradient(
+
 135deg,
+
 #eeeeee,
+
 #bbbbbb
+
 );
 
 border:
 
-6px solid #b90000;
+6px solid
+#b90000;
 
 border-radius:18px;
 
@@ -453,20 +931,33 @@ font-weight:bold;
 
 box-shadow:
 
-0 8px 20px #0005,
+0 8px 20px
+rgba(0,0,0,.30),
 
-0 0 0 5px #ffffff;
+0 0 0 5px
+white;
+
 }
 
+
 .photo img{
+
 width:100%;
 
 height:100%;
 
+display:block;
+
 object-fit:cover;
+
+object-position:center;
+
 }
 
-/* DATA SISWA */
+
+/* ==================================================
+DATA SISWA
+================================================== */
 
 .fields{
 
@@ -475,9 +966,13 @@ margin-top:22px;
 background:
 
 linear-gradient(
+
 135deg,
-#ffffff,
+
+white,
+
 #eeeeee
+
 );
 
 border-radius:15px;
@@ -486,12 +981,16 @@ padding:14px 20px;
 
 border-left:
 
-7px solid #b40000;
+7px solid
+#b40000;
 
 box-shadow:
 
-0 5px 15px #0003;
+0 5px 15px
+rgba(0,0,0,.20);
+
 }
+
 
 .row{
 
@@ -499,18 +998,24 @@ display:flex;
 
 border-bottom:
 
-1px solid #d4d4d4;
+1px solid
+#d4d4d4;
 
 padding:11px 0;
 
 font-size:17px;
 
 text-align:left;
+
 }
 
+
 .row:last-child{
+
 border:0;
+
 }
+
 
 .k{
 
@@ -518,17 +1023,25 @@ width:145px;
 
 font-weight:900;
 
-color:#8d0000;
+color:#000000;
+
 }
+
 
 .v{
 
 font-weight:bold;
 
+color:#000000;
+
 word-break:break-word;
+
 }
 
-/* FOOTER */
+
+/* ==================================================
+FOOTER
+================================================== */
 
 .footer{
 
@@ -545,10 +1058,15 @@ right:0;
 background:
 
 linear-gradient(
+
 90deg,
+
 #3d0000,
+
 #b40000,
+
 #4d0000
+
 );
 
 color:white;
@@ -563,28 +1081,47 @@ letter-spacing:1px;
 
 box-shadow:
 
-0 -5px 15px #0004;
+0 -5px 15px
+rgba(0,0,0,.25);
+
 }
 
-/* RESPONSIVE */
+
+/* ==================================================
+RESPONSIVE HP
+================================================== */
 
 @media(max-width:900px){
 
 .wrap{
-grid-template-columns:1fr;
+
+grid-template-columns:
+
+1fr;
+
 }
 
+
 .preview{
+
 padding:8px;
+
 }
+
 
 #card{
 
-transform:scale(.62);
+transform:
 
-transform-origin:top center;
+scale(.62);
 
-margin-bottom:-320px;
+transform-origin:
+
+top center;
+
+margin-bottom:
+
+-320px;
 
 }
 
@@ -596,49 +1133,97 @@ margin-bottom:-320px;
 
 <body>
 
+
 <header>
 
-<h1>PEMBUATAN KARTU PELAJAR</h1>
+<h1>
 
-<p>Jurusan Teknik Mekatronika</p>
+PEMBUATAN KARTU PELAJAR
+
+</h1>
+
+<p>
+
+Jurusan Teknik Mekatronika
+
+</p>
 
 </header>
 
+
 <div class="wrap">
+
+
+<!-- PANEL INPUT -->
 
 <div class="panel">
 
-<h2>Isi Biodata</h2>
 
-<label>Nama Lengkap</label>
+<h2>
+
+Isi Biodata
+
+</h2>
+
+
+<label>
+
+Nama Lengkap
+
+</label>
+
 
 <input
+
 id="nama"
+
+type="text"
+
 placeholder="Masukkan nama"
 
 >
 
-<label>NIS</label>
+
+<label>
+
+NIS
+
+</label>
+
 
 <input
+
 id="nis"
+
+type="text"
+
 placeholder="Masukkan NIS"
 
 >
 
 
+<label>
 
-<label>Upload Foto</label>
+Upload Foto
+
+</label>
+
 
 <input
+
 id="foto"
+
 type="file"
+
 accept="image/*"
 
 >
 
+
 <button
-style="background:#b40000;color:white"
+
+class="btn-preview"
+
 onclick="updateCard()"
 
 >
@@ -647,8 +1232,13 @@ TAMPILKAN KARTU
 
 </button>
 
+
 <button
-style="background:#222;color:white"
+
+id="downloadButton"
+
+class="btn-download"
+
 onclick="downloadCard()"
 
 >
@@ -657,31 +1247,58 @@ DOWNLOAD PNG
 
 </button>
 
+
 <p
+
 style="
+
 font-size:13px;
-color:#666
+
+color:#666;
+
+line-height:1.5;
+
 "
+
 >
 
 Data hanya diproses di perangkat dan tidak disimpan ke server.
 
 </p>
 
+
 </div>
+
+
+<!-- PREVIEW -->
 
 <div class="preview">
 
+
 <div id="card">
+
 
 <div class="circuit"></div>
 
+
+<!-- BAGIAN ATAS -->
+
 <div class="top">
 
-<div class="logo">
-<img src="https://smkintan.github.io/foto/MEKATRONIKA.jpg">
-</div>
 
+<div class="logo">
+
+<img
+
+src="https://smkintan.github.io/foto/Untitled.png"
+
+alt="Logo Mekatronika"
+
+crossorigin="anonymous"
+
+>
+
+</div>
 
 
 <div class="school">
@@ -694,11 +1311,13 @@ INDRALAYA SELATAN
 
 </div>
 
+
 <div class="dept">
 
 MEKATRONIKA
 
 </div>
+
 
 <div class="sub">
 
@@ -706,22 +1325,33 @@ MEKANIK • ELEKTRONIK • INFORMATIKA
 
 </div>
 
+
 </div>
+
+
+<!-- BAGIAN DATA -->
 
 <div class="body">
 
+
 <div
+
 class="photo"
+
 id="photoBox"
+
 >
 
 FOTO SISWA
 
 </div>
 
+
 <div class="fields">
 
+
 <div class="row">
+
 
 <div class="k">
 
@@ -729,18 +1359,25 @@ NAMA
 
 </div>
 
+
 <div
+
 class="v"
+
 id="oNama"
+
 >
 
-*
+-
 
 </div>
 
+
 </div>
+
 
 <div class="row">
+
 
 <div class="k">
 
@@ -748,19 +1385,25 @@ NIS
 
 </div>
 
+
 <div
+
 class="v"
+
 id="oNis"
+
 >
 
-*
+-
 
 </div>
+
 
 </div>
 
 
 <div class="row">
+
 
 <div class="k">
 
@@ -768,21 +1411,28 @@ JURUSAN
 
 </div>
 
+
 <div
+
 class="v"
+
 id="oJurusan"
+
 >
 
 TEKNIK MEKATRONIKA
 
 </div>
 
+
+</div>
+
+
 </div>
 
 
 </div>
 
-</div>
 
 <div class="footer">
 
@@ -790,183 +1440,238 @@ KREATIF • INOVATIF • BERDAYA SAING
 
 </div>
 
-</div>
 
 </div>
 
+
 </div>
+
+
+</div>
+
 
 <script>
 
-/* =========================
-UPDATE DATA KARTU
-========================= */
+
+/* ==================================================
+UPDATE DATA
+================================================== */
 
 function updateCard(){
 
 const nama =
-document.getElementById("nama").value.trim();
-
-const nis =
-document.getElementById("nis").value.trim();
-
-
-document.getElementById("oNama").textContent =
-nama ? nama.toUpperCase() : "-";
-
-
-document.getElementById("oNis").textContent =
-nis ? nis : "-";
-
-}
-
-
-/* =========================
-UPLOAD FOTO
-========================= */
 
 document
-.getElementById("foto")
-.addEventListener("change", function(event){
 
-const file =
-event.target.files[0];
+.getElementById("nama")
 
-if(!file){
-return;
+.value
+
+.trim();
+
+
+const nis =
+
+document
+
+.getElementById("nis")
+
+.value
+
+.trim();
+
+
+document
+
+.getElementById("oNama")
+
+.textContent =
+
+nama
+
+?
+
+nama.toUpperCase()
+
+:
+
+"-";
+
+
+document
+
+.getElementById("oNis")
+
+.textContent =
+
+nis
+
+?
+
+nis
+
+:
+
+"-";
+
 }
 
+
+/* ==================================================
+UPLOAD FOTO
+================================================== */
+
+document
+
+.getElementById("foto")
+
+.addEventListener(
+
+"change",
+
+function(event){
+
+
+const file =
+
+event.target.files[0];
+
+
+if(!file){
+
+return;
+
+}
+
+
 const reader =
+
 new FileReader();
 
+
 reader.onload =
+
 function(e){
 
-const photoBox =
-document.getElementById("photoBox");
 
-photoBox.innerHTML = "";
+const photoBox =
+
+document
+
+.getElementById(
+
+"photoBox"
+
+);
+
+
+photoBox.innerHTML =
+
+"";
+
 
 const image =
-document.createElement("img");
+
+document
+
+.createElement(
+
+"img"
+
+);
+
 
 image.src =
+
 e.target.result;
 
+
 image.alt =
+
 "Foto Siswa";
 
-image.style.width =
-"100%";
 
-image.style.height =
-"100%";
+photoBox.appendChild(
 
-image.style.display =
-"block";
+image
 
-image.style.objectFit =
-"cover";
+);
 
-image.style.objectPosition =
-"center";
-
-photoBox.appendChild(image);
 
 };
 
-reader.readAsDataURL(file);
 
-});
+reader.readAsDataURL(
+
+file
+
+);
 
 
-/* =========================
+}
+
+);
+
+
+/* ==================================================
 DOWNLOAD PNG
-========================= */
+================================================== */
 
 async function downloadCard(){
 
+const tombol =
+
+document
+
+.getElementById(
+
+"downloadButton"
+
+);
+
+
+const teksAwal =
+
+tombol.innerHTML;
+
+
 try{
 
-/* UPDATE DATA */
 
 updateCard();
 
 
-/* AMBIL KARTU */
-
-const card =
-document.getElementById("card");
-
-
-/* UBAH TULISAN TOMBOL */
-
-const tombol =
-document.querySelector(
-'button[onclick="downloadCard()"]'
-);
-
-const teksAwal =
-tombol.innerHTML;
-
 tombol.innerHTML =
+
 "⏳ MEMPROSES KARTU...";
 
+
 tombol.disabled =
+
 true;
 
 
-/* TUNGGU AGAR FOTO SELESAI DIMUAT */
+const card =
 
-const gambar =
-card.querySelectorAll("img");
+document
 
+.getElementById(
 
-await Promise.all(
-
-Array.from(gambar).map(
-
-function(img){
-
-if(
-img.complete &&
-img.naturalWidth > 0
-){
-
-return Promise.resolve();
-
-}
-
-return new Promise(
-
-function(resolve){
-
-img.onload =
-resolve;
-
-img.onerror =
-resolve;
-
-}
+"card"
 
 );
 
-}
-
-)
-
-);
-
-
-/* TUNGGU TAMPILAN SELESAI */
 
 await new Promise(
 
 function(resolve){
 
 setTimeout(
+
 resolve,
+
 500
+
 );
 
 }
@@ -974,9 +1679,8 @@ resolve,
 );
 
 
-/* BUAT CANVAS */
-
 const canvas =
+
 await html2canvas(
 
 card,
@@ -985,7 +1689,9 @@ card,
 
 scale:2,
 
-backgroundColor:"#ffffff",
+backgroundColor:
+
+"#ffffff",
 
 useCORS:true,
 
@@ -1000,12 +1706,18 @@ imageTimeout:20000
 );
 
 
-/* BUAT FILE PNG */
-
 const nama =
+
 document
-.getElementById("nama")
+
+.getElementById(
+
+"nama"
+
+)
+
 .value
+
 .trim()
 
 ||
@@ -1014,105 +1726,116 @@ document
 
 
 const namaFile =
+
 nama
 
 .replace(
+
 /[^a-zA-Z0-9]/g,
+
 "_"
+
 )
 
 .toUpperCase();
 
 
 const link =
-document.createElement("a");
+
+document
+
+.createElement(
+
+"a"
+
+);
 
 
 link.download =
-"KARTU_PELAJAR_" +
-namaFile +
+
+"KARTU_PELAJAR_"
+
++
+
+namaFile
+
++
+
 ".png";
 
 
 link.href =
+
 canvas.toDataURL(
+
 "image/png"
+
 );
 
 
-/* MASUKKAN LINK KE HALAMAN */
+document
 
-document.body.appendChild(
+.body
+
+.appendChild(
+
 link
+
 );
 
-
-/* DOWNLOAD */
 
 link.click();
 
 
-/* HAPUS LINK */
+document
 
-setTimeout(
+.body
 
-function(){
+.removeChild(
 
-document.body.removeChild(
 link
-);
-
-URL.revokeObjectURL(
-link.href
-);
-
-},
-
-500
 
 );
 
-
-/* KEMBALIKAN TOMBOL */
-
-tombol.innerHTML =
-teksAwal;
-
-tombol.disabled =
-false;
 
 }
 
 catch(error){
 
+
 console.error(
+
 error
+
 );
+
 
 alert(
 
-"Gagal membuat kartu. Pastikan foto sudah dipilih, lalu coba kembali."
+"Gagal membuat kartu. Silakan coba kembali."
 
 );
 
-const tombol =
-document.querySelector(
-'button[onclick="downloadCard()"]'
-);
 
-if(tombol){
+}
+
+finally{
+
 
 tombol.innerHTML =
-"DOWNLOAD PNG";
+
+teksAwal;
+
 
 tombol.disabled =
+
 false;
 
-}
 
 }
 
 }
+
 
 </script>
 
