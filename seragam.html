@@ -46,34 +46,54 @@ nav a{
     font-size:14px;
 }
 
-/* HEADER */
+/* HEADER FOTO BESAR */
 
 .hero{
-    background:linear-gradient(135deg,#123c69,#2474b9);
+    min-height:480px;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,.45),
+            rgba(0,0,0,.45)
+        ),
+        url("/foto1/header.jpg");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
     color:white;
     text-align:center;
-    padding:75px 20px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    padding:60px 20px;
 }
 
 .hero h1{
-    font-size:clamp(32px,6vw,55px);
+    font-size:clamp(38px,7vw,70px);
     margin-bottom:10px;
+    text-shadow:0 3px 10px #000;
 }
 
 .hero p{
-    font-size:18px;
-    opacity:.9;
+    font-size:20px;
+    opacity:.95;
+    text-shadow:0 2px 6px #000;
 }
 
 .badge{
     display:inline-block;
     background:#f4b400;
     color:#222;
-    padding:7px 16px;
+    padding:8px 18px;
     border-radius:30px;
     font-size:13px;
     font-weight:bold;
-    margin-bottom:18px;
+    margin-bottom:20px;
 }
 
 /* CONTAINER */
@@ -293,7 +313,18 @@ footer h3{
     }
 
     .hero{
-        padding:55px 15px;
+        min-height:400px;
+        padding:50px 15px;
+
+        background-position:center;
+    }
+
+    .hero h1{
+        font-size:40px;
+    }
+
+    .hero p{
+        font-size:17px;
     }
 
     .jadwal{
@@ -310,6 +341,28 @@ footer h3{
 
     .foto{
         height:350px;
+    }
+
+}
+
+/* ANIMASI HEADER */
+
+.hero h1,
+.hero p,
+.hero .badge{
+    animation:masuk 1s ease;
+}
+
+@keyframes masuk{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
     }
 
 }
@@ -433,7 +486,6 @@ footer h3{
 
 
     <div class="grid">
-
 
         <!-- SENIN -->
 
@@ -629,7 +681,6 @@ footer h3{
 
         </div>
 
-
     </div>
 
 </section>
@@ -718,7 +769,7 @@ footer h3{
 
     <img
         id="fotoBesar"
-        src="/foto1/"
+        src=""
         alt="Foto Seragam"
     >
 
