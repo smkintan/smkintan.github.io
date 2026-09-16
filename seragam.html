@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Seragam Harian | SMK INTAN</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:#f4f7fb;
+    color:#1f2937;
+}
+
+/* NAVBAR */
+
+nav{
+    background:#123c69;
+    color:white;
+    padding:15px 7%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.logo{
+    font-size:20px;
+    font-weight:bold;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    font-size:14px;
+}
+
+/* HEADER */
+
+.hero{
+    background:linear-gradient(135deg,#123c69,#2474b9);
+    color:white;
+    text-align:center;
+    padding:75px 20px;
+}
+
+.hero h1{
+    font-size:clamp(32px,6vw,55px);
+    margin-bottom:10px;
+}
+
+.hero p{
+    font-size:18px;
+    opacity:.9;
+}
+
+.badge{
+    display:inline-block;
+    background:#f4b400;
+    color:#222;
+    padding:7px 16px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:18px;
+}
+
+/* CONTAINER */
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:50px 20px;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.title h2{
+    color:#123c69;
+    margin-bottom:7px;
+}
+
+.title p{
+    color:#777;
+}
+
+/* JADWAL */
+
+.jadwal{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:10px;
+}
+
+.jadwal-box{
+    background:white;
+    padding:18px 10px;
+    border-radius:12px;
+    text-align:center;
+    box-shadow:0 4px 15px #0001;
+}
+
+.jadwal-box strong{
+    display:block;
+    color:#123c69;
+    margin-bottom:5px;
+}
+
+.jadwal-box span{
+    font-size:13px;
+    color:#666;
+}
+
+/* SERAGAM */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.card{
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 5px 20px #0001;
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 25px #0002;
+}
+
+/* FOTO */
+
+.foto{
+    width:100%;
+    height:320px;
+    object-fit:contain;
+    background:#f8f8f8;
+    display:block;
+    cursor:pointer;
+}
+
+/* INFO */
+
+.info{
+    padding:18px;
+}
+
+.hari{
+    color:#198754;
+    font-size:12px;
+    font-weight:bold;
+    text-transform:uppercase;
+}
+
+.info h3{
+    color:#123c69;
+    margin:4px 0 7px;
+}
+
+.info p{
+    color:#777;
+    font-size:14px;
+}
+
+/* JUMAT */
+
+.dua-foto{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:3px;
+}
+
+.dua-foto img{
+    width:100%;
+    height:300px;
+    object-fit:contain;
+    background:#f8f8f8;
+    cursor:pointer;
+}
+
+/* ATURAN */
+
+.aturan{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+}
+
+.aturan div{
+    background:white;
+    padding:15px;
+    border-radius:12px;
+    text-align:center;
+    box-shadow:0 4px 12px #0001;
+}
+
+.aturan .ok{
+    border-left:4px solid #198754;
+}
+
+.aturan .no{
+    border-left:4px solid #dc3545;
+}
+
+/* FOOTER */
+
+footer{
+    background:#123c69;
+    color:white;
+    text-align:center;
+    padding:30px 15px;
+}
+
+footer h3{
+    margin-bottom:7px;
+}
+
+/* POPUP FOTO */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:#000c;
+    z-index:100;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.modal img{
+    max-width:95%;
+    max-height:90vh;
+    border-radius:12px;
+    background:white;
+}
+
+.close{
+    position:absolute;
+    top:15px;
+    right:25px;
+    color:white;
+    font-size:40px;
+    cursor:pointer;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:850px){
+
+    .jadwal{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .aturan{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:600px){
+
+    nav{
+        display:block;
+        text-align:center;
+    }
+
+    nav a{
+        display:inline-block;
+        margin:7px;
+    }
+
+    .hero{
+        padding:55px 15px;
+    }
+
+    .jadwal{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .aturan{
+        grid-template-columns:1fr;
+    }
+
+    .foto{
+        height:350px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <div class="logo">
+        SMK INTAN
+    </div>
+
+    <div>
+        <a href="#jadwal">Jadwal</a>
+        <a href="#seragam">Seragam</a>
+        <a href="#aturan">Aturan</a>
+    </div>
+
+</nav>
+
+
+<!-- HEADER -->
+
+<header class="hero">
+
+    <span class="badge">
+        PANDUAN SISWA
+    </span>
+
+    <h1>
+        Seragam Harian
+    </h1>
+
+    <p>
+        SMK INTAN
+    </p>
+
+    <p>
+        Rapi • Disiplin • Berkarakter
+    </p>
+
+</header>
+
+
+<!-- JADWAL -->
+
+<section id="jadwal" class="container">
+
+    <div class="title">
+
+        <h2>
+            Jadwal Seragam
+        </h2>
+
+        <p>
+            Gunakan sesuai jadwal sekolah
+        </p>
+
+    </div>
+
+
+    <div class="jadwal">
+
+        <div class="jadwal-box">
+            <strong>Senin</strong>
+            <span>Almamater</span>
+        </div>
+
+        <div class="jadwal-box">
+            <strong>Selasa</strong>
+            <span>Putih Abu</span>
+        </div>
+
+        <div class="jadwal-box">
+            <strong>Rabu</strong>
+            <span>Batik</span>
+        </div>
+
+        <div class="jadwal-box">
+            <strong>Kamis</strong>
+            <span>Pramuka</span>
+        </div>
+
+        <div class="jadwal-box">
+            <strong>Jumat</strong>
+            <span>Olahraga / Koko</span>
+        </div>
+
+        <div class="jadwal-box">
+            <strong>Praktik</strong>
+            <span>Baju Praktik</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SERAGAM -->
+
+<section id="seragam" class="container">
+
+    <div class="title">
+
+        <h2>
+            Jenis Seragam
+        </h2>
+
+        <p>
+            Klik foto untuk melihat lebih besar
+        </p>
+
+    </div>
+
+
+    <div class="grid">
+
+
+        <!-- SENIN -->
+
+        <div class="card">
+
+            <img
+                src="/foto1/senin.png"
+                class="foto"
+                alt="Seragam Almamater"
+                onclick="openFoto(this.src)"
+            >
+
+            <div class="info">
+
+                <div class="hari">
+                    Senin
+                </div>
+
+                <h3>
+                    Almamater
+                </h3>
+
+                <p>
+                    Identitas dan kebanggaan
+                    siswa SMK INTAN.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- SELASA -->
+
+        <div class="card">
+
+            <img
+                src="/foto1/selasa.png"
+                class="foto"
+                alt="Seragam Putih Abu-Abu"
+                onclick="openFoto(this.src)"
+            >
+
+            <div class="info">
+
+                <div class="hari">
+                    Selasa
+                </div>
+
+                <h3>
+                    Putih Abu-Abu
+                </h3>
+
+                <p>
+                    Rapi, bersih dan lengkap
+                    sesuai ketentuan.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- RABU -->
+
+        <div class="card">
+
+            <img
+                src="/foto1/rabu.png"
+                class="foto"
+                alt="Seragam Batik"
+                onclick="openFoto(this.src)"
+            >
+
+            <div class="info">
+
+                <div class="hari">
+                    Rabu
+                </div>
+
+                <h3>
+                    Batik
+                </h3>
+
+                <p>
+                    Bangga dengan budaya
+                    Indonesia.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- KAMIS -->
+
+        <div class="card">
+
+            <img
+                src="/foto1/kamis.png"
+                class="foto"
+                alt="Seragam Pramuka"
+                onclick="openFoto(this.src)"
+            >
+
+            <div class="info">
+
+                <div class="hari">
+                    Kamis
+                </div>
+
+                <h3>
+                    Pramuka
+                </h3>
+
+                <p>
+                    Disiplin, mandiri dan
+                    bertanggung jawab.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- JUMAT -->
+
+        <div class="card">
+
+            <div class="dua-foto">
+
+                <img
+                    src="/foto1/jumat1.png"
+                    alt="Seragam Olahraga"
+                    onclick="openFoto(this.src)"
+                >
+
+                <img
+                    src="/foto1/jumat2.png"
+                    alt="Seragam Koko"
+                    onclick="openFoto(this.src)"
+                >
+
+            </div>
+
+            <div class="info">
+
+                <div class="hari">
+                    Jumat
+                </div>
+
+                <h3>
+                    Olahraga / Koko
+                </h3>
+
+                <p>
+                    Digunakan sesuai kegiatan
+                    dan ketentuan sekolah.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRAKTIK -->
+
+        <div class="card">
+
+            <img
+                src="/foto1/praktik.png"
+                class="foto"
+                alt="Baju Praktik"
+                onclick="openFoto(this.src)"
+            >
+
+            <div class="info">
+
+                <div class="hari">
+                    Hari Praktik
+                </div>
+
+                <h3>
+                    Baju Praktik
+                </h3>
+
+                <p>
+                    Sesuai program keahlian
+                    dan kegiatan praktik.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- ATURAN -->
+
+<section id="aturan" class="container">
+
+    <div class="title">
+
+        <h2>
+            Penampilan Siswa
+        </h2>
+
+        <p>
+            Rapi dan sesuai ketentuan sekolah
+        </p>
+
+    </div>
+
+
+    <div class="aturan">
+
+        <div class="ok">
+            ✓ Bersih & Rapi
+        </div>
+
+        <div class="ok">
+            ✓ Seragam Sesuai Jadwal
+        </div>
+
+        <div class="ok">
+            ✓ Atribut Lengkap
+        </div>
+
+        <div class="ok">
+            ✓ Sepatu Sesuai Ketentuan
+        </div>
+
+        <div class="no">
+            ✕ Tidak Mencampur Seragam
+        </div>
+
+        <div class="no">
+            ✕ Tidak Berpakaian Tidak Rapi
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <h3>
+        SERAGAM KITA, IDENTITAS KITA
+    </h3>
+
+    <p>
+        SMK INTAN
+    </p>
+
+    <p>
+        Rapi • Disiplin • Berkarakter
+    </p>
+
+</footer>
+
+
+<!-- POPUP -->
+
+<div
+    class="modal"
+    id="modal"
+    onclick="closeFoto()"
+>
+
+    <span
+        class="close"
+        onclick="closeFoto()">
+        &times;
+    </span>
+
+    <img
+        id="fotoBesar"
+        src="/foto1/"
+        alt="Foto Seragam"
+    >
+
+</div>
+
+
+<script>
+
+function openFoto(src){
+
+    document.getElementById("modal").style.display="flex";
+
+    document.getElementById("fotoBesar").src=src;
+
+}
+
+function closeFoto(){
+
+    document.getElementById("modal").style.display="none";
+
+}
+
+</script>
+
+
+</body>
+</html>
