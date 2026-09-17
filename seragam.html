@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -8,19 +9,30 @@
 
 <style>
 
+/* ==================================================
+   RESET
+================================================== */
+
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
 }
 
-body{
-    font-family:Arial, sans-serif;
-    background:#f4f7fb;
-    color:#1f2937;
+html{
+    scroll-behavior:smooth;
 }
 
-/* ================= NAVBAR ================= */
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f4f7fb;
+    color:#1f2937;
+    line-height:1.6;
+}
+
+/* ==================================================
+   NAVBAR
+================================================== */
 
 nav{
     background:#123c69;
@@ -31,12 +43,14 @@ nav{
     align-items:center;
     position:sticky;
     top:0;
-    z-index:10;
+    z-index:1000;
+    box-shadow:0 3px 12px #0003;
 }
 
 .logo{
-    font-size:20px;
+    font-size:21px;
     font-weight:bold;
+    letter-spacing:.5px;
 }
 
 nav a{
@@ -44,21 +58,25 @@ nav a{
     text-decoration:none;
     margin-left:20px;
     font-size:14px;
+    font-weight:500;
+    transition:.3s;
 }
 
 nav a:hover{
     color:#f4b400;
 }
 
-/* ================= HEADER ================= */
+/* ==================================================
+   HEADER / HERO SLIDESHOW
+================================================== */
 
 .hero{
     min-height:480px;
 
-    background:
+    background-image:
         linear-gradient(
-            rgba(0,0,0,.45),
-            rgba(0,0,0,.45)
+            rgba(0,0,0,.48),
+            rgba(0,0,0,.48)
         ),
         url("/foto1/besar.png");
 
@@ -76,38 +94,57 @@ nav a:hover{
 
     padding:60px 20px;
 
-    transition:background-image 1s ease-in-out;
+    transition:
+        background-image 1s ease-in-out,
+        background-position .5s ease;
+}
+
+.hero.slide-change{
+    animation:fadeSlide 1s ease;
 }
 
 .hero h1{
     font-size:clamp(38px,7vw,70px);
-    margin-bottom:10px;
+    margin-bottom:8px;
+    line-height:1.1;
     text-shadow:0 3px 10px #000;
 }
 
 .hero p{
     font-size:20px;
-    opacity:.95;
+    opacity:.96;
     text-shadow:0 2px 6px #000;
+}
+
+.hero p:last-child{
+    margin-top:5px;
+    font-size:18px;
 }
 
 .badge{
     display:inline-block;
     background:#f4b400;
     color:#222;
+
     padding:8px 18px;
     border-radius:30px;
+
     font-size:13px;
     font-weight:bold;
+
     margin-bottom:20px;
+
+    box-shadow:0 4px 12px #0004;
 }
 
-/* ================= CONTAINER ================= */
+/* ==================================================
+   CONTAINER
+================================================== */
 
 .container{
     max-width:1100px;
     margin:auto;
-    padding:50px 20px;
+    padding:55px 20px;
 }
 
 .title{
@@ -118,37 +155,49 @@ nav a:hover{
 .title h2{
     color:#123c69;
     margin-bottom:7px;
+    font-size:30px;
 }
 
 .title p{
     color:#777;
+    font-size:15px;
 }
 
-/* ================= JADWAL ================= */
+/* ==================================================
+   JADWAL
+================================================== */
 
 .jadwal{
     display:grid;
     grid-template-columns:repeat(6,1fr);
-    gap:10px;
+    gap:12px;
 }
 
 .jadwal-box{
     background:white;
-    padding:18px 10px;
-    border-radius:12px;
+    padding:20px 10px;
+    border-radius:14px;
+
     text-align:center;
+
     box-shadow:0 4px 15px #0001;
+
     transition:.25s;
+
+    border-top:4px solid #123c69;
 }
 
 .jadwal-box:hover{
-    transform:translateY(-4px);
+    transform:translateY(-5px);
+    box-shadow:0 8px 20px #0002;
+    border-top-color:#f4b400;
 }
 
 .jadwal-box strong{
     display:block;
     color:#123c69;
     margin-bottom:5px;
+    font-size:15px;
 }
 
 .jadwal-box span{
@@ -156,7 +205,9 @@ nav a:hover{
     color:#666;
 }
 
-/* ================= SERAGAM ================= */
+/* ==================================================
+   GRID SERAGAM
+================================================== */
 
 .grid{
     display:grid;
@@ -164,12 +215,20 @@ nav a:hover{
     gap:22px;
 }
 
+/* ==================================================
+   CARD
+================================================== */
+
 .card{
     background:white;
     border-radius:18px;
     overflow:hidden;
+
     box-shadow:0 5px 20px #0001;
-    transition:.25s;
+
+    transition:
+        transform .25s,
+        box-shadow .25s;
 }
 
 .card:hover{
@@ -177,22 +236,33 @@ nav a:hover{
     box-shadow:0 10px 25px #0002;
 }
 
-/* ================= FOTO ================= */
+/* ==================================================
+   FOTO SERAGAM
+================================================== */
 
 .foto{
     width:100%;
     height:320px;
+
     object-fit:contain;
+
     background:#f8f8f8;
+
     display:block;
+
     cursor:pointer;
+
+    transition:.3s;
 }
 
 .foto:hover{
     opacity:.9;
+    transform:scale(1.01);
 }
 
-/* ================= INFO ================= */
+/* ==================================================
+   INFORMASI CARD
+================================================== */
 
 .info{
     padding:18px;
@@ -203,11 +273,13 @@ nav a:hover{
     font-size:12px;
     font-weight:bold;
     text-transform:uppercase;
+    letter-spacing:.5px;
 }
 
 .info h3{
     color:#123c69;
     margin:4px 0 7px;
+    font-size:21px;
 }
 
 .info p{
@@ -215,40 +287,28 @@ nav a:hover{
     font-size:14px;
 }
 
-/* ================= DUA FOTO ================= */
-
-.dua-foto{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:3px;
-}
-
-.dua-foto img{
-    width:100%;
-    height:300px;
-    object-fit:contain;
-    background:#f8f8f8;
-    cursor:pointer;
-}
-
-.dua-foto img:hover{
-    opacity:.9;
-}
-
-/* ================= ATURAN ================= */
+/* ==================================================
+   ATURAN
+================================================== */
 
 .aturan{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:12px;
+    gap:14px;
 }
 
 .aturan div{
     background:white;
-    padding:15px;
+    padding:16px;
+
     border-radius:12px;
+
     text-align:center;
+
     box-shadow:0 4px 12px #0001;
+
+    font-size:14px;
+    font-weight:500;
 }
 
 .aturan .ok{
@@ -259,49 +319,115 @@ nav a:hover{
     border-left:4px solid #dc3545;
 }
 
-/* ================= FOOTER ================= */
+/* ==================================================
+   FOOTER
+================================================== */
 
 footer{
     background:#123c69;
     color:white;
+
     text-align:center;
-    padding:30px 15px;
+
+    padding:35px 15px;
+
+    margin-top:20px;
 }
 
 footer h3{
     margin-bottom:7px;
+    font-size:18px;
 }
 
-/* ================= POPUP FOTO ================= */
+footer p{
+    font-size:14px;
+    opacity:.9;
+}
+
+/* ==================================================
+   MODAL / POPUP FOTO
+================================================== */
 
 .modal{
     display:none;
+
     position:fixed;
+
     inset:0;
-    background:#000c;
-    z-index:100;
+
+    background:rgba(0,0,0,.85);
+
+    z-index:2000;
+
     justify-content:center;
     align-items:center;
+
     padding:20px;
+
+    animation:modalFade .25s ease;
 }
 
 .modal img{
     max-width:95%;
-    max-height:90vh;
+    max-height:88vh;
+
     border-radius:12px;
+
     background:white;
+
+    object-fit:contain;
+
+    box-shadow:0 10px 40px #0008;
 }
 
 .close{
     position:absolute;
-    top:15px;
+
+    top:10px;
     right:25px;
+
     color:white;
-    font-size:40px;
+
+    font-size:45px;
+
     cursor:pointer;
+
+    line-height:1;
+
+    transition:.2s;
 }
 
-/* ================= ANIMASI ================= */
+.close:hover{
+    color:#f4b400;
+}
+
+/* ==================================================
+   ANIMASI
+================================================== */
+
+@keyframes fadeSlide{
+
+    0%{
+        opacity:.55;
+    }
+
+    100%{
+        opacity:1;
+    }
+
+}
+
+@keyframes modalFade{
+
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+
+}
 
 .hero h1,
 .hero p,
@@ -323,7 +449,9 @@ footer h3{
 
 }
 
-/* ================= RESPONSIVE ================= */
+/* ==================================================
+   RESPONSIVE TABLET
+================================================== */
 
 @media(max-width:850px){
 
@@ -341,16 +469,26 @@ footer h3{
 
 }
 
+/* ==================================================
+   RESPONSIVE HP
+================================================== */
+
 @media(max-width:600px){
 
     nav{
         display:block;
         text-align:center;
+        padding:14px 10px;
+    }
+
+    .logo{
+        margin-bottom:8px;
     }
 
     nav a{
         display:inline-block;
-        margin:7px;
+        margin:5px 8px;
+        font-size:13px;
     }
 
     .hero{
@@ -364,6 +502,10 @@ footer h3{
 
     .hero p{
         font-size:17px;
+    }
+
+    .hero p:last-child{
+        font-size:15px;
     }
 
     .jadwal{
@@ -382,22 +524,28 @@ footer h3{
         height:350px;
     }
 
-}
-
-/* ================= HEADER SLIDESHOW ================= */
-
-.hero{
-    animation:headerFade 1s ease-in-out;
-}
-
-@keyframes headerFade{
-
-    from{
-        opacity:.7;
+    .title h2{
+        font-size:25px;
     }
 
-    to{
-        opacity:1;
+    .container{
+        padding:40px 15px;
+    }
+
+}
+
+/* ==================================================
+   HP SANGAT KECIL
+================================================== */
+
+@media(max-width:380px){
+
+    .jadwal{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:34px;
     }
 
 }
@@ -409,7 +557,9 @@ footer h3{
 <body>
 
 
-<!-- ================= NAVBAR ================= -->
+<!-- ==================================================
+     NAVBAR
+================================================== -->
 
 <nav>
 
@@ -418,15 +568,27 @@ footer h3{
     </div>
 
     <div>
-        <a href="#jadwal">Jadwal</a>
-        <a href="#seragam">Seragam</a>
-        <a href="#aturan">Aturan</a>
+
+        <a href="#jadwal">
+            Jadwal
+        </a>
+
+        <a href="#seragam">
+            Seragam
+        </a>
+
+        <a href="#aturan">
+            Aturan
+        </a>
+
     </div>
 
 </nav>
 
 
-<!-- ================= HEADER ================= -->
+<!-- ==================================================
+     HEADER
+================================================== -->
 
 <header class="hero" id="hero">
 
@@ -449,7 +611,9 @@ footer h3{
 </header>
 
 
-<!-- ================= JADWAL ================= -->
+<!-- ==================================================
+     JADWAL SERAGAM
+================================================== -->
 
 <section id="jadwal" class="container">
 
@@ -460,7 +624,7 @@ footer h3{
         </h2>
 
         <p>
-            Gunakan sesuai jadwal sekolah
+            Gunakan seragam sesuai jadwal sekolah
         </p>
 
     </div>
@@ -468,42 +632,93 @@ footer h3{
 
     <div class="jadwal">
 
-        <div class="jadwal-box">
-            <strong>Senin</strong>
-            <span>Almamater</span>
-        </div>
 
         <div class="jadwal-box">
-            <strong>Selasa</strong>
-            <span>Putih Abu</span>
+
+            <strong>
+                Senin
+            </strong>
+
+            <span>
+                Almamater
+            </span>
+
         </div>
 
-        <div class="jadwal-box">
-            <strong>Rabu</strong>
-            <span>Batik</span>
-        </div>
 
         <div class="jadwal-box">
-            <strong>Kamis</strong>
-            <span>Pramuka</span>
+
+            <strong>
+                Selasa
+            </strong>
+
+            <span>
+                Putih Abu-Abu
+            </span>
+
         </div>
 
-        <div class="jadwal-box">
-            <strong>Jumat</strong>
-            <span>Olahraga / Koko</span>
-        </div>
 
         <div class="jadwal-box">
-            <strong>Praktik</strong>
-            <span>Baju Praktik</span>
+
+            <strong>
+                Rabu
+            </strong>
+
+            <span>
+                Batik
+            </span>
+
         </div>
+
+
+        <div class="jadwal-box">
+
+            <strong>
+                Kamis
+            </strong>
+
+            <span>
+                Pramuka
+            </span>
+
+        </div>
+
+
+        <div class="jadwal-box">
+
+            <strong>
+                Jumat
+            </strong>
+
+            <span>
+                Olahraga / Koko
+            </span>
+
+        </div>
+
+
+        <div class="jadwal-box">
+
+            <strong>
+                Praktik
+            </strong>
+
+            <span>
+                Baju Praktik
+            </span>
+
+        </div>
+
 
     </div>
 
 </section>
 
 
-<!-- ================= SERAGAM ================= -->
+<!-- ==================================================
+     JENIS SERAGAM
+================================================== -->
 
 <section id="seragam" class="container">
 
@@ -523,18 +738,16 @@ footer h3{
     <div class="grid">
 
 
-        <!-- SENIN -->
+        <!-- ================= SENIN ================= -->
 
         <div class="card">
 
-
-                <img
-                    src="/foto1/senin3.png"
-                    class="foto"
-                    alt="Seragam Almamater"
-                    onclick="openFoto(this.src)"
-                >
-
+            <img
+                src="/foto1/senin3.png"
+                class="foto"
+                alt="Seragam Almamater"
+                onclick="openFoto(this.src)"
+            >
 
             <div class="info">
 
@@ -556,7 +769,7 @@ footer h3{
         </div>
 
 
-        <!-- SELASA -->
+        <!-- ================= SELASA ================= -->
 
         <div class="card">
 
@@ -587,7 +800,7 @@ footer h3{
         </div>
 
 
-        <!-- RABU -->
+        <!-- ================= RABU ================= -->
 
         <div class="card">
 
@@ -618,7 +831,7 @@ footer h3{
         </div>
 
 
-        <!-- KAMIS -->
+        <!-- ================= KAMIS ================= -->
 
         <div class="card">
 
@@ -649,16 +862,16 @@ footer h3{
         </div>
 
 
-        <!-- JUMAT -->
+        <!-- ================= JUMAT KOKO ================= -->
 
         <div class="card">
 
-
-                <img
-                    src="/foto1/jumat2.png"
-                    alt="Seragam Koko"
-                    onclick="openFoto(this.src)"
-                >
+            <img
+                src="/foto1/jumat2.png"
+                class="foto"
+                alt="Seragam Koko"
+                onclick="openFoto(this.src)"
+            >
 
             <div class="info">
 
@@ -667,7 +880,7 @@ footer h3{
                 </div>
 
                 <h3>
-                    Olahraga / Koko
+                    Koko
                 </h3>
 
                 <p>
@@ -680,15 +893,16 @@ footer h3{
         </div>
 
 
-        <!-- PRAKTIK -->
+        <!-- ================= JUMAT OLAHRAGA ================= -->
 
         <div class="card">
-                <img
-                    src="/foto1/jumat1.png"
-                    alt="Seragam Olahraga"
-                    onclick="openFoto(this.src)"
-                >
 
+            <img
+                src="/foto1/jumat1.png"
+                class="foto"
+                alt="Seragam Olahraga"
+                onclick="openFoto(this.src)"
+            >
 
             <div class="info">
 
@@ -697,10 +911,45 @@ footer h3{
                 </div>
 
                 <h3>
-                    Olah Raga
+                    Olahraga
                 </h3>
 
-                <p>Digunakan sesuai kegiatan dan ketentuan sekolah.
+                <p>
+                    Digunakan sesuai kegiatan
+                    dan ketentuan sekolah.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= PRAKTIK ================= -->
+
+        <div class="card">
+
+            <img
+                src="/foto1/praktik.png"
+                class="foto"
+                alt="Baju Praktik"
+                onclick="openFoto(this.src)"
+                onerror="this.style.display='none'"
+            >
+
+            <div class="info">
+
+                <div class="hari">
+                    Saat Praktik
+                </div>
+
+                <h3>
+                    Baju Praktik
+                </h3>
+
+                <p>
+                    Digunakan ketika mengikuti
+                    kegiatan praktik sesuai
+                    ketentuan jurusan.
                 </p>
 
             </div>
@@ -713,7 +962,9 @@ footer h3{
 </section>
 
 
-<!-- ================= ATURAN ================= -->
+<!-- ==================================================
+     ATURAN PENAMPILAN
+================================================== -->
 
 <section id="aturan" class="container">
 
@@ -732,36 +983,45 @@ footer h3{
 
     <div class="aturan">
 
+
         <div class="ok">
             ✓ Bersih & Rapi
         </div>
+
 
         <div class="ok">
             ✓ Seragam Sesuai Jadwal
         </div>
 
+
         <div class="ok">
             ✓ Atribut Lengkap
         </div>
+
 
         <div class="ok">
             ✓ Sepatu Sesuai Ketentuan
         </div>
 
+
         <div class="no">
             ✕ Tidak Mencampur Seragam
         </div>
 
+
         <div class="no">
             ✕ Tidak Berpakaian Tidak Rapi
         </div>
+
 
     </div>
 
 </section>
 
 
-<!-- ================= FOOTER ================= -->
+<!-- ==================================================
+     FOOTER
+================================================== -->
 
 <footer>
 
@@ -780,7 +1040,9 @@ footer h3{
 </footer>
 
 
-<!-- ================= POPUP ================= -->
+<!-- ==================================================
+     POPUP FOTO
+================================================== -->
 
 <div
     class="modal"
@@ -790,7 +1052,9 @@ footer h3{
 
     <span
         class="close"
-        onclick="closeFoto()">
+        onclick="closeFoto()"
+        aria-label="Tutup"
+    >
         &times;
     </span>
 
@@ -804,53 +1068,42 @@ footer h3{
 </div>
 
 
+<!-- ==================================================
+     JAVASCRIPT
+================================================== -->
+
 <script>
 
-/* ================= POPUP FOTO ================= */
+/* ==================================================
+   POPUP FOTO
+================================================== */
 
 function openFoto(src){
 
-    document.getElementById("modal").style.display="flex";
+    const modal = document.getElementById("modal");
+    const fotoBesar = document.getElementById("fotoBesar");
 
-    document.getElementById("fotoBesar").src=src;
+    fotoBesar.src = src;
 
+    modal.style.display = "flex";
+
+    document.body.style.overflow = "hidden";
 }
+
 
 function closeFoto(){
 
-    document.getElementById("modal").style.display="none";
+    const modal = document.getElementById("modal");
 
+    modal.style.display = "none";
+
+    document.body.style.overflow = "";
 }
 
 
-/* ================= HEADER SLIDESHOW ================= */
-
-const headerImages = [
-    "/foto1/besar.png",
-    "/foto1/besar2.png"
-];
-
-let headerIndex = 0;
-
-const hero = document.getElementById("hero");
-
-setInterval(function(){
-
-    headerIndex++;
-
-    if(headerIndex >= headerImages.length){
-        headerIndex = 0;
-    }
-
-    hero.style.backgroundImage =
-        "linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)), url('" +
-        headerImages[headerIndex] +
-        "')";
-
-}, 4000);
-
-
-/* ================= TUTUP POPUP DENGAN ESC ================= */
+/* ==================================================
+   TUTUP POPUP DENGAN ESC
+================================================== */
 
 document.addEventListener("keydown", function(event){
 
@@ -860,8 +1113,79 @@ document.addEventListener("keydown", function(event){
 
 });
 
+
+/* ==================================================
+   HEADER SLIDESHOW
+================================================== */
+
+const headerImages = [
+
+    "/foto1/besar.png",
+
+    "/foto1/besar2.png"
+
+];
+
+let headerIndex = 0;
+
+const hero = document.getElementById("hero");
+
+
+function changeHeader(){
+
+    headerIndex++;
+
+    if(headerIndex >= headerImages.length){
+
+        headerIndex = 0;
+
+    }
+
+
+    hero.classList.remove("slide-change");
+
+
+    /*
+       Memaksa browser menjalankan
+       animasi kembali.
+    */
+
+    void hero.offsetWidth;
+
+
+    hero.style.backgroundImage =
+        "linear-gradient(rgba(0,0,0,.48), rgba(0,0,0,.48)), url('" +
+        headerImages[headerIndex] +
+        "')";
+
+
+    hero.classList.add("slide-change");
+
+}
+
+
+/*
+   Ganti foto setiap 4 detik
+*/
+
+setInterval(changeHeader, 4000);
+
+
+/* ==================================================
+   PRELOAD FOTO HEADER
+================================================== */
+
+headerImages.forEach(function(src){
+
+    const img = new Image();
+
+    img.src = src;
+
+});
+
 </script>
 
 
 </body>
 </html>
+```
