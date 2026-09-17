@@ -69,7 +69,6 @@ nav a:hover{
    HEADER / HERO SLIDESHOW
 ================================================== */
 
-```css
 .hero{
     min-height:480px;
 
@@ -80,13 +79,9 @@ nav a:hover{
         ),
         url("/foto1/besar.png");
 
-    /* PENTING: jangan gunakan cover */
-    background-size: contain;
-    background-position: center center;
-    background-repeat: no-repeat;
-
-    /* Warna di sisi gambar jika rasio berbeda */
-    background-color:#17202a;
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
 
     color:white;
     text-align:center;
@@ -96,67 +91,50 @@ nav a:hover{
     justify-content:center;
     align-items:center;
 
-    padding:30px 20px;
+    padding:60px 20px;
 
     transition:
         background-image 1s ease-in-out,
         background-position .5s ease;
 }
 
-
-@media(max-width:850px){
-
-    .hero{
-        min-height:450px;
-
-        background-size:contain;
-        background-position:center center;
-        background-repeat:no-repeat;
-
-        padding:30px 15px;
-    }
-
+.hero.slide-change{
+    animation:fadeSlide 1s ease;
 }
 
-
-@media(max-width:600px){
-
-    .hero{
-        width:100%;
-
-        /*
-        Tinggi mengikuti layar HP.
-        Gambar tidak dipaksa memenuhi kotak.
-        */
-        min-height:0;
-        height:auto;
-
-        aspect-ratio:4 / 3;
-
-        background-size:contain;
-        background-position:center center;
-        background-repeat:no-repeat;
-
-        background-color:#17202a;
-
-        padding:20px 10px;
-    }
-
+.hero h1{
+    font-size:clamp(38px,7vw,70px);
+    margin-bottom:8px;
+    line-height:1.1;
+    text-shadow:0 3px 10px #000;
 }
 
-
-@media(max-width:380px){
-
-    .hero{
-        aspect-ratio:4 / 3;
-
-        background-size:contain;
-        background-position:center center;
-    }
-
+.hero p{
+    font-size:20px;
+    opacity:.96;
+    text-shadow:0 2px 6px #000;
 }
-```
 
+.hero p:last-child{
+    margin-top:5px;
+    font-size:18px;
+}
+
+.badge{
+    display:inline-block;
+    background:#f4b400;
+    color:#222;
+
+    padding:8px 18px;
+    border-radius:30px;
+
+    font-size:13px;
+    font-weight:bold;
+
+    margin-bottom:20px;
+
+    box-shadow:0 4px 12px #0004;
+}
 
 /* ==================================================
    CONTAINER
@@ -613,7 +591,124 @@ footer p{
 
 <header class="hero" id="hero">
 
+    <span class="badge">
+        PANDUAN SISWA
+    </span>
+
+    <p>
+        SMK INTAN
+    </p>
+
+    <p>
+        Rapi • Disiplin • Berkarakter
+    </p>
+
 </header>
+
+
+<!-- ==================================================
+     JADWAL SERAGAM
+================================================== -->
+
+<section id="jadwal" class="container">
+
+    <div class="title">
+
+        <h2>
+            Jadwal Seragam
+        </h2>
+
+        <p>
+            Gunakan seragam sesuai jadwal sekolah
+        </p>
+
+    </div>
+
+
+    <div class="jadwal">
+
+
+        <div class="jadwal-box">
+
+            <strong>
+                Senin
+            </strong>
+
+            <span>
+                Almamater
+            </span>
+
+        </div>
+
+
+        <div class="jadwal-box">
+
+            <strong>
+                Selasa
+            </strong>
+
+            <span>
+                Putih Abu-Abu
+            </span>
+
+        </div>
+
+
+        <div class="jadwal-box">
+
+            <strong>
+                Rabu
+            </strong>
+
+            <span>
+                Batik
+            </span>
+
+        </div>
+
+
+        <div class="jadwal-box">
+
+            <strong>
+                Kamis
+            </strong>
+
+            <span>
+                Pramuka
+            </span>
+
+        </div>
+
+
+        <div class="jadwal-box">
+
+            <strong>
+                Jumat
+            </strong>
+
+            <span>
+                Olahraga / Koko
+            </span>
+
+        </div>
+
+
+        <div class="jadwal-box">
+
+            <strong>
+                Praktik
+            </strong>
+
+            <span>
+                Baju Praktik
+            </span>
+
+        </div>
+
+
+    </div>
+
+</section>
 
 
 <!-- ==================================================
