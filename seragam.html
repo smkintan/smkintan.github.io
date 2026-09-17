@@ -79,9 +79,19 @@ nav a:hover{
         ),
         url("/foto1/besar.png");
 
-    background-size:cover;
+    /*
+       contain membuat SELURUH FOTO terlihat.
+       Tidak ada bagian foto yang terpotong.
+    */
+    background-size:contain;
     background-position:center;
     background-repeat:no-repeat;
+
+    /*
+       Warna belakang tetap ada jika ukuran foto
+       tidak sama dengan ukuran layar.
+    */
+    background-color:#17202a;
 
     color:white;
     text-align:center;
@@ -241,9 +251,14 @@ nav a:hover{
 
 .foto{
     width:100%;
-    height:320px;
+
+    /*
+       Foto dibuat lebih besar tetapi tetap utuh.
+    */
+    height:380px;
 
     object-fit:contain;
+    object-position:center;
 
     background:#f8f8f8;
 
@@ -367,7 +382,14 @@ footer p{
 }
 
 .modal img{
-    max-width:95%;
+    /*
+       Popup mengikuti ukuran layar,
+       tetapi seluruh foto tetap terlihat.
+    */
+    width:auto;
+    height:auto;
+
+    max-width:95vw;
     max-height:88vh;
 
     border-radius:12px;
@@ -466,6 +488,15 @@ footer p{
         grid-template-columns:repeat(2,1fr);
     }
 
+    /*
+       Header tablet tetap menampilkan
+       seluruh gambar.
+    */
+    .hero{
+        min-height:450px;
+        background-size:contain;
+    }
+
 }
 
 /* ==================================================
@@ -490,9 +521,36 @@ footer p{
         font-size:13px;
     }
 
+    /*
+       =================================================
+       HEADER HP
+       =================================================
+
+       Foto dibuat memenuhi lebar area semaksimal mungkin
+       tetapi TIDAK dipotong.
+
+       contain = seluruh foto tetap terlihat.
+    */
+
     .hero{
-        min-height:400px;
-        padding:50px 15px;
+
+        width:100%;
+
+        /*
+           Rasio area header HP.
+        */
+        min-height:0;
+
+        aspect-ratio:16 / 10;
+
+        padding:40px 15px;
+
+        background-size:contain;
+        background-position:center;
+        background-repeat:no-repeat;
+
+        background-color:#17202a;
+
     }
 
     .hero h1{
@@ -519,8 +577,27 @@ footer p{
         grid-template-columns:1fr;
     }
 
+    /*
+       Foto kartu dibuat lebih besar
+       namun tetap utuh.
+    */
+
     .foto{
-        height:350px;
+
+        width:100%;
+
+        height:auto;
+
+        min-height:350px;
+
+        max-height:none;
+
+        object-fit:contain;
+
+        object-position:center;
+
+        background:#f8f8f8;
+
     }
 
     .title h2{
@@ -529,6 +606,36 @@ footer p{
 
     .container{
         padding:40px 15px;
+    }
+
+    /*
+       Popup foto HP
+    */
+
+    .modal{
+        padding:10px;
+    }
+
+    .modal img{
+
+        width:auto;
+
+        height:auto;
+
+        max-width:96vw;
+
+        max-height:90vh;
+
+        object-fit:contain;
+
+        border-radius:10px;
+
+    }
+
+    .close{
+        top:8px;
+        right:15px;
+        font-size:40px;
     }
 
 }
@@ -543,8 +650,31 @@ footer p{
         grid-template-columns:1fr;
     }
 
+    .hero{
+
+        aspect-ratio:4 / 3;
+
+        padding:30px 10px;
+
+        background-size:contain;
+
+    }
+
     .hero h1{
         font-size:34px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+    .hero p:last-child{
+        font-size:14px;
+    }
+
+    .foto{
+        min-height:300px;
+        height:auto;
     }
 
 }
@@ -591,9 +721,6 @@ footer p{
 
 <header class="hero" id="hero">
 
-    <span class="badge">
-        PANDUAN SISWA
-    </span>
 
     <h1>
         Seragam Harian
@@ -1123,7 +1250,7 @@ const headerImages = [
 
     "/foto1/besar2.png",
 	
-	"/foto1/besar3.jpg",
+    "/foto1/besar3.jpg",
 
     "/foto1/besar4.jpg"
 
