@@ -20,7 +20,7 @@ body{
     color:#1f2937;
 }
 
-/* NAVBAR */
+/* ================= NAVBAR ================= */
 
 nav{
     background:#123c69;
@@ -46,7 +46,11 @@ nav a{
     font-size:14px;
 }
 
-/* HEADER FOTO BESAR */
+nav a:hover{
+    color:#f4b400;
+}
+
+/* ================= HEADER ================= */
 
 .hero{
     min-height:480px;
@@ -71,6 +75,8 @@ nav a{
     align-items:center;
 
     padding:60px 20px;
+
+    transition:background-image 1s ease-in-out;
 }
 
 .hero h1{
@@ -96,7 +102,7 @@ nav a{
     margin-bottom:20px;
 }
 
-/* CONTAINER */
+/* ================= CONTAINER ================= */
 
 .container{
     max-width:1100px;
@@ -118,7 +124,7 @@ nav a{
     color:#777;
 }
 
-/* JADWAL */
+/* ================= JADWAL ================= */
 
 .jadwal{
     display:grid;
@@ -132,6 +138,11 @@ nav a{
     border-radius:12px;
     text-align:center;
     box-shadow:0 4px 15px #0001;
+    transition:.25s;
+}
+
+.jadwal-box:hover{
+    transform:translateY(-4px);
 }
 
 .jadwal-box strong{
@@ -145,7 +156,7 @@ nav a{
     color:#666;
 }
 
-/* SERAGAM */
+/* ================= SERAGAM ================= */
 
 .grid{
     display:grid;
@@ -166,7 +177,7 @@ nav a{
     box-shadow:0 10px 25px #0002;
 }
 
-/* FOTO */
+/* ================= FOTO ================= */
 
 .foto{
     width:100%;
@@ -177,7 +188,11 @@ nav a{
     cursor:pointer;
 }
 
-/* INFO */
+.foto:hover{
+    opacity:.9;
+}
+
+/* ================= INFO ================= */
 
 .info{
     padding:18px;
@@ -200,7 +215,7 @@ nav a{
     font-size:14px;
 }
 
-/* JUMAT */
+/* ================= DUA FOTO ================= */
 
 .dua-foto{
     display:grid;
@@ -216,7 +231,11 @@ nav a{
     cursor:pointer;
 }
 
-/* ATURAN */
+.dua-foto img:hover{
+    opacity:.9;
+}
+
+/* ================= ATURAN ================= */
 
 .aturan{
     display:grid;
@@ -240,7 +259,7 @@ nav a{
     border-left:4px solid #dc3545;
 }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
 
 footer{
     background:#123c69;
@@ -253,7 +272,7 @@ footer h3{
     margin-bottom:7px;
 }
 
-/* POPUP FOTO */
+/* ================= POPUP FOTO ================= */
 
 .modal{
     display:none;
@@ -282,7 +301,29 @@ footer h3{
     cursor:pointer;
 }
 
-/* RESPONSIVE */
+/* ================= ANIMASI ================= */
+
+.hero h1,
+.hero p,
+.hero .badge{
+    animation:masuk 1s ease;
+}
+
+@keyframes masuk{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+/* ================= RESPONSIVE ================= */
 
 @media(max-width:850px){
 
@@ -315,8 +356,6 @@ footer h3{
     .hero{
         min-height:400px;
         padding:50px 15px;
-
-        background-position:center;
     }
 
     .hero h1{
@@ -345,24 +384,20 @@ footer h3{
 
 }
 
-/* ANIMASI HEADER */
+/* ================= HEADER SLIDESHOW ================= */
 
-.hero h1,
-.hero p,
-.hero .badge{
-    animation:masuk 1s ease;
+.hero{
+    animation:headerFade 1s ease-in-out;
 }
 
-@keyframes masuk{
+@keyframes headerFade{
 
     from{
-        opacity:0;
-        transform:translateY(20px);
+        opacity:.7;
     }
 
     to{
         opacity:1;
-        transform:translateY(0);
     }
 
 }
@@ -374,7 +409,7 @@ footer h3{
 <body>
 
 
-<!-- NAVBAR -->
+<!-- ================= NAVBAR ================= -->
 
 <nav>
 
@@ -391,9 +426,9 @@ footer h3{
 </nav>
 
 
-<!-- HEADER -->
+<!-- ================= HEADER ================= -->
 
-<header class="hero">
+<header class="hero" id="hero">
 
     <span class="badge">
         PANDUAN SISWA
@@ -414,7 +449,7 @@ footer h3{
 </header>
 
 
-<!-- JADWAL -->
+<!-- ================= JADWAL ================= -->
 
 <section id="jadwal" class="container">
 
@@ -468,7 +503,7 @@ footer h3{
 </section>
 
 
-<!-- SERAGAM -->
+<!-- ================= SERAGAM ================= -->
 
 <section id="seragam" class="container">
 
@@ -487,23 +522,28 @@ footer h3{
 
     <div class="grid">
 
+
         <!-- SENIN -->
+
         <div class="card">
+
             <div class="dua-foto">
 
-            <img
-                src="/foto1/senin1.png"
-                class="foto"
-                alt="Seragam Almamater"
-                onclick="openFoto(this.src)"
-            >
                 <img
-                src="/foto1/senin.png"
-                class="foto"
-                alt="Seragam Almamater"
-                onclick="openFoto(this.src)"
-            >
-    </div>
+                    src="/foto1/senin1.png"
+                    class="foto"
+                    alt="Seragam Almamater"
+                    onclick="openFoto(this.src)"
+                >
+
+                <img
+                    src="/foto1/senin.png"
+                    class="foto"
+                    alt="Seragam Almamater"
+                    onclick="openFoto(this.src)"
+                >
+
+            </div>
 
             <div class="info">
 
@@ -522,7 +562,8 @@ footer h3{
 
             </div>
 
-        </div>    
+        </div>
+
 
         <!-- SELASA -->
 
@@ -687,12 +728,13 @@ footer h3{
 
         </div>
 
+
     </div>
 
 </section>
 
 
-<!-- ATURAN -->
+<!-- ================= ATURAN ================= -->
 
 <section id="aturan" class="container">
 
@@ -740,7 +782,7 @@ footer h3{
 </section>
 
 
-<!-- FOOTER -->
+<!-- ================= FOOTER ================= -->
 
 <footer>
 
@@ -759,7 +801,7 @@ footer h3{
 </footer>
 
 
-<!-- POPUP -->
+<!-- ================= POPUP ================= -->
 
 <div
     class="modal"
@@ -777,12 +819,15 @@ footer h3{
         id="fotoBesar"
         src=""
         alt="Foto Seragam"
+        onclick="event.stopPropagation()"
     >
 
 </div>
 
 
 <script>
+
+/* ================= POPUP FOTO ================= */
 
 function openFoto(src){
 
@@ -797,6 +842,44 @@ function closeFoto(){
     document.getElementById("modal").style.display="none";
 
 }
+
+
+/* ================= HEADER SLIDESHOW ================= */
+
+const headerImages = [
+    "/foto1/header.jpg",
+    "/foto1/header2.jpg"
+];
+
+let headerIndex = 0;
+
+const hero = document.getElementById("hero");
+
+setInterval(function(){
+
+    headerIndex++;
+
+    if(headerIndex >= headerImages.length){
+        headerIndex = 0;
+    }
+
+    hero.style.backgroundImage =
+        "linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)), url('" +
+        headerImages[headerIndex] +
+        "')";
+
+}, 4000);
+
+
+/* ================= TUTUP POPUP DENGAN ESC ================= */
+
+document.addEventListener("keydown", function(event){
+
+    if(event.key === "Escape"){
+        closeFoto();
+    }
+
+});
 
 </script>
 
