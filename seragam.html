@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -79,9 +80,19 @@ nav a:hover{
         ),
         url("/foto1/besar.png");
 
-    background-size:cover;
-    background-position:center;
+    /*
+       CONTAIN = seluruh foto terlihat
+       tanpa dipotong
+    */
+    background-size:contain;
+    background-position:center center;
     background-repeat:no-repeat;
+
+    /*
+       Warna bagian kosong jika rasio foto
+       berbeda dengan layar
+    */
+    background-color:#17202a;
 
     color:white;
     text-align:center;
@@ -91,6 +102,9 @@ nav a:hover{
     justify-content:center;
     align-items:center;
 
+    /*
+       TETAP SESUAI PERMINTAAN
+    */
     padding:60px 20px;
 
     transition:
@@ -244,6 +258,7 @@ nav a:hover{
     height:320px;
 
     object-fit:contain;
+    object-position:center center;
 
     background:#f8f8f8;
 
@@ -466,6 +481,17 @@ footer p{
         grid-template-columns:repeat(2,1fr);
     }
 
+    .hero{
+        min-height:480px;
+
+        background-size:contain;
+        background-position:center center;
+        background-repeat:no-repeat;
+
+        /* TETAP */
+        padding:60px 20px;
+    }
+
 }
 
 /* ==================================================
@@ -490,9 +516,24 @@ footer p{
         font-size:13px;
     }
 
+    /*
+       HEADER HP
+       Foto tidak dipotong
+       Padding tetap 60px 20px
+    */
+
     .hero{
-        min-height:400px;
-        padding:50px 15px;
+        width:100%;
+        min-height:500px;
+
+        background-size:contain;
+        background-position:center center;
+        background-repeat:no-repeat;
+
+        background-color:#17202a;
+
+        /* TETAP 60px 20px */
+        padding:60px 20px;
     }
 
     .hero h1{
@@ -521,6 +562,8 @@ footer p{
 
     .foto{
         height:350px;
+        object-fit:contain;
+        object-position:center center;
     }
 
     .title h2{
@@ -541,6 +584,17 @@ footer p{
 
     .jadwal{
         grid-template-columns:1fr;
+    }
+
+    .hero{
+        min-height:500px;
+
+        background-size:contain;
+        background-position:center center;
+        background-repeat:no-repeat;
+
+        /* TETAP */
+        padding:60px 20px;
     }
 
     .hero h1{
@@ -591,9 +645,6 @@ footer p{
 
 <header class="hero" id="hero">
 
-    <span class="badge">
-        PANDUAN SISWA
-    </span>
 
     <p>
         SMK INTAN
@@ -1118,8 +1169,8 @@ const headerImages = [
     "/foto1/besar.png",
 
     "/foto1/besar2.png",
-	
-	"/foto1/besar3.jpg",
+
+    "/foto1/besar3.jpg",
 
     "/foto1/besar4.jpg"
 
@@ -1187,3 +1238,4 @@ headerImages.forEach(function(src){
 
 </body>
 </html>
+```
