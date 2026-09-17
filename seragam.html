@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -29,6 +28,7 @@ body{
     color:#1f2937;
     line-height:1.6;
 }
+
 
 /* ==================================================
    NAVBAR
@@ -66,33 +66,22 @@ nav a:hover{
     color:#f4b400;
 }
 
+
 /* ==================================================
-   HEADER / HERO SLIDESHOW
+   HEADER / HERO
+   OTOMATIS MENGIKUTI UKURAN GAMBAR
 ================================================== */
 
 .hero{
-    min-height:480px;
+    position:relative;
 
-    background-image:
-        linear-gradient(
-            rgba(0,0,0,.48),
-            rgba(0,0,0,.48)
-        ),
-        url("/foto1/besar.png");
+    width:100%;
 
     /*
-       CONTAIN = seluruh foto terlihat
-       tanpa dipotong
+       Tinggi akan ditentukan otomatis
+       oleh gambar melalui JavaScript
     */
-    background-size:contain;
-    background-position:center center;
-    background-repeat:no-repeat;
-
-    /*
-       Warna bagian kosong jika rasio foto
-       berbeda dengan layar
-    */
-    background-color:#17202a;
+    min-height:0;
 
     color:white;
     text-align:center;
@@ -103,52 +92,73 @@ nav a:hover{
     align-items:center;
 
     /*
-       TETAP SESUAI PERMINTAAN
+       Tetap sesuai permintaan
     */
     padding:60px 20px;
 
+    background-color:#17202a;
+
+    background-image:
+        linear-gradient(
+            rgba(0,0,0,.48),
+            rgba(0,0,0,.48)
+        ),
+        url("/foto1/besar.png");
+
+    background-size:100% auto;
+    background-position:center center;
+    background-repeat:no-repeat;
+
     transition:
-        background-image 1s ease-in-out,
-        background-position .5s ease;
+        background-image .8s ease-in-out,
+        min-height .4s ease;
 }
 
-.hero.slide-change{
-    animation:fadeSlide 1s ease;
-}
 
-.hero h1{
-    font-size:clamp(38px,7vw,70px);
-    margin-bottom:8px;
-    line-height:1.1;
-    text-shadow:0 3px 10px #000;
-}
+/* ==================================================
+   TEKS HEADER
+================================================== */
 
 .hero p{
-    font-size:20px;
-    opacity:.96;
-    text-shadow:0 2px 6px #000;
+    position:relative;
+    z-index:2;
+
+    font-size:clamp(18px,3vw,28px);
+
+    font-weight:bold;
+
+    text-shadow:0 3px 10px #000;
 }
 
 .hero p:last-child{
     margin-top:5px;
-    font-size:18px;
+
+    font-size:clamp(15px,2.5vw,20px);
+
+    font-weight:normal;
 }
 
-.badge{
-    display:inline-block;
-    background:#f4b400;
-    color:#222;
 
-    padding:8px 18px;
-    border-radius:30px;
+/* ==================================================
+   ANIMASI HEADER
+================================================== */
 
-    font-size:13px;
-    font-weight:bold;
-
-    margin-bottom:20px;
-
-    box-shadow:0 4px 12px #0004;
+.hero.slide-change{
+    animation:fadeSlide .8s ease;
 }
+
+@keyframes fadeSlide{
+
+    0%{
+        opacity:.45;
+    }
+
+    100%{
+        opacity:1;
+    }
+
+}
+
 
 /* ==================================================
    CONTAINER
@@ -175,6 +185,7 @@ nav a:hover{
     color:#777;
     font-size:15px;
 }
+
 
 /* ==================================================
    JADWAL
@@ -218,6 +229,7 @@ nav a:hover{
     color:#666;
 }
 
+
 /* ==================================================
    GRID SERAGAM
 ================================================== */
@@ -227,6 +239,7 @@ nav a:hover{
     grid-template-columns:repeat(3,1fr);
     gap:22px;
 }
+
 
 /* ==================================================
    CARD
@@ -248,6 +261,7 @@ nav a:hover{
     transform:translateY(-5px);
     box-shadow:0 10px 25px #0002;
 }
+
 
 /* ==================================================
    FOTO SERAGAM
@@ -273,6 +287,7 @@ nav a:hover{
     opacity:.9;
     transform:scale(1.01);
 }
+
 
 /* ==================================================
    INFORMASI CARD
@@ -300,6 +315,7 @@ nav a:hover{
     color:#777;
     font-size:14px;
 }
+
 
 /* ==================================================
    ATURAN
@@ -333,6 +349,7 @@ nav a:hover{
     border-left:4px solid #dc3545;
 }
 
+
 /* ==================================================
    FOOTER
 ================================================== */
@@ -357,6 +374,7 @@ footer p{
     font-size:14px;
     opacity:.9;
 }
+
 
 /* ==================================================
    MODAL / POPUP FOTO
@@ -415,22 +433,6 @@ footer p{
     color:#f4b400;
 }
 
-/* ==================================================
-   ANIMASI
-================================================== */
-
-@keyframes fadeSlide{
-
-    0%{
-        opacity:.55;
-    }
-
-    100%{
-        opacity:1;
-    }
-
-}
-
 @keyframes modalFade{
 
     from{
@@ -443,9 +445,12 @@ footer p{
 
 }
 
-.hero h1,
-.hero p,
-.hero .badge{
+
+/* ==================================================
+   ANIMASI TEKS
+================================================== */
+
+.hero p{
     animation:masuk 1s ease;
 }
 
@@ -462,6 +467,7 @@ footer p{
     }
 
 }
+
 
 /* ==================================================
    RESPONSIVE TABLET
@@ -482,17 +488,11 @@ footer p{
     }
 
     .hero{
-        min-height:480px;
-
-        background-size:contain;
-        background-position:center center;
-        background-repeat:no-repeat;
-
-        /* TETAP */
         padding:60px 20px;
     }
 
 }
+
 
 /* ==================================================
    RESPONSIVE HP
@@ -516,37 +516,35 @@ footer p{
         font-size:13px;
     }
 
+
     /*
        HEADER HP
-       Foto tidak dipotong
+       Tinggi mengikuti gambar
        Padding tetap 60px 20px
     */
 
     .hero{
         width:100%;
-        min-height:500px;
 
-        background-size:contain;
+        min-height:0;
+
+        padding:60px 20px;
+
+        background-size:100% auto;
         background-position:center center;
         background-repeat:no-repeat;
 
         background-color:#17202a;
-
-        /* TETAP 60px 20px */
-        padding:60px 20px;
-    }
-
-    .hero h1{
-        font-size:40px;
     }
 
     .hero p{
-        font-size:17px;
+        font-size:18px;
     }
 
     .hero p:last-child{
         font-size:15px;
     }
+
 
     .jadwal{
         grid-template-columns:repeat(2,1fr);
@@ -562,6 +560,7 @@ footer p{
 
     .foto{
         height:350px;
+
         object-fit:contain;
         object-position:center center;
     }
@@ -576,6 +575,7 @@ footer p{
 
 }
 
+
 /* ==================================================
    HP SANGAT KECIL
 ================================================== */
@@ -587,18 +587,21 @@ footer p{
     }
 
     .hero{
-        min-height:500px;
+        min-height:0;
 
-        background-size:contain;
+        padding:60px 20px;
+
+        background-size:100% auto;
         background-position:center center;
         background-repeat:no-repeat;
-
-        /* TETAP */
-        padding:60px 20px;
     }
 
-    .hero h1{
-        font-size:34px;
+    .hero p{
+        font-size:17px;
+    }
+
+    .hero p:last-child{
+        font-size:14px;
     }
 
 }
@@ -645,7 +648,6 @@ footer p{
 
 <header class="hero" id="hero">
 
-
     <p>
         SMK INTAN
     </p>
@@ -655,111 +657,6 @@ footer p{
     </p>
 
 </header>
-
-
-<!-- ==================================================
-     JADWAL SERAGAM
-================================================== -->
-
-<section id="jadwal" class="container">
-
-    <div class="title">
-
-        <h2>
-            Jadwal Seragam
-        </h2>
-
-        <p>
-            Gunakan seragam sesuai jadwal sekolah
-        </p>
-
-    </div>
-
-
-    <div class="jadwal">
-
-
-        <div class="jadwal-box">
-
-            <strong>
-                Senin
-            </strong>
-
-            <span>
-                Almamater
-            </span>
-
-        </div>
-
-
-        <div class="jadwal-box">
-
-            <strong>
-                Selasa
-            </strong>
-
-            <span>
-                Putih Abu-Abu
-            </span>
-
-        </div>
-
-
-        <div class="jadwal-box">
-
-            <strong>
-                Rabu
-            </strong>
-
-            <span>
-                Batik
-            </span>
-
-        </div>
-
-
-        <div class="jadwal-box">
-
-            <strong>
-                Kamis
-            </strong>
-
-            <span>
-                Pramuka
-            </span>
-
-        </div>
-
-
-        <div class="jadwal-box">
-
-            <strong>
-                Jumat
-            </strong>
-
-            <span>
-                Olahraga / Koko
-            </span>
-
-        </div>
-
-
-        <div class="jadwal-box">
-
-            <strong>
-                Praktik
-            </strong>
-
-            <span>
-                Baju Praktik
-            </span>
-
-        </div>
-
-
-    </div>
-
-</section>
 
 
 <!-- ==================================================
@@ -784,7 +681,7 @@ footer p{
     <div class="grid">
 
 
-        <!-- ================= SENIN ================= -->
+        <!-- SENIN -->
 
         <div class="card">
 
@@ -815,7 +712,7 @@ footer p{
         </div>
 
 
-        <!-- ================= SELASA ================= -->
+        <!-- SELASA -->
 
         <div class="card">
 
@@ -846,7 +743,7 @@ footer p{
         </div>
 
 
-        <!-- ================= RABU ================= -->
+        <!-- RABU -->
 
         <div class="card">
 
@@ -877,7 +774,7 @@ footer p{
         </div>
 
 
-        <!-- ================= KAMIS ================= -->
+        <!-- KAMIS -->
 
         <div class="card">
 
@@ -908,7 +805,7 @@ footer p{
         </div>
 
 
-        <!-- ================= JUMAT KOKO ================= -->
+        <!-- JUMAT KOKO -->
 
         <div class="card">
 
@@ -939,7 +836,7 @@ footer p{
         </div>
 
 
-        <!-- ================= JUMAT OLAHRAGA ================= -->
+        <!-- JUMAT OLAHRAGA -->
 
         <div class="card">
 
@@ -970,7 +867,7 @@ footer p{
         </div>
 
 
-        <!-- ================= PRAKTIK ================= -->
+        <!-- PRAKTIK -->
 
         <div class="card">
 
@@ -1029,36 +926,29 @@ footer p{
 
     <div class="aturan">
 
-
         <div class="ok">
             ✓ Bersih & Rapi
         </div>
-
 
         <div class="ok">
             ✓ Seragam Sesuai Jadwal
         </div>
 
-
         <div class="ok">
             ✓ Atribut Lengkap
         </div>
-
 
         <div class="ok">
             ✓ Sepatu Sesuai Ketentuan
         </div>
 
-
         <div class="no">
             ✕ Tidak Mencampur Seragam
         </div>
 
-
         <div class="no">
             ✕ Tidak Berpakaian Tidak Rapi
         </div>
-
 
     </div>
 
@@ -1126,8 +1016,11 @@ footer p{
 
 function openFoto(src){
 
-    const modal = document.getElementById("modal");
-    const fotoBesar = document.getElementById("fotoBesar");
+    const modal =
+        document.getElementById("modal");
+
+    const fotoBesar =
+        document.getElementById("fotoBesar");
 
     fotoBesar.src = src;
 
@@ -1139,7 +1032,8 @@ function openFoto(src){
 
 function closeFoto(){
 
-    const modal = document.getElementById("modal");
+    const modal =
+        document.getElementById("modal");
 
     modal.style.display = "none";
 
@@ -1151,17 +1045,21 @@ function closeFoto(){
    TUTUP POPUP DENGAN ESC
 ================================================== */
 
-document.addEventListener("keydown", function(event){
+document.addEventListener(
+    "keydown",
+    function(event){
 
-    if(event.key === "Escape"){
-        closeFoto();
+        if(event.key === "Escape"){
+            closeFoto();
+        }
+
     }
-
-});
+);
 
 
 /* ==================================================
    HEADER SLIDESHOW
+   OTOMATIS MENGIKUTI UKURAN GAMBAR
 ================================================== */
 
 const headerImages = [
@@ -1178,64 +1076,164 @@ const headerImages = [
 
 let headerIndex = 0;
 
-const hero = document.getElementById("hero");
+const hero =
+    document.getElementById("hero");
 
+
+/*
+   Fungsi menghitung tinggi header
+   berdasarkan ukuran asli gambar
+*/
+
+function setHeroSize(src){
+
+    const img = new Image();
+
+    img.onload = function(){
+
+        const screenWidth =
+            hero.clientWidth;
+
+        /*
+           Rasio asli gambar
+        */
+
+        const ratio =
+            img.naturalHeight /
+            img.naturalWidth;
+
+        /*
+           Tinggi gambar mengikuti
+           lebar layar
+        */
+
+        const imageHeight =
+            screenWidth * ratio;
+
+        /*
+           Tambahkan padding atas + bawah
+        */
+
+        const totalHeight =
+            imageHeight + 120;
+
+        hero.style.minHeight =
+            totalHeight + "px";
+
+    };
+
+    img.src = src;
+}
+
+
+/*
+   Ganti foto header
+*/
 
 function changeHeader(){
 
     headerIndex++;
 
-    if(headerIndex >= headerImages.length){
+    if(
+        headerIndex >=
+        headerImages.length
+    ){
 
         headerIndex = 0;
 
     }
 
 
-    hero.classList.remove("slide-change");
+    hero.classList.remove(
+        "slide-change"
+    );
 
 
     /*
-       Memaksa browser menjalankan
-       animasi kembali.
+       Memaksa animasi berjalan kembali
     */
 
     void hero.offsetWidth;
 
 
     hero.style.backgroundImage =
-        "linear-gradient(rgba(0,0,0,.48), rgba(0,0,0,.48)), url('" +
+        "linear-gradient(" +
+        "rgba(0,0,0,.48), " +
+        "rgba(0,0,0,.48)" +
+        "), url('" +
         headerImages[headerIndex] +
         "')";
 
 
-    hero.classList.add("slide-change");
+    /*
+       Hitung ulang tinggi berdasarkan
+       gambar yang baru
+    */
+
+    setHeroSize(
+        headerImages[headerIndex]
+    );
+
+
+    hero.classList.add(
+        "slide-change"
+    );
 
 }
+
+
+/*
+   Set ukuran gambar pertama
+*/
+
+setHeroSize(
+    headerImages[0]
+);
 
 
 /*
    Ganti foto setiap 4 detik
 */
 
-setInterval(changeHeader, 4000);
+setInterval(
+    changeHeader,
+    4000
+);
 
 
 /* ==================================================
    PRELOAD FOTO HEADER
 ================================================== */
 
-headerImages.forEach(function(src){
+headerImages.forEach(
+    function(src){
 
-    const img = new Image();
+        const img =
+            new Image();
 
-    img.src = src;
+        img.src = src;
 
-});
+    }
+);
+
+
+/* ==================================================
+   JIKA UKURAN LAYAR BERUBAH
+================================================== */
+
+window.addEventListener(
+    "resize",
+    function(){
+
+        setHeroSize(
+            headerImages[headerIndex]
+        );
+
+    }
+);
 
 </script>
 
 
 </body>
 </html>
-```
