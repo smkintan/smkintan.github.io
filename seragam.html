@@ -288,6 +288,56 @@ nav a:hover{
     transform:scale(1.01);
 }
 
+```css
+/* ==================================================
+   FOTO SELASA KIRI - KANAN
+================================================== */
+
+.foto-selasa{
+    width:100%;
+    height:320px;
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+
+    gap:4px;
+
+    background:#f8f8f8;
+}
+
+.foto-selasa img{
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+    object-position:center;
+
+    display:block;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.foto-selasa img:hover{
+    opacity:.9;
+    transform:scale(1.01);
+}
+
+
+/* HP */
+
+@media(max-width:600px){
+
+    .foto-selasa{
+        height:350px;
+        grid-template-columns:1fr 1fr;
+        gap:3px;
+    }
+
+}
+```
+
 
 /* ==================================================
    INFORMASI CARD
@@ -711,41 +761,44 @@ footer p{
         </div>
 
 
-        <!-- SELASA -->
+			<!-- SELASA -->
 
-        <div class="card">
+		<div class="card">
 
-            <img
-                src="/foto1/selasa.png"
-                class="foto"
-                alt="Seragam Putih Abu-Abu"
-                onclick="openFoto(this.src)"
-            >
-			            <img
-                src="/foto1/selasa2.png"
-                class="foto"
-                alt="Seragam Putih Abu-Abu"
-                onclick="openFoto(this.src)"
-            >
+			<div class="foto-selasa">
 
-            <div class="info">
+				<img
+					src="/foto1/selasa.png"
+					alt="Seragam Putih Abu-Abu"
+					onclick="openFoto(this.src)"
+				>
 
-                <div class="hari">
-                    Selasa
-                </div>
+				<img
+					src="/foto1/selasa2.png"
+					alt="Seragam Putih Abu-Abu"
+					onclick="openFoto(this.src)"
+				>
 
-                <h3>
-                    Putih Abu-Abu
-                </h3>
+			</div>
 
-                <p>
-                    Rapi, bersih dan lengkap
-                    sesuai ketentuan.
-                </p>
+			<div class="info">
 
-            </div>
+				<div class="hari">
+					Selasa
+				</div>
 
-        </div>
+				<h3>
+					Putih Abu-Abu
+				</h3>
+
+				<p>
+					Rapi, bersih dan lengkap
+					sesuai ketentuan.
+				</p>
+
+			</div>
+
+		</div>
 
 
         <!-- RABU -->
